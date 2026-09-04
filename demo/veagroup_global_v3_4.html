@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEA Group — Vietnam Era Group · Kỷ nguyên Việt Nam</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+/* ══ LIGHT PALETTE ══ */
+:root{
+  --bg:#FFFFFF; --bg2:#FAF8F5; --bg3:#F5F1EB; --bg4:#EEE8DE;
+  --dark:#0F0F0F; --dark2:#1A1A1A; --dark3:#2A2A2A;
+  --muted:#6B6B6B; --muted2:#999999; --muted3:#BBBBBB;
+  --org:#C8541A; --org2:#E8612A; --org3:#F07848;
+  --orgl:rgba(200,84,26,.10); --orgl2:rgba(200,84,26,.06); --orgl3:rgba(200,84,26,.04);
+  --orgb:rgba(200,84,26,.22); --orgb2:rgba(200,84,26,.35);
+  --border:#E8E2DA; --border2:#D8D0C4; --border3:rgba(200,84,26,.2);
+  --sh:0 2px 20px rgba(15,15,15,.06); --sh2:0 8px 40px rgba(15,15,15,.10);
+  --r:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Be Vietnam Pro",sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+a{text-decoration:none;color:inherit}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:62px;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 1px 0 rgba(200,84,26,.06);
+  transition:all .3s;
+}
+nav.scrolled{box-shadow:var(--sh)}
+.nav-logo img{height:26px;width:auto;display:block;filter:brightness(.9)}
+.nav-logo-fallback{display:none;font-size:17px;font-weight:900;color:var(--dark)}
+.nav-logo-fallback em{background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.nav-c{display:flex;gap:2px}
+.nl{padding:6px 13px;border-radius:6px;font-size:13px;font-weight:500;color:var(--muted);border:none;background:transparent;cursor:pointer;transition:all .2s;font-family:"Be Vietnam Pro",sans-serif}
+.nl:hover{color:var(--dark);background:var(--bg3)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.nav-lang{font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--border);padding:5px 11px;border-radius:5px;cursor:pointer;transition:all .2s;background:transparent;font-family:"Be Vietnam Pro",sans-serif}
+.nav-lang:hover{color:var(--org);border-color:var(--orgb)}
+.nav-cta{background:linear-gradient(135deg,var(--org),var(--org2));color:#fff;border:none;padding:9px 20px;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;font-family:"Be Vietnam Pro",sans-serif;transition:all .2s;box-shadow:0 2px 12px rgba(200,84,26,.25)}
+.nav-cta:hover{filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 4px 20px rgba(200,84,26,.35)}
+
+/* ══ HERO CAROUSEL — full-width ══ */
+.hero-carousel{position:relative;height:100vh;min-height:700px;overflow:hidden}
+.hero-slides{display:flex;height:100%;transition:transform .85s cubic-bezier(.77,0,.175,1)}
+.hero-slide{flex-shrink:0;width:100%;height:100%;position:relative;overflow:hidden}
+
+/* SLIDE 1 — Light editorial full-width */
+.s1-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg, #FFFDF9 0%, #FFF5EC 35%, #FFF9F5 65%, #F8F3EE 100%);
+}
+/* VN flag–inspired decorative strip top */
+.s1-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--org),var(--org2),var(--org3),var(--org2),var(--org))}
+/* large background text VEA */
+.s1-vea-bg{
+  position:absolute;right:-40px;top:50%;transform:translateY(-52%);
+  font-size:360px;font-weight:900;line-height:1;letter-spacing:-12px;
+  background:linear-gradient(135deg,rgba(200,84,26,.05),rgba(232,97,42,.03));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  pointer-events:none;user-select:none;white-space:nowrap;
+}
+/* glow orb */
+.s1-orb{
+  position:absolute;width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,84,26,.07) 0%,transparent 65%);
+  top:50%;left:50%;transform:translate(-50%,-52%);
+  animation:orb 8s ease-in-out infinite;pointer-events:none;
+}
+@keyframes orb{0%,100%{opacity:.6;transform:translate(-50%,-52%) scale(1)}50%{opacity:1;transform:translate(-50%,-52%) scale(1.08)}}
+/* FULL-WIDTH LAYOUT: left text, right stats */
+.s1-inner{
+  position:relative;z-index:2;
+  width:100%;height:100%;
+  display:grid;grid-template-columns:1fr 460px;
+  align-items:center;
+  padding:80px 80px 60px;
+  gap:0;
+}
+.s1-left{padding-right:60px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--orgl);border:1px solid var(--orgb);
+  border-radius:20px;padding:6px 16px;
+  font-size:11.5px;font-weight:700;color:var(--org);
+  margin-bottom:24px;letter-spacing:.8px;text-transform:uppercase;
+}
+.hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--org);animation:blink 2.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero-h{font-size:68px;font-weight:900;line-height:1.0;letter-spacing:-2px;margin-bottom:20px}
+.hero-h .l1{display:block;color:var(--dark)}
+.hero-h .l2{
+  display:block;
+  background:linear-gradient(135deg,var(--org) 0%,var(--org2) 50%,var(--org3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-h .l3{display:block;color:var(--muted);font-weight:400;font-size:48px;margin-top:6px;font-style:italic}
+.hero-p{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:28px;max-width:560px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.hbtn-p{background:linear-gradient(135deg,var(--org),var(--org2));color:#fff;border:none;padding:13px 28px;border-radius:7px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:"Be Vietnam Pro",sans-serif;transition:all .2s;box-shadow:0 4px 18px rgba(200,84,26,.3)}
+.hbtn-p:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,84,26,.4)}
+.hbtn-s{background:var(--bg);border:1.5px solid var(--border2);color:var(--dark);padding:13px 24px;border-radius:7px;font-size:14.5px;font-weight:500;cursor:pointer;font-family:"Be Vietnam Pro",sans-serif;transition:all .2s}
+.hbtn-s:hover{border-color:var(--org);color:var(--org)}
+/* right panel: stats + vietnam element */
+.s1-right{
+  background:rgba(255,255,255,.7);backdrop-filter:blur(12px);
+  border:1px solid var(--border);border-radius:20px;
+  padding:36px 32px;
+  box-shadow:var(--sh2);
+  position:relative;overflow:hidden;
+}
+.s1-right::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--org),var(--org2),var(--org3));
+}
+.vn-badge{
+  display:flex;align-items:center;gap:10px;
+  background:var(--orgl2);border:1px solid var(--border3);
+  border-radius:10px;padding:12px 14px;margin-bottom:24px;
+}
+.vn-flag-mini{font-size:22px}
+.vn-badge-text{font-size:12.5px;font-weight:600;color:var(--org);line-height:1.4}
+.vn-badge-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.stat-box-n{font-size:30px;font-weight:900;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:3px}
+.stat-box-l{font-size:11px;color:var(--muted);line-height:1.4}
+.hero-companies{display:flex;gap:6px;flex-wrap:wrap}
+.hc-chip{font-size:10.5px;padding:4px 11px;border-radius:5px;background:var(--orgl);color:var(--org);border:1px solid var(--border3);font-weight:600;cursor:pointer;transition:all .2s}
+.hc-chip:hover{background:var(--org);color:#fff}
+
+/* SLIDE 2 — VIDEO, light version */
+.s2-bg{position:absolute;inset:0;background:linear-gradient(160deg,#FFF9F5 0%,#FFF4EC 50%,#FFF8F4 100%)}
+.s2-stripe{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--org),var(--org2),var(--org3),var(--org2),var(--org))}
+.s2-inner{position:relative;z-index:2;width:100%;height:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 80px 60px;gap:60px}
+.s2-left{padding-right:20px}
+.s2-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--org);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.s2-eyebrow::before{content:"";width:18px;height:1px;background:var(--org);display:block}
+.s2-h{font-size:40px;font-weight:900;line-height:1.1;letter-spacing:-.8px;margin-bottom:14px;color:var(--dark)}
+.s2-h em{background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
+.s2-p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:24px}
+.video-frame{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1E0E05,#2A1208);border:2px solid var(--orgb2);border-radius:16px;position:relative;overflow:hidden;cursor:pointer;transition:all .3s;box-shadow:0 8px 40px rgba(200,84,26,.2)}
+.video-frame:hover{box-shadow:0 12px 60px rgba(200,84,26,.35);transform:translateY(-2px)}
+.video-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.play-btn{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--org),var(--org2));display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 0 32px rgba(200,84,26,.5)}
+.play-btn:hover{transform:scale(1.1);box-shadow:0 0 48px rgba(200,84,26,.7)}
+.play-icon{width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:20px solid #fff;margin-left:4px}
+.video-label{font-size:13px;color:rgba(255,255,255,.7);font-weight:500}
+.vc{position:absolute;width:18px;height:18px;border-color:var(--org2);border-style:solid;opacity:.5}
+.vc.tl{top:10px;left:10px;border-width:2px 0 0 2px}.vc.tr{top:10px;right:10px;border-width:2px 2px 0 0}
+.vc.bl{bottom:10px;left:10px;border-width:0 0 2px 2px}.vc.br{bottom:10px;right:10px;border-width:0 2px 2px 0}
+
+/* carousel nav */
+.carousel-nav{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:10}
+.c-dots{display:flex;gap:7px}
+.c-dot{width:26px;height:3px;border-radius:2px;background:rgba(200,84,26,.2);cursor:pointer;transition:all .4s}
+.c-dot.on{background:var(--org);width:38px}
+.c-arr{width:34px;height:34px;border-radius:50%;border:1px solid var(--border2);background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:13px;transition:all .2s;backdrop-filter:blur(8px);box-shadow:var(--sh)}
+.c-arr:hover{border-color:var(--org);color:var(--org);background:#fff}
+
+/* ══ SHARED ══ */
+.sec-tag{font-size:10.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--org);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.sec-tag::before{content:"";width:18px;height:1px;background:var(--org);display:block}
+.sec-h{font-size:40px;font-weight:900;line-height:1.1;letter-spacing:-.5px;margin-bottom:12px;color:var(--dark)}
+.sec-h em{background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic}
+.sec-p{font-size:15px;color:var(--muted);line-height:1.8;max-width:560px}
+
+/* ══ VN STORY SECTION ══ */
+.vn-story{background:linear-gradient(135deg,var(--dark2) 0%,#1E0A04 60%,var(--dark2) 100%);padding:96px 80px;position:relative;overflow:hidden}
+.vn-story::before{content:"🇻🇳";position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-size:400px;opacity:.04;pointer-events:none}
+.vn-story-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.vn-story-text .sec-tag{color:rgba(240,120,72,.9)}
+.vn-story-text .sec-tag::before{background:rgba(240,120,72,.9)}
+.vn-story-text .sec-h{color:#fff;font-size:36px}
+.vn-story-text .sec-h em{background:linear-gradient(135deg,var(--org2),var(--org3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.vn-story-text p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:16px}
+.vn-story-text p strong{color:#fff;font-weight:600}
+.vn-story-text p em{color:var(--org3);font-style:normal;font-weight:600}
+.vn-quote{
+  background:rgba(200,84,26,.12);border-left:3px solid var(--org2);
+  border-radius:0 10px 10px 0;padding:18px 20px;margin:24px 0;
+}
+.vn-quote p{font-size:16px;color:rgba(255,255,255,.85);font-style:italic;line-height:1.7;margin:0}
+.vn-quote-attr{font-size:11px;color:var(--org3);margin-top:8px;font-weight:600;letter-spacing:.5px}
+.vn-timeline{display:flex;flex-direction:column;gap:14px}
+.vn-tl{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 20px;display:flex;gap:14px;align-items:flex-start;transition:all .2s}
+.vn-tl:hover{background:rgba(200,84,26,.08);border-color:rgba(200,84,26,.2)}
+.vn-tl-ico{width:40px;height:40px;border-radius:10px;background:rgba(200,84,26,.15);border:1px solid rgba(200,84,26,.25);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.vn-tl-title{font-size:14px;font-weight:700;color:#fff;margin-bottom:3px}
+.vn-tl-desc{font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.55}
+.vn-era-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(200,84,26,.15);border:1px solid rgba(200,84,26,.3);
+  border-radius:10px;padding:12px 16px;margin-bottom:24px;
+}
+.vn-era-flag{font-size:20px}
+.vn-era-text{font-size:12px;font-weight:700;color:var(--org3);letter-spacing:.5px}
+.vn-era-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:1px}
+
+/* ══ ABOUT / STORY ══ */
+.about-sect{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1200px;margin:0 auto;padding:96px 80px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-text p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:16px}
+.about-text p strong{color:var(--dark);font-weight:600}
+.pillars{display:flex;flex-direction:column;gap:12px;margin-top:26px}
+.pillar{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:all .2s;box-shadow:var(--sh)}
+.pillar:hover{border-color:var(--orgb);box-shadow:0 4px 20px rgba(200,84,26,.08)}
+.p-ico{width:36px;height:36px;border-radius:8px;background:var(--orgl);border:1px solid var(--border3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.p-title{font-size:13.5px;font-weight:700;margin-bottom:2px;color:var(--dark)}
+.p-desc{font-size:12px;color:var(--muted);line-height:1.55}
+.sv-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.sv{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.sv::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--org),transparent)}
+.sv-n{font-size:34px;font-weight:900;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
+.sv-l{font-size:11.5px;color:var(--muted);line-height:1.5}
+.sv.s2{grid-column:span 2}
+.quote-card{background:var(--orgl2);border:1px solid var(--border3);border-radius:12px;padding:18px;grid-column:span 2}
+.quote-text{font-size:16px;font-weight:700;color:var(--org);margin-bottom:3px}
+.quote-sub{font-size:12px;color:var(--muted)}
+
+/* ══ 5 COMPANIES ══ */
+.comp-sect{padding:96px 0;overflow:hidden;position:relative;background:var(--bg)}
+.comp-intro{max-width:1200px;margin:0 auto;padding:0 80px 48px}
+.vea-bg-text{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:240px;font-weight:900;letter-spacing:-8px;
+  background:linear-gradient(135deg,rgba(200,84,26,.05),rgba(232,97,42,.03));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  white-space:nowrap;pointer-events:none;z-index:0;user-select:none;line-height:1;
+}
+.comp-scroll{display:flex;gap:16px;padding:0 80px 12px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;scroll-snap-type:x mandatory;position:relative;z-index:1}
+.comp-scroll::-webkit-scrollbar{display:none}
+.comp-card{flex-shrink:0;width:320px;background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;scroll-snap-align:start;transition:all .3s;cursor:pointer;box-shadow:var(--sh)}
+.comp-card:hover{transform:translateY(-5px);border-color:var(--orgb);box-shadow:0 16px 48px rgba(200,84,26,.12)}
+.comp-header{padding:24px 22px 18px}
+.comp-tag-sm{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.5;margin-bottom:11px;color:var(--dark)}
+.comp-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.comp-ico{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.comp-name-big{font-size:19px;font-weight:900;letter-spacing:-.3px;color:var(--dark)}
+.comp-name-sub{font-size:10px;color:var(--muted);font-weight:400;margin-top:2px}
+.comp-tagline{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.comp-svcs{display:flex;flex-wrap:wrap;gap:4px}
+.csvc{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;border:1px solid transparent}
+.comp-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 16px;border-top:1px solid var(--border);background:var(--bg2)}
+.cstat-n{font-size:17px;font-weight:900;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cstat-l{font-size:10px;color:var(--muted);margin-top:1px}
+.comp-plats{padding:13px 16px;border-top:1px solid var(--border)}
+.cp-lbl{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
+.cp-chips{display:flex;flex-wrap:wrap;gap:4px}
+.cp-ch{font-size:9.5px;padding:2px 8px;border-radius:4px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)}
+.comp-foot{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.comp-status{font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.sdot{width:6px;height:6px;border-radius:50%}
+.comp-cta-btn{background:transparent;border:1px solid var(--border2);color:var(--dark);padding:6px 14px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;font-family:"Be Vietnam Pro",sans-serif;transition:all .2s}
+.comp-card:hover .comp-cta-btn{border-color:var(--org);color:var(--org)}
+.scroll-dots{display:flex;gap:7px;justify-content:center;margin-top:20px;padding:0 80px}
+.s-dot{width:22px;height:3px;border-radius:2px;background:var(--border2);cursor:pointer;transition:all .3s}
+.s-dot.on{background:var(--org);width:34px}
+
+/* ══ ECOSYSTEM ══ */
+.eco-sect{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.eco-inner{max-width:1200px;margin:0 auto;padding:96px 80px}
+.cat-row{margin-top:20px}
+.cat-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.cat-lbl::after{content:"";flex:1;height:1px;background:var(--border);display:block}
+.ecard-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ecard-grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.ecard{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 12px;cursor:pointer;transition:all .22s;text-align:center;box-shadow:var(--sh)}
+.ecard:hover{transform:translateY(-2px);border-color:var(--orgb);box-shadow:0 6px 24px rgba(200,84,26,.1)}
+.ecard-ico{font-size:18px;margin-bottom:5px}
+.ecard-name{font-size:11px;font-weight:700;line-height:1.3;margin-bottom:3px;color:var(--dark)}
+.ecard-domain{font-size:9px;color:var(--muted);font-family:monospace}
+.ecard-owner{font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;margin-top:5px;display:inline-block}
+.eco-hub{margin-top:16px;background:var(--orgl2);border:1px solid var(--border3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.eco-hub-title{font-size:13.5px;font-weight:700;color:var(--org);margin-bottom:3px}
+.eco-hub-sub{font-size:12px;color:var(--muted)}
+
+/* ══ SYNERGY ══ */
+.syn-sect{padding:96px 80px;background:var(--bg)}
+.syn-inner{max-width:1200px;margin:0 auto}
+.syn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.syn-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden;transition:all .22s;box-shadow:var(--sh)}
+.syn-card:hover{border-color:var(--orgb);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,84,26,.1)}
+.syn-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--org),transparent)}
+.syn-ico{font-size:19px;margin-bottom:10px}
+.syn-from{font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.syn-title{font-size:14px;font-weight:700;margin-bottom:6px;line-height:1.3;color:var(--dark)}
+.syn-desc{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:9px}
+.syn-chain{font-size:11px;font-weight:600;color:var(--org)}
+
+/* ══ PARTNERS ══ */
+.partners-sect{background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 80px}
+.partners-inner{max-width:1100px;margin:0 auto}
+.partners-label{font-size:10.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:28px}
+.partners-row{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;align-items:center}
+.partner-chip{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 18px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:all .2s;min-width:90px;box-shadow:var(--sh)}
+.partner-chip:hover{border-color:var(--orgb);box-shadow:0 4px 16px rgba(200,84,26,.1);transform:translateY(-1px)}
+.partner-ico{font-size:22px}
+.partner-name{font-size:11px;font-weight:700;text-align:center;color:var(--dark)}
+.partner-type{font-size:9.5px;color:var(--muted);text-align:center}
+
+/* ══ JOBS ══ */
+.jobs-sect{padding:96px 80px;background:var(--bg2)}
+.jobs-inner{max-width:1200px;margin:0 auto}
+.jobs-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:36px}
+.job-card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .22s;box-shadow:var(--sh)}
+.job-card:hover{border-color:var(--orgb);transform:translateY(-2px);box-shadow:0 6px 24px rgba(200,84,26,.1)}
+.job-ico{width:42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--orgl);border:1px solid var(--border3)}
+.job-title{font-size:13.5px;font-weight:700;margin-bottom:3px;color:var(--dark)}
+.job-meta{font-size:11px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
+.job-tag{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--orgl);color:var(--org);border:1px solid var(--border3)}
+.job-arr{font-size:16px;color:var(--muted2);transition:all .2s;margin-left:auto;flex-shrink:0}
+.job-card:hover .job-arr{color:var(--org);transform:translateX(3px)}
+
+/* ══ VISION ══ */
+.vision-sect{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.vision-inner{max-width:1200px;margin:0 auto;padding:96px 80px}
+.v-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:44px}
+.v-block h3{font-size:22px;font-weight:800;margin-bottom:9px;color:var(--dark)}
+.v-block p{font-size:14.5px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.vals-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.val{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;transition:all .2s;box-shadow:var(--sh)}
+.val:hover{border-color:var(--orgb)}
+.val-ico{font-size:17px;margin-bottom:7px}
+.val-t{font-size:13px;font-weight:700;margin-bottom:3px;color:var(--dark)}
+.val-d{font-size:11.5px;color:var(--muted);line-height:1.5}
+.rm-items{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh)}
+.rm-item{flex:1;padding:16px 14px;border-right:1px solid var(--border);background:var(--bg2);transition:all .2s}
+.rm-item:last-child{border-right:none}
+.rm-item:hover{background:var(--bg3)}
+.rm-item.act{background:var(--orgl2);border-color:var(--border3)}
+.rm-phase{font-size:9.5px;color:var(--muted);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+.rm-item.act .rm-phase{color:var(--org)}
+.rm-title{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--dark)}
+.rm-li{font-size:11px;color:var(--muted);display:flex;align-items:flex-start;gap:4px;margin-bottom:3px}
+.rm-li::before{content:"·";color:var(--org);flex-shrink:0}
+
+/* ══ CONTACT ══ */
+.contact-sect{padding:96px 80px;background:var(--bg2)}
+.contact-inner{max-width:1100px;margin:0 auto}
+.cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px}
+.cc{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:22px;transition:all .2s;box-shadow:var(--sh)}
+.cc:hover{border-color:var(--orgb);transform:translateY(-2px);box-shadow:0 8px 32px rgba(200,84,26,.1)}
+.cc-ico{font-size:22px;margin-bottom:11px}
+.cc h3{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--dark)}
+.cc p{font-size:12px;color:var(--muted);line-height:1.55;margin-bottom:13px}
+.cc-btn{width:100%;background:transparent;border:1.5px solid var(--border2);color:var(--dark);padding:8px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;font-family:"Be Vietnam Pro",sans-serif;transition:all .2s}
+.cc:hover .cc-btn{border-color:var(--org);color:var(--org)}
+.cf-wrap{max-width:680px;margin:44px auto 0;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:30px;box-shadow:var(--sh2)}
+.cf-wrap h3{font-size:16px;font-weight:700;margin-bottom:3px;color:var(--dark)}
+.cf-wrap p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.cf-r{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.cf-f{display:flex;flex-direction:column;gap:4px}
+.cf-f label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+.cf-f input,.cf-f select,.cf-f textarea{width:100%;padding:9px 13px;border:1px solid var(--border);border-radius:7px;background:var(--bg2);color:var(--dark);font-size:13px;font-family:"Be Vietnam Pro",sans-serif;outline:none;transition:border .2s}
+.cf-f input:focus,.cf-f select:focus,.cf-f textarea:focus{border-color:var(--org);background:var(--bg)}
+.cf-f input::placeholder,.cf-f textarea::placeholder{color:var(--muted3)}
+.cf-f select option{background:var(--bg)}
+.cf-f textarea{resize:none;min-height:76px}
+.cf-full{grid-column:span 2}
+.cf-sub{width:100%;background:linear-gradient(135deg,var(--org),var(--org2));color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:"Be Vietnam Pro",sans-serif;transition:all .2s;margin-top:4px;box-shadow:0 4px 18px rgba(200,84,26,.3)}
+.cf-sub:hover{filter:brightness(1.05);transform:translateY(-1px)}
+
+/* ══ FOOTER ══ */
+footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.06);padding:60px 80px 28px}
+.ft-inner{max-width:1200px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:280px 1fr;gap:60px;margin-bottom:44px}
+.ft-logo img{height:24px;width:auto;margin-bottom:12px}
+.ft-logo-fb{display:none;font-size:16px;font-weight:900;color:#fff;margin-bottom:12px}
+.ft-logo-fb em{background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+.ft-about{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:16px}
+.ft-soc{display:flex;gap:7px}
+.fsoc{width:32px;height:32px;border-radius:7px;border:1px solid rgba(255,255,255,.1);background:transparent;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;color:rgba(255,255,255,.4);transition:all .2s}
+.fsoc:hover{background:var(--orgl);border-color:var(--orgb);color:var(--org2)}
+.ft-links{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+.ft-col h4{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:13px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.ft-col ul li a{font-size:12px;color:rgba(255,255,255,.35);transition:color .2s}
+.ft-col ul li a:hover{color:rgba(255,255,255,.8)}
+.ft-div{height:1px;background:rgba(255,255,255,.06);margin-bottom:20px}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:rgba(255,255,255,.28);flex-wrap:wrap;gap:8px}
+.ft-bot-l{display:flex;gap:16px}
+.ft-bot-l a{color:rgba(255,255,255,.28);transition:color .2s}
+.ft-bot-l a:hover{color:rgba(255,255,255,.7)}
+.ft-vn-bar{height:2px;background:linear-gradient(90deg,var(--org),var(--org2),var(--org3),var(--org2),var(--org));margin-bottom:0}
+@keyframes blink2{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── EDIT MODE ── */
+.edit-mode-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:"Be Vietnam Pro",sans-serif}
+.edit-mode-btn:hover,.edit-mode-btn.on{border-color:var(--org);color:var(--org);background:var(--orgl)}
+body.edit-mode .vea-editable{outline:2px dashed rgba(200,84,26,.5);border-radius:3px;cursor:text;background:rgba(200,84,26,.04);transition:outline .15s}
+body.edit-mode .vea-editable:hover{outline:2px solid var(--org);background:rgba(200,84,26,.07)}
+body.edit-mode .vea-editable:focus{outline:2px solid var(--org2);background:rgba(200,84,26,.08)}
+
+/* ── CHIP (reuse from showcase) ── */
+.chip{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;border:1.5px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .15s;font-family:'Be Vietnam Pro',sans-serif}
+.chip.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+
+/* ── SPA PAGES ── */
+.page { display:none }
+.page.active { display:block }
+/* ── SUBPAGE HERO ── */
+.sub-hero { padding:100px 80px 64px; background:var(--white); border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+.sub-hero::after { content:''; position:absolute; top:0; right:0; width:500px; height:100%; background:radial-gradient(ellipse 80% 100% at 100% 50%, rgba(200,84,26,.06) 0%, transparent 65%); pointer-events:none; }
+.sub-hero-tag { font-size:10.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--org); display:flex; align-items:center; gap:8px; margin-bottom:14px; }
+.sub-hero-tag::before { content:''; width:18px; height:1px; background:var(--org); display:block; }
+.sub-hero h1 { font-family:'Be Vietnam Pro',sans-serif; font-size:clamp(36px,5vw,64px); font-weight:900; line-height:.95; letter-spacing:-1.5px; margin-bottom:16px; }
+.sub-hero h1 em { background:linear-gradient(135deg,var(--org),var(--org2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-style:italic; }
+.sub-hero-sub { font-size:15px; color:var(--muted); line-height:1.75; max-width:560px; }
+/* ── BACK BTN ── */
+.back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:600; color:var(--muted); cursor:pointer; margin-bottom:20px; transition:color .15s; background:none; border:none; font-family:'Be Vietnam Pro',sans-serif; padding:0; }
+.back-btn:hover { color:var(--org); }
+/* ── EDIT MODE ── */
+.edit-mode-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 12px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:"Be Vietnam Pro",sans-serif}
+.edit-mode-btn:hover,.edit-mode-btn.on{border-color:var(--org);color:var(--org);background:var(--orgl)}
+body.edit-mode .vea-editable{outline:2px dashed rgba(200,84,26,.5);border-radius:3px;cursor:text;background:rgba(200,84,26,.04);transition:outline .15s}
+body.edit-mode .vea-editable:hover{outline:2px solid var(--org);background:rgba(200,84,26,.07)}
+body.edit-mode .vea-editable:focus{outline:2px solid var(--org2);background:rgba(200,84,26,.08)}
+/* ── PREVIEW SECTIONS ── */
+.preview-section { padding:72px 80px; }
+.preview-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:16px; }
+.see-all-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--org); cursor:pointer; border:1.5px solid var(--orgb); padding:9px 18px; border-radius:8px; background:var(--orgl2); transition:all .15s; font-family:'Be Vietnam Pro',sans-serif; }
+.see-all-btn:hover { background:var(--org); color:#fff; border-color:var(--org); }
+/* ── JOB CARDS (subpage) ── */
+.job-grid-full { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+/* ── PARTNER GRID ── */
+.partner-grid-full { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.partner-card-full { background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:24px; cursor:pointer; transition:all .2s; box-shadow:0 2px 12px rgba(15,15,15,.05); text-align:center; }
+.partner-card-full:hover { border-color:var(--orgb); transform:translateY(-3px); box-shadow:0 8px 28px rgba(200,84,26,.1); }
+/* ── NEWS GRID ── */
+.news-grid-full { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.news-card-item { background:var(--bg); border:1px solid var(--border); border-radius:16px; overflow:hidden; cursor:pointer; transition:all .25s; box-shadow:0 2px 14px rgba(15,15,15,.06); }
+.news-card-item:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(15,15,15,.12); border-color:var(--orgb); }
+/* ── DETAIL OVERLAY ── */
+.detail-overlay { display:none; position:fixed; inset:0; z-index:300; background:rgba(15,15,15,.6); backdrop-filter:blur(4px); align-items:flex-end; justify-content:center; }
+.detail-overlay.open { display:flex; }
+.detail-sheet { width:100%; max-width:860px; background:var(--bg); border-radius:20px 20px 0 0; max-height:88vh; overflow-y:auto; transform:translateY(40px); transition:transform .35s cubic-bezier(.22,1,.36,1); }
+.detail-overlay.open .detail-sheet { transform:translateY(0); }
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .sub-hero{padding:80px 20px 40px}
+  .preview-section{padding:48px 20px}
+  .job-grid-full,.partner-grid-full,.news-grid-full{grid-template-columns:1fr}
+  .preview-header{flex-direction:column;align-items:flex-start}
+}
+
+
+/* job modal */
+.job-modal-dept{background:rgba(200,84,26,.08);border:1px solid rgba(200,84,26,.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px}
+.job-modal-desc{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:16px}
+.job-modal-reqs{margin-bottom:16px}
+.job-modal-req-title{font-size:11px;font-weight:700;color:var(--dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.job-modal-req-row{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
+.job-modal-req-icon{color:var(--org);font-weight:700;flex-shrink:0}
+.job-modal-ben{background:rgba(200,84,26,.08);border:1px solid rgba(200,84,26,.2);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--org)}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">
+    <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAHQA4EDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAYHBAUIAwIB/8QAUxABAAIBAgIFBQkLBwoGAwAAAAECAwQFBhEHEiExQRMiUWFxFFKBkZOhsdHSFRYjMjZCcnSSssE3Q0RTVFWUFzM0YmODorPh8AgkJlZkgnN1hP/EABsBAQACAwEBAAAAAAAAAAAAAAAEBQIDBgEH/8QANhEBAAIBAgQBCgQGAwEAAAAAAAECAwQRBRIhMRMGFCIyQVFhcYGRobHB0SMzNFLw8RVy4UL/2gAMAwEAAhEDEQA/AOMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="VEA Group" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="nav-logo-fallback">VEA <em>GROUP</em></div>
+  </div>
+  <div class="nav-c">
+    <button class="nl" onclick="showPage('home');setTimeout(()=>goTo('vn-story'),50)">Về VEA</button>
+    <button class="nl" onclick="showPage('home');setTimeout(()=>goTo('companies'),50)">Công ty</button>
+    <button class="nl" onclick="showPage('ecosystem')">Hệ sinh thái</button>
+    <button class="nl" onclick="showPage('ecosystem')">Tầm nhìn</button>
+    <button class="nl" onclick="showPage('tuyen-dung')">Tuyển dụng</button>
+    <button class="nl" onclick="showPage('hop-tac')">Hợp tác</button>
+    <button class="nl" onclick="showPage('tin-tuc')">Tin tức</button>
+    <button class="nl" onclick="goTo('contact')">Liên hệ</button>
+  </div>
+  <div class="nav-r">
+    <button class="nav-lang">EN</button>
+    <button class="edit-mode-btn" id="editModeBtn" onclick="toggleEditMode()" title="Chỉnh sửa text trực tiếp">✏️ Edit</button>
+    <button class="nav-cta" onclick="goTo('contact')">Hợp tác →</button>
+  </div>
+</nav>
+
+<!-- EDIT TOAST -->
+<div id="editToast" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;background:#1A1A1A;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;box-shadow:0 4px 20px rgba(0,0,0,.3);align-items:center;gap:10px;">
+  <span>✏️ Edit Mode — click vào text bất kỳ để chỉnh sửa trực tiếp</span>
+  <button onclick="toggleEditMode()" style="background:var(--org);border:none;color:#fff;padding:4px 10px;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;">Tắt Edit Mode</button>
+</div>
+
+
+
+<!-- ═══ DETAIL OVERLAY ═══ -->
+<div id="detailOverlay" class="detail-overlay">
+  <div class="detail-sheet" id="detailSheet">
+    <div style="position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:var(--bg);border-bottom:1px solid var(--border)">
+      <div id="detailBreadcrumb" style="font-size:12px;color:var(--muted)"></div>
+      <button onclick="closeDetailModal()" style="width:32px;height:32px;border-radius:50%;background:var(--bg2);border:none;cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div id="detailContent" style="padding:0 32px 48px"></div>
+  </div>
+</div>
+
+<!-- ████ HOMEPAGE ████ -->
+<div id="page-home" class="page active">
+<!-- ═══ HERO CAROUSEL ═══ -->
+<div class="hero-carousel" id="heroCarousel">
+  <div class="hero-slides" id="heroSlides">
+
+    <!-- SLIDE 1 -->
+    <div class="hero-slide">
+      <div class="s1-bg"></div>
+      <div class="s1-stripe"></div>
+      <div class="s1-vea-bg">VEA</div>
+      <div class="s1-orb"></div>
+      <div class="s1-inner">
+        <div class="s1-left">
+          <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Vietnam Era Group · Kỷ nguyên Việt Nam</div>
+          <h1 class="hero-h">
+            <span class="l1">Một hệ sinh thái.</span>
+            <span class="l2">Năm công ty.</span>
+            <span class="l3">Vô số cơ hội.</span>
+          </h1>
+          <p class="hero-p">Chúng tôi xây dựng hệ sinh thái kinh doanh đa ngành tại Việt Nam — nơi mỗi công ty thành viên đan xen, bổ trợ lẫn nhau để tối ưu chi phí và tối đa hóa giá trị cho khách hàng, đối tác và cộng đồng.</p>
+          <div class="hero-btns">
+            <button class="hbtn-p" onclick="goTo('companies')">Khám phá 5 công ty thành viên</button>
+            <button class="hbtn-s" onclick="goTo('ecosystem')">Xem 14 nền tảng số →</button>
+          </div>
+        </div>
+        <div class="s1-right">
+          <div class="vn-badge">
+            <div class="vn-flag-mini">🇻🇳</div>
+            <div><div class="vn-badge-text">Vietnam Era Group</div><div class="vn-badge-sub">Kỷ nguyên Việt Nam · Xây dựng từ tình yêu đất nước</div></div>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-box"><div class="stat-box-n">5</div><div class="stat-box-l">Công ty thành viên</div></div>
+            <div class="stat-box"><div class="stat-box-n">14</div><div class="stat-box-l">Nền tảng số</div></div>
+            <div class="stat-box"><div class="stat-box-n">8M+</div><div class="stat-box-l">Potential reach/tháng</div></div>
+            <div class="stat-box"><div class="stat-box-n">2026</div><div class="stat-box-l">Năm ra mắt toàn bộ</div></div>
+          </div>
+          <div class="cp-lbl" style="margin-bottom:8px;color:var(--muted)">5 công ty thành viên</div>
+          <div class="hero-companies">
+            <span class="hc-chip">VEA Media</span>
+            <span class="hc-chip">VEA Tech</span>
+            <span class="hc-chip">VEA Law</span>
+            <span class="hc-chip">VEA Retail</span>
+            <span class="hc-chip">VEA Academy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: VIDEO -->
+    <div class="hero-slide">
+      <div class="s2-bg"></div>
+      <div class="s2-stripe"></div>
+      <div class="s2-inner">
+        <div class="s2-left">
+          <div class="s2-eyebrow">Vietnam Era Group</div>
+          <h2 class="s2-h">Hành trình xây dựng<br><em>Kỷ nguyên Việt Nam</em></h2>
+          <p class="s2-p">Câu chuyện về 5 công ty, 14 nền tảng số và tầm nhìn dài hạn của VEA Group — bắt nguồn từ tình yêu và khát vọng cống hiến cho đất nước.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="hbtn-p" onclick="goTo('vn-story')">Đọc câu chuyện của chúng tôi</button>
+            <button class="hbtn-s" onclick="goTo('contact')">Hợp tác với VEA</button>
+          </div>
+        </div>
+        <div>
+          <div class="video-frame" id="videoFrame" onclick="triggerVideoUpload(this)">
+            <div class="video-overlay">
+              <div class="play-btn"><div class="play-icon"></div></div>
+              <div class="video-label">Click để upload video giới thiệu VEA Group</div>
+            </div>
+            <div style="position:absolute;inset:0;pointer-events:none">
+              <div class="vc tl"></div><div class="vc tr"></div>
+              <div class="vc bl"></div><div class="vc br"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end slides -->
+
+  <div class="carousel-nav">
+    <div class="c-arr" onclick="prevSlide()">&#8592;</div>
+    <div class="c-dots">
+      <div class="c-dot on" onclick="goSlide(0)"></div>
+      <div class="c-dot" onclick="goSlide(1)"></div>
+    </div>
+    <div class="c-arr" onclick="nextSlide()">&#8594;</div>
+  </div>
+</div>
+
+
+<!-- ═══ VN STORY — Tại sao VEA Group ═══ -->
+<section class="vn-story" id="vn-story">
+  <div class="vn-story-inner">
+    <div class="vn-story-text">
+      <div class="sec-tag" style="color:rgba(240,120,72,.9)">Câu chuyện khởi đầu</div>
+      <h2 class="sec-h" style="color:#fff;font-size:36px">Vietnam Era Group —<br><em>Kỷ nguyên Việt Nam</em></h2>
+      <div class="vn-quote">
+        <p>"Chúng tôi bắt đầu hành trình này không chỉ vì kinh doanh — mà vì muốn góp một phần gì đó cho đất nước."</p>
+        <div class="vn-quote-attr">— Tầm nhìn sáng lập VEA Group, 2024</div>
+      </div>
+      <p>VEA là viết tắt của <em>Vietnam Era</em> — Kỷ nguyên Việt Nam. Cái tên này không phải ngẫu nhiên. Chúng tôi tin rằng Việt Nam đang đứng trước một <strong>kỷ nguyên bứt phá</strong> trong lịch sử phát triển kinh tế số — và VEA Group được xây dựng để trở thành một phần của kỷ nguyên đó.</p>
+      <p>Từ việc xây dựng các nền tảng công nghệ phục vụ hàng triệu người dân, đến đào tạo miễn phí cho thế hệ trẻ chưa có điều kiện — <strong>mỗi quyết định của chúng tôi đều hướng đến một Việt Nam mạnh hơn, thông minh hơn và công bằng hơn.</strong></p>
+    </div>
+    <div>
+      <div class="vn-era-badge">
+        <div class="vn-era-flag">🇻🇳</div>
+        <div><div class="vn-era-text">VIETNAM ERA GROUP</div><div class="vn-era-sub">Kiến tạo kỷ nguyên mới cho Việt Nam</div></div>
+      </div>
+      <div class="vn-timeline">
+        <div class="vn-tl"><div class="vn-tl-ico">🏗️</div><div><div class="vn-tl-title">Xây dựng hạ tầng số Việt Nam</div><div class="vn-tl-desc">14 nền tảng phục vụ nhu cầu thiết yếu của người dân: y tế, pháp lý, giáo dục, tài chính, giải trí — tất cả bằng tiếng Việt, cho người Việt.</div></div></div>
+        <div class="vn-tl"><div class="vn-tl-ico">🎓</div><div><div class="vn-tl-title">Giáo dục miễn phí cho cộng đồng</div><div class="vn-tl-desc">VEA Academy: không chỉ kinh doanh giáo dục — mà còn đào tạo miễn phí cho học sinh, sinh viên chưa có điều kiện. Đây là cam kết với đất nước.</div></div></div>
+        <div class="vn-tl"><div class="vn-tl-ico">🌏</div><div><div class="vn-tl-title">Đưa Việt Nam ra thế giới</div><div class="vn-tl-desc">DanhBaLuatSu.asia phủ 8 quốc gia ĐNA. VEA Group xây dựng với tư duy toàn cầu từ ngày đầu tiên.</div></div></div>
+        <div class="vn-tl"><div class="vn-tl-ico">💡</div><div><div class="vn-tl-title">Công nghệ phục vụ con người</div><div class="vn-tl-desc">Dữ liệu công, tra cứu quy hoạch, nợ thuế, thông tin y tế — những thông tin thiết yếu mà mọi người dân Việt Nam đều có quyền tiếp cận dễ dàng.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about-sect" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="sec-tag">Mô hình vận hành</div>
+      <h2 class="sec-h">Tối ưu chi phí.<br><em>Tối đa giá trị.</em></h2>
+      <p>VEA Group hoạt động theo mô hình hệ sinh thái — <strong>các ngành nghề của từng công ty thành viên đan xen, bổ trợ chéo cho nhau</strong> và cũng chính cho đối tác, khách hàng hợp tác với VEA.</p>
+      <p>Không phải portfolio rời rạc. Mà là một <strong>engine tổng hợp</strong>: khi một khách hàng đến với VEA Law cần tư vấn pháp lý, họ cũng được tiếp cận dịch vụ truyền thông của VEA Media và nền tảng công nghệ của VEA Tech.</p>
+      <div class="pillars">
+        <div class="pillar"><div class="p-ico">🔗</div><div><div class="p-title">Cross-company synergy</div><div class="p-desc">5 công ty hoạt động như một hệ thống — doanh thu của công ty này là pipeline của công ty khác.</div></div></div>
+        <div class="pillar"><div class="p-ico">📐</div><div><div class="p-title">Tối ưu chi phí cấu trúc</div><div class="p-desc">Shared infrastructure: tech, legal, admin, marketing — chia đều cho 5 công ty thay vì mỗi công ty build riêng.</div></div></div>
+        <div class="pillar"><div class="p-ico">🇻🇳</div><div><div class="p-title">Sứ mệnh đất nước</div><div class="p-desc">Mỗi nền tảng, mỗi dịch vụ đều được xây dựng với câu hỏi: "Điều này tốt cho người Việt Nam không?"</div></div></div>
+      </div>
+    </div>
+    <div class="sv-grid">
+      <div class="sv"><div class="sv-n">5</div><div class="sv-l">Công ty thành viên hoạt động đa lĩnh vực</div></div>
+      <div class="sv"><div class="sv-n">14</div><div class="sv-l">Nền tảng số đang phát triển song song</div></div>
+      <div class="sv"><div class="sv-n">ĐNA</div><div class="sv-l">Thị trường: Việt Nam → Đông Nam Á</div></div>
+      <div class="sv"><div class="sv-n">2026</div><div class="sv-l">Năm ra mắt chính thức toàn bộ hệ sinh thái</div></div>
+      <div class="quote-card">
+        <div class="quote-text">"Tối ưu chi phí · Tối đa lợi nhuận"</div>
+        <div class="quote-sub">Triết lý vận hành của VEA Group — mỗi quyết định đo bằng hiệu quả tổng thể của cả hệ sinh thái</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5 COMPANIES ═══ -->
+<section class="comp-sect" id="companies">
+  <div class="vea-bg-text">VEA GROUP</div>
+  <div class="comp-intro">
+    <div class="sec-tag">5 Công ty thành viên</div>
+    <h2 class="sec-h">Mỗi công ty một<br><em>thế mạnh riêng biệt</em></h2>
+    <p class="sec-p">Năm mảng kinh doanh được thiết kế để bổ trợ lẫn nhau — từ truyền thông, công nghệ, pháp lý đến bán lẻ và giáo dục.</p>
+  </div>
+  <div class="comp-scroll" id="compScroll">
+    <!-- MEDIA -->
+    <div class="comp-card"><div class="comp-header" style="background:linear-gradient(135deg,rgba(232,97,42,.05),transparent)"><div class="comp-tag-sm">VEA GROUP · THÀNH VIÊN 01</div><div class="comp-logo-row"><div class="comp-ico" style="background:rgba(232,97,42,.1);border:1px solid rgba(232,97,42,.2)">📡</div><div><div class="comp-name-big">VEA Media</div><div class="comp-name-sub">Truyền thông & Marketing</div></div></div><div class="comp-tagline">Agency truyền thông tập trung Influencer Marketing, Digital Marketing và E-commerce Marketing.</div><div class="comp-svcs"><span class="csvc" style="background:rgba(232,97,42,.1);color:var(--org2);border-color:rgba(232,97,42,.2)">Influencer Marketing</span><span class="csvc" style="background:rgba(232,97,42,.1);color:var(--org2);border-color:rgba(232,97,42,.2)">Digital Marketing</span><span class="csvc" style="background:rgba(232,97,42,.1);color:var(--org2);border-color:rgba(232,97,42,.2)">E-commerce Mktg</span><span class="csvc" style="background:rgba(232,97,42,.1);color:var(--org2);border-color:rgba(232,97,42,.2)">KOL Management</span></div></div><div class="comp-stats-row"><div><div class="cstat-n">200+</div><div class="cstat-l">Brand đã hợp tác</div></div><div><div class="cstat-n">B2B</div><div class="cstat-l">Revenue model</div></div></div><div class="comp-plats"><div class="cp-lbl">Nền tảng liên quan</div><div class="cp-chips"><span class="cp-ch">BookingModel.com</span><span class="cp-ch">BookingLivestream.com</span><span class="cp-ch">Nightlife.com.vn</span></div></div><div class="comp-foot"><div class="comp-status"><div class="sdot" style="background:#22C55E;animation:blink2 2s infinite"></div>Đang hoạt động</div><button class="comp-cta-btn">Tìm hiểu →</button></div></div>
+    <!-- TECH -->
+    <div class="comp-card"><div class="comp-header" style="background:linear-gradient(135deg,rgba(200,84,26,.05),transparent)"><div class="comp-tag-sm">VEA GROUP · THÀNH VIÊN 02</div><div class="comp-logo-row"><div class="comp-ico" style="background:rgba(200,84,26,.1);border:1px solid rgba(200,84,26,.2)">⚙️</div><div><div class="comp-name-big">VEA Tech</div><div class="comp-name-sub">Công nghệ & Nền tảng số</div></div></div><div class="comp-tagline">Chuyên xây dựng nền tảng, hệ thống và hạ tầng số — vận hành toàn bộ 14 nền tảng digital của VEA Group.</div><div class="comp-svcs"><span class="csvc" style="background:rgba(200,84,26,.1);color:var(--org);border-color:rgba(200,84,26,.2)">Platform Dev</span><span class="csvc" style="background:rgba(200,84,26,.1);color:var(--org);border-color:rgba(200,84,26,.2)">AI & Automation</span><span class="csvc" style="background:rgba(200,84,26,.1);color:var(--org);border-color:rgba(200,84,26,.2)">SEO Technical</span><span class="csvc" style="background:rgba(200,84,26,.1);color:var(--org);border-color:rgba(200,84,26,.2)">Data Infrastructure</span></div></div><div class="comp-stats-row"><div><div class="cstat-n">14</div><div class="cstat-l">Nền tảng đang build</div></div><div><div class="cstat-n">2026</div><div class="cstat-l">Target: all sites live</div></div></div><div class="comp-plats"><div class="cp-lbl">14 nền tảng đang build</div><div class="cp-chips"><span class="cp-ch">DanhBaBacSi</span><span class="cp-ch">SuaEmbe</span><span class="cp-ch">TruyenMa</span><span class="cp-ch">Nightlife</span><span class="cp-ch">+10 more</span></div></div><div class="comp-foot"><div class="comp-status"><div class="sdot" style="background:#22C55E;animation:blink2 2s infinite"></div>Phát triển tích cực</div><button class="comp-cta-btn">Tech stack →</button></div></div>
+    <!-- LAW -->
+    <div class="comp-card"><div class="comp-header" style="background:linear-gradient(135deg,rgba(184,64,16,.05),transparent)"><div class="comp-tag-sm">VEA GROUP · THÀNH VIÊN 03</div><div class="comp-logo-row"><div class="comp-ico" style="background:rgba(184,64,16,.1);border:1px solid rgba(184,64,16,.2)">⚖️</div><div><div class="comp-name-big">VEA Law</div><div class="comp-name-sub">Công ty Luật</div></div></div><div class="comp-tagline">Sắp đi vào hoạt động, chuyên tranh tụng và tư vấn pháp lý — phục vụ cá nhân, doanh nghiệp và toàn hệ sinh thái VEA.</div><div class="comp-svcs"><span class="csvc" style="background:rgba(184,64,16,.1);color:var(--retail);border-color:rgba(184,64,16,.2)">Tranh tụng</span><span class="csvc" style="background:rgba(184,64,16,.1);color:var(--retail);border-color:rgba(184,64,16,.2)">Tư vấn doanh nghiệp</span><span class="csvc" style="background:rgba(184,64,16,.1);color:var(--retail);border-color:rgba(184,64,16,.2)">Hợp đồng & M&A</span><span class="csvc" style="background:rgba(184,64,16,.1);color:var(--retail);border-color:rgba(184,64,16,.2)">Pháp lý BĐS</span></div></div><div class="comp-stats-row"><div><div class="cstat-n">Soon</div><div class="cstat-l">Sắp đi vào hoạt động</div></div><div><div class="cstat-n">VN+SEA</div><div class="cstat-l">Thị trường mục tiêu</div></div></div><div class="comp-plats"><div class="cp-lbl">Nền tảng liên quan</div><div class="cp-chips"><span class="cp-ch">LuatSuTranhTung.com</span><span class="cp-ch">DanhBaLuatSu.asia</span></div></div><div class="comp-foot"><div class="comp-status"><div class="sdot" style="background:#F59E0B"></div>Sắp ra mắt</div><button class="comp-cta-btn">Đăng ký tư vấn →</button></div></div>
+    <!-- RETAIL -->
+    <div class="comp-card"><div class="comp-header" style="background:linear-gradient(135deg,rgba(160,48,16,.05),transparent)"><div class="comp-tag-sm">VEA GROUP · THÀNH VIÊN 04</div><div class="comp-logo-row"><div class="comp-ico" style="background:rgba(160,48,16,.1);border:1px solid rgba(160,48,16,.2)">🛍️</div><div><div class="comp-name-big">VEA Retail</div><div class="comp-name-sub">Bán lẻ & Thương mại</div></div></div><div class="comp-tagline">Chuyên bán lẻ, bán buôn với nhãn hiệu VEA Group hoặc sản phẩm OEM, và hoạt động theo mô hình đại lý phân phối.</div><div class="comp-svcs"><span class="csvc" style="background:rgba(160,48,16,.1);color:var(--acad);border-color:rgba(160,48,16,.2)">Sản phẩm VEA Brand</span><span class="csvc" style="background:rgba(160,48,16,.1);color:var(--acad);border-color:rgba(160,48,16,.2)">OEM Manufacturing</span><span class="csvc" style="background:rgba(160,48,16,.1);color:var(--acad);border-color:rgba(160,48,16,.2)">Đại lý phân phối</span><span class="csvc" style="background:rgba(160,48,16,.1);color:var(--acad);border-color:rgba(160,48,16,.2)">Ticket & Event</span></div></div><div class="comp-stats-row"><div><div class="cstat-n">Direct</div><div class="cstat-l">Sales nhãn hiệu VEA</div></div><div><div class="cstat-n">D2C</div><div class="cstat-l">Direct to consumer</div></div></div><div class="comp-plats"><div class="cp-lbl">Kênh bán hàng</div><div class="cp-chips"><span class="cp-ch">Nightlife.com.vn</span><span class="cp-ch">SuaEmbe C2C</span><span class="cp-ch">BookingLivestream</span></div></div><div class="comp-foot"><div class="comp-status"><div class="sdot" style="background:#22C55E;animation:blink2 2s infinite"></div>Đang phát triển</div><button class="comp-cta-btn">Trở thành đại lý →</button></div></div>
+    <!-- ACADEMY -->
+    <div class="comp-card"><div class="comp-header" style="background:linear-gradient(135deg,rgba(200,84,26,.03),transparent)"><div class="comp-tag-sm">VEA GROUP · THÀNH VIÊN 05</div><div class="comp-logo-row"><div class="comp-ico" style="background:rgba(200,84,26,.08);border:1px solid rgba(200,84,26,.15)">🎓</div><div><div class="comp-name-big">VEA Academy</div><div class="comp-name-sub">Giáo dục & Đào tạo</div></div></div><div class="comp-tagline">Giáo dục trực tuyến (có thu phí) và đào tạo trực tiếp miễn phí — sứ mệnh đặc biệt: phục vụ học sinh, sinh viên chưa có điều kiện.</div><div class="comp-svcs"><span class="csvc" style="background:rgba(200,84,26,.08);color:var(--org);border-color:rgba(200,84,26,.15)">Online Education</span><span class="csvc" style="background:rgba(200,84,26,.08);color:var(--org);border-color:rgba(200,84,26,.15)">Offline Campus</span><span class="csvc" style="background:rgba(200,84,26,.08);color:var(--org);border-color:rgba(200,84,26,.15)">Miễn phí cộng đồng</span><span class="csvc" style="background:rgba(200,84,26,.08);color:var(--org);border-color:rgba(200,84,26,.15)">Cert Programs</span></div></div><div class="comp-stats-row"><div><div class="cstat-n">Online</div><div class="cstat-l">Học trực tuyến có phí</div></div><div><div class="cstat-n">Free</div><div class="cstat-l">Đào tạo cộng đồng miễn phí</div></div></div><div class="comp-plats"><div class="cp-lbl">Nền tảng học trực tuyến</div><div class="cp-chips"><span class="cp-ch">TiếngAnhPhápLý.com.vn</span><span class="cp-ch">Khóa học nghề</span></div></div><div class="comp-foot"><div class="comp-status"><div class="sdot" style="background:#F59E0B"></div>Đang xây dựng</div><button class="comp-cta-btn">Đăng ký học →</button></div></div>
+  </div>
+  <div class="scroll-dots" id="sDots">
+    <div class="s-dot on" onclick="scrollC(0)"></div><div class="s-dot" onclick="scrollC(1)"></div>
+    <div class="s-dot" onclick="scrollC(2)"></div><div class="s-dot" onclick="scrollC(3)"></div>
+    <div class="s-dot" onclick="scrollC(4)"></div>
+  </div>
+</section>
+
+
+
+<!-- ═══ PARTNERS PREVIEW ═══ -->
+<section class="preview-section" style="background:var(--bg3);border-top:1px solid var(--border)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="preview-header">
+      <div>
+        <div class="sec-tag">Đối tác & Nhãn hàng</div>
+        <h2 class="sec-h" style="font-size:32px;margin-bottom:0">Tin tưởng hợp tác với <em>VEA Group</em></h2>
+      </div>
+      <button class="see-all-btn" onclick="showPage('hop-tac')">Xem tất cả đối tác →</button>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(15,15,15,.05);cursor:pointer;transition:all .2s" onclick="showPage('hop-tac')"><div style="font-size:24px">💄</div><div><div style="font-size:13px;font-weight:700;color:var(--dark)">L'Oréal Paris</div><div style="font-size:10px;color:var(--muted)">Beauty · 3 campaigns</div></div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(15,15,15,.05);cursor:pointer;transition:all .2s" onclick="showPage('hop-tac')"><div style="font-size:24px">🚗</div><div><div style="font-size:13px;font-weight:700;color:var(--dark)">VinFast</div><div style="font-size:10px;color:var(--muted)">Automotive · 2 campaigns</div></div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(15,15,15,.05);cursor:pointer;transition:all .2s" onclick="showPage('hop-tac')"><div style="font-size:24px">☕</div><div><div style="font-size:13px;font-weight:700;color:var(--dark)">Highlands Coffee</div><div style="font-size:10px;color:var(--muted)">F&B · 2 campaigns</div></div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(15,15,15,.05);cursor:pointer;transition:all .2s;border-style:dashed" onclick="showPage('hop-tac')"><div style="font-size:20px;color:var(--org)">+200</div><div><div style="font-size:13px;font-weight:700;color:var(--org)">Xem tất cả</div><div style="font-size:10px;color:var(--muted)">Brands đã hợp tác</div></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ NEWS PREVIEW ═══ -->
+<section class="preview-section" style="background:var(--bg);border-top:1px solid var(--border)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="preview-header">
+      <div>
+        <div class="sec-tag">Tin tức & Cập nhật</div>
+        <h2 class="sec-h" style="font-size:32px;margin-bottom:0">Mới nhất từ <em>VEA Group</em></h2>
+      </div>
+      <button class="see-all-btn" onclick="showPage('tin-tuc')">Xem tất cả tin tức →</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <div class="news-card-item" onclick="openNewsDetail('n1')">
+        <div style="height:160px;background:linear-gradient(135deg,#1a0035,#5B21B6,#C026D3);position:relative"><span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:#5B21B6">BookingKOLs</span></div>
+        <div style="padding:18px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">06/06/2026</div><h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.3">BookingKOLs vượt mốc 2,800 KOL/KOC trong hệ thống</h3><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div>
+      </div>
+      <div class="news-card-item" onclick="openNewsDetail('n2')">
+        <div style="height:160px;background:linear-gradient(135deg,#064e3b,#059669,#34D399);position:relative"><span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:#059669">VEA Tech</span></div>
+        <div style="padding:18px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">01/06/2026</div><h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.3">VEA Tech deploy thành công 4 nền tảng Civic Tech</h3><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div>
+      </div>
+      <div class="news-card-item" onclick="openNewsDetail('n3')">
+        <div style="height:160px;background:linear-gradient(135deg,#1e1b4b,#312E81,#4F46E5);position:relative"><span style="position:absolute;top:12px;left:12px;background:rgba(255,255,255,.9);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:#4F46E5">VEA Law</span></div>
+        <div style="padding:18px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">20/05/2026</div><h3 style="font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.3">VEA Law chính thức chuẩn bị ra mắt Q3/2026</h3><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ JOBS PREVIEW ═══ -->
+<section class="preview-section" style="background:var(--bg2);border-top:1px solid var(--border)">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="preview-header">
+      <div>
+        <div class="sec-tag">Tuyển dụng</div>
+        <h2 class="sec-h" style="font-size:32px;margin-bottom:0">VEA Group tìm kiếm <em>nhân tài đồng hành</em></h2>
+      </div>
+      <button class="see-all-btn" onclick="showPage('tuyen-dung')">Xem tất cả vị trí →</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div class="job-card" onclick="showPage('tuyen-dung')"><div class="job-ico">⚙️</div><div class="job-body"><div class="job-title">Full-stack Developer</div><div class="job-meta"><span>VEA Tech</span><span>Remote/HCM</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+      <div class="job-card" onclick="showPage('tuyen-dung')"><div class="job-ico">📊</div><div class="job-body"><div class="job-title">SEO & Content Strategist</div><div class="job-meta"><span>VEA Tech · Media</span><span>HCM</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+      <div class="job-card" onclick="showPage('tuyen-dung')"><div class="job-ico">📡</div><div class="job-body"><div class="job-title">Influencer Mktg Manager</div><div class="job-meta"><span>VEA Media</span><span>HCM</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-sect" id="contact">
+  <div class="contact-inner">
+    <div class="sec-tag" style="justify-content:center;display:flex">Hợp tác với VEA Group</div>
+    <h2 class="sec-h" style="text-align:center;margin:0 auto 10px">Cùng xây dựng<br><em>kỷ nguyên Việt Nam</em></h2>
+    <p class="sec-p" style="text-align:center;margin:0 auto">Chúng tôi tìm kiếm đối tác chiến lược, nhà đầu tư và chuyên gia muốn tham gia vào hành trình kiến tạo hệ sinh thái số hàng đầu Việt Nam.</p>
+    <div class="cc-grid">
+      <div class="cc"><div class="cc-ico">💼</div><h3>Nhà đầu tư</h3><p>Cơ hội đầu tư vào hệ sinh thái 14 nền tảng số tại thị trường Việt Nam và ĐNA đang tăng trưởng nhanh.</p><button class="cc-btn">Xem Investment Deck →</button></div>
+      <div class="cc"><div class="cc-ico">🤝</div><h3>Đối tác chiến lược</h3><p>Brand, agency, nền tảng muốn tích hợp vào hệ sinh thái VEA hoặc co-develop sản phẩm phục vụ người Việt.</p><button class="cc-btn">Đề xuất hợp tác →</button></div>
+      <div class="cc"><div class="cc-ico">🧑‍💻</div><h3>Tuyển dụng nhân tài</h3><p>Dev, designer, marketer, luật sư — join VEA và cùng xây dựng kỷ nguyên số Việt Nam từ những ngày đầu tiên.</p><button class="cc-btn">Xem vị trí →</button></div>
+    </div>
+    <div class="cf-wrap">
+      <h3>Liên hệ trực tiếp</h3>
+      <p>Phản hồi trong 24 giờ làm việc · hello@veagroup.global</p>
+      <div class="cf-r">
+        <div class="cf-f"><label>Họ và tên</label><input placeholder="Nguyễn Văn A"/></div>
+        <div class="cf-f"><label>Email</label><input type="email" placeholder="contact@company.vn"/></div>
+        <div class="cf-f"><label>Công ty</label><input placeholder="Tên doanh nghiệp"/></div>
+        <div class="cf-f"><label>Hình thức hợp tác</label><select><option>Nhà đầu tư</option><option>Đối tác chiến lược</option><option>Brand Advertising</option><option>Tuyển dụng</option><option>Khác</option></select></div>
+        <div class="cf-f cf-full"><label>Nội dung</label><textarea placeholder="Mô tả mục tiêu hợp tác hoặc câu hỏi của bạn..."></textarea></div>
+        <div class="cf-f cf-full"><button class="cf-sub">Gửi thông tin → Phản hồi trong 24h</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ft-vn-bar"></div>
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">
+          <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAHQA4EDASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAYHBAUIAwIB/8QAUxABAAIBAgIFBQkLBwoGAwAAAAECAwQFBhEHEiExQRMiUWFxFFKBkZOhsdHSFRYjMjZCcnSSssE3Q0RTVFWUFzM0YmODorPh8AgkJlZkgnN1hP/EABsBAQACAwEBAAAAAAAAAAAAAAAEBQIDBgEH/8QANhEBAAIBAgQBCgQGAwEAAAAAAAECAwQRBRIhMRMGFCIyQVFhcYGRobHB0SMzNFLw8RVy4UL/2gAMAwEAAhEDEQA/AOMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="VEA Group" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <div class="ft-logo-fb">VEA <em>GROUP</em></div>
+        </div>
+        <div class="ft-about">Vietnam Era Group — Kỷ nguyên Việt Nam. Tập đoàn xây dựng hệ sinh thái kinh doanh đa ngành, kết nối 5 công ty thành viên và 14 nền tảng số tại Việt Nam và Đông Nam Á.</div>
+        <div class="ft-soc"><div class="fsoc">𝕏</div><div class="fsoc">in</div><div class="fsoc">f</div><div class="fsoc">▶</div><div class="fsoc">✉</div></div>
+      </div>
+      <div class="ft-links">
+        <div class="ft-col"><h4>Công ty thành viên</h4><ul><li><a href="#">VEA Media</a></li><li><a href="#">VEA Tech</a></li><li><a href="#">VEA Law</a></li><li><a href="#">VEA Retail</a></li><li><a href="#">VEA Academy</a></li></ul></div>
+        <div class="ft-col"><h4>Civic & Health</h4><ul><li><a href="#">NợThuế.com.vn</a></li><li><a href="#">TraCuuNoThue.com</a></li><li><a href="#">TraCuuQuyHoach</a></li><li><a href="#">DanhBaBacSi</a></li><li><a href="#">SuaEmbe.com</a></li></ul></div>
+        <div class="ft-col"><h4>Legal & Edu</h4><ul><li><a href="#">DanhBaLuatSu.asia</a></li><li><a href="#">LuatSuTranhTung</a></li><li><a href="#">TiếngAnhPhápLý</a></li><li><a href="#">SuaCongThuc</a></li></ul></div>
+        <div class="ft-col"><h4>Content & Booking</h4><ul><li><a href="#">TruyenMa.com.vn</a></li><li><a href="#">Nightlife.com.vn</a></li><li><a href="#">SanCrypto.com.vn</a></li><li><a href="#">BookingLivestream</a></li><li><a href="#">BookingModel.com</a></li></ul></div>
+        <div class="ft-col"><h4>VEA Group</h4><ul><li><a href="#">Về chúng tôi</a></li><li><a href="#" onclick="goTo('jobs')">Tuyển dụng</a></li><li><a href="#">Tin tức</a></li><li><a href="#">Đầu tư</a></li><li><a href="#" onclick="goTo('contact')">Liên hệ</a></li></ul></div>
+      </div>
+    </div>
+    <div class="ft-div"></div>
+    <div class="ft-bot">
+      <div>© 2026 VEA Group · veagroup.global · Vietnam Era Group · Đăng ký kinh doanh tại Việt Nam 🇻🇳</div>
+      <div class="ft-bot-l"><a href="#">Chính sách bảo mật</a><a href="#">Điều khoản</a><a href="#">Cookie</a><a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<!-- ████ SUBPAGES ████ -->
+
+<div id="page-tuyen-dung" class="page">
+  <div class="sub-hero">
+    <button class="back-btn" onclick="showPage('home')">← Quay về trang chủ</button>
+    <div class="sub-hero-tag">Tuyển dụng</div>
+    <h1>Gia nhập <em>VEA Group</em></h1>
+    <p class="sub-hero-sub">Bạn muốn build từ đầu, tạo impact thực sự và góp phần xây dựng kỷ nguyên số Việt Nam? Đây là nơi dành cho bạn.</p>
+  </div>
+  <section style="padding:64px 80px;background:var(--bg2);border-bottom:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto;display:flex;gap:32px;flex-wrap:wrap">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;flex:1;min-width:200px;box-shadow:0 2px 10px rgba(15,15,15,.05)"><div style="font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">6</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Vị trí đang mở</div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;flex:1;min-width:200px;box-shadow:0 2px 10px rgba(15,15,15,.05)"><div style="font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">5</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Công ty thành viên</div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px 24px;flex:1;min-width:200px;box-shadow:0 2px 10px rgba(15,15,15,.05)"><div style="font-size:28px;font-weight:900;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Remote</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Chính sách làm việc linh hoạt</div></div>
+    </div>
+  </section>
+  <section style="padding:64px 80px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div style="display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap">
+        <button class="chip on" onclick="filterJobs('all',this)">Tất cả (6)</button>
+        <button class="chip" onclick="filterJobs('tech',this)">VEA Tech</button>
+        <button class="chip" onclick="filterJobs('media',this)">VEA Media</button>
+        <button class="chip" onclick="filterJobs('law',this)">VEA Law</button>
+        <button class="chip" onclick="filterJobs('academy',this)">VEA Academy</button>
+      </div>
+      <div class="job-grid-full" id="jobListFull">
+        <div class="job-card" data-dept="tech" onclick="openJobDetail('j1')"><div class="job-ico">⚙️</div><div class="job-body"><div class="job-title">Full-stack Developer (Next.js)</div><div class="job-meta"><span>VEA Tech</span><span>Remote / HCM</span><span>Senior</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+        <div class="job-card" data-dept="tech" onclick="openJobDetail('j2')"><div class="job-ico">🎨</div><div class="job-body"><div class="job-title">UI/UX Designer</div><div class="job-meta"><span>VEA Tech</span><span>HCM / Remote</span><span>Mid-Senior</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+        <div class="job-card" data-dept="tech" onclick="openJobDetail('j3')"><div class="job-ico">📊</div><div class="job-body"><div class="job-title">SEO & Content Strategist</div><div class="job-meta"><span>VEA Tech · Media</span><span>HCM</span><span>Mid-level</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+        <div class="job-card" data-dept="media" onclick="openJobDetail('j4')"><div class="job-ico">📡</div><div class="job-body"><div class="job-title">Influencer Marketing Manager</div><div class="job-meta"><span>VEA Media</span><span>HCM</span><span>Mid-Senior</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+        <div class="job-card" data-dept="law" onclick="openJobDetail('j5')"><div class="job-ico">⚖️</div><div class="job-body"><div class="job-title">Luật sư Tranh tụng</div><div class="job-meta"><span>VEA Law</span><span>HCM</span><span>2+ năm kinh nghiệm</span></div></div><span class="job-tag" style="background:rgba(245,158,11,.1);color:#B45309;border-color:rgba(245,158,11,.2)">Sắp mở</span><div class="job-arr">→</div></div>
+        <div class="job-card" data-dept="academy" onclick="openJobDetail('j6')"><div class="job-ico">🎓</div><div class="job-body"><div class="job-title">Giảng viên Tiếng Anh Pháp Lý</div><div class="job-meta"><span>VEA Academy</span><span>Online / HCM</span><span>Part-time · Full-time</span></div></div><span class="job-tag">Đang tuyển</span><div class="job-arr">→</div></div>
+      </div>
+      <div style="text-align:center;margin-top:32px;padding:24px;background:var(--bg2);border-radius:12px;border:1px dashed var(--border2)">
+        <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px">Không tìm thấy vị trí phù hợp?</div>
+        <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Gửi CV của bạn — chúng tôi sẽ liên hệ khi có vị trí phù hợp.</div>
+        <button onclick="goTo('contact')" style="background:linear-gradient(135deg,var(--org),var(--org2));color:#fff;border:none;padding:10px 24px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif">Gửi CV ngay →</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div id="page-ecosystem" class="page">
+  <div class="sub-hero">
+    <button class="back-btn" onclick="showPage('home')">← Quay về trang chủ</button>
+    <div class="sub-hero-tag">Hệ sinh thái</div>
+    <h1>14 nền tảng số — <em>một hệ sinh thái</em></h1>
+    <p class="sub-hero-sub">VEA Tech xây dựng 14 nền tảng phủ sóng các ngành nhu cầu cao nhất tại Việt Nam — tất cả kết nối chéo qua VEA Data Platform.</p>
+  </div>
+  <section style="padding:64px 80px;background:var(--bg2);border-bottom:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-tag">14 Nền tảng số</div>
+      <h2 class="sec-h" style="font-size:32px">Hạ tầng số của <em>hệ sinh thái VEA</em></h2>
+      <div style="margin-top:28px">
+        <div class="cat-row"><div class="cat-lbl">🔴 Civic Tech</div><div class="ecard-grid3"><div class="ecard"><div class="ecard-ico">📋</div><div class="ecard-name">Nợ Thuế</div><div class="ecard-domain">nothue.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div><div class="ecard"><div class="ecard-ico">🧾</div><div class="ecard-name">Tra Cứu Nợ Thuế</div><div class="ecard-domain">tracuunothue.com</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div><div class="ecard"><div class="ecard-ico">🗺️</div><div class="ecard-name">Tra Cứu Quy Hoạch</div><div class="ecard-domain">tracuuquyhoach.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div></div></div>
+        <div class="cat-row"><div class="cat-lbl">🔵 Health & Parenting</div><div class="ecard-grid3"><div class="ecard"><div class="ecard-ico">🏥</div><div class="ecard-name">Danh Bạ Bác Sĩ</div><div class="ecard-domain">danhbabacsi.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div><div class="ecard"><div class="ecard-ico">🍼</div><div class="ecard-name">SuaEmbe</div><div class="ecard-domain">suaembe.com</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech · Retail</span></div><div class="ecard"><div class="ecard-ico">📐</div><div class="ecard-name">Sữa Công Thức</div><div class="ecard-domain">suacongthuc.com</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div></div></div>
+        <div class="cat-row"><div class="cat-lbl">🟣 Legal Tech & Education</div><div class="ecard-grid3"><div class="ecard"><div class="ecard-ico">⚖️</div><div class="ecard-name">Danh Bạ Luật Sư ĐNA</div><div class="ecard-domain">danhbaluatsu.asia</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech · Law</span></div><div class="ecard"><div class="ecard-ico">🏛️</div><div class="ecard-name">Luật Sư Tranh Tụng</div><div class="ecard-domain">luatsutranhtung.com</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Law · Tech</span></div><div class="ecard"><div class="ecard-ico">📖</div><div class="ecard-name">Tiếng Anh Pháp Lý</div><div class="ecard-domain">tienganhphaply.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Academy</span></div></div></div>
+        <div class="cat-row"><div class="cat-lbl">🟠 Content, Booking & Finance</div><div class="ecard-grid5"><div class="ecard"><div class="ecard-ico">👻</div><div class="ecard-name">Truyện Ma</div><div class="ecard-domain">truyenma.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div><div class="ecard"><div class="ecard-ico">🌃</div><div class="ecard-name">Nightlife</div><div class="ecard-domain">nightlife.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech · Retail</span></div><div class="ecard"><div class="ecard-ico">₿</div><div class="ecard-name">SanCrypto</div><div class="ecard-domain">sancrypto.com.vn</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Tech</span></div><div class="ecard"><div class="ecard-ico">▶️</div><div class="ecard-name">Booking Livestream</div><div class="ecard-domain">bookinglivestream.com</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Media</span></div><div class="ecard"><div class="ecard-ico">🎭</div><div class="ecard-name">Booking Model</div><div class="ecard-domain">bookingmodel.com</div><span class="ecard-owner" style="background:var(--orgl);color:var(--org)">VEA Media</span></div></div></div>
+        <div class="eco-hub" style="margin-top:16px"><div style="font-size:22px;flex-shrink:0">🌐</div><div><div class="eco-hub-title">VEA Data Platform — Hub kết nối 14 nền tảng</div><div class="eco-hub-sub">Shared auth · Cross-sell engine · Analytics tổng hợp · AI recommendation</div></div></div>
+      </div>
+    </div>
+  </section>
+  <!-- SYNERGY in ecosystem subpage -->
+  <section style="padding:64px 80px;background:var(--bg)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-tag">Sức mạnh hệ sinh thái</div>
+      <h2 class="sec-h">Khi 5 công ty hoạt động <em>như một cơ thể</em></h2>
+      <p class="sec-p">Mỗi khách hàng đến với bất kỳ nền tảng nào của VEA đều được phục vụ toàn diện.</p>
+      <div class="syn-grid" style="margin-top:36px">
+        <div class="syn-card"><div class="syn-line"></div><div class="syn-ico">🏥→🍼</div><div class="syn-from">DanhBaBacSi × SuaEmbe</div><div class="syn-title">BS Nhi tư vấn chọn sữa cho bé</div><div class="syn-desc">Sau khám tại DanhBaBacSi, BS Nhi recommend loại sữa → kết nối thẳng vào SuaEmbe để tìm review và mua ngay.</div><div class="syn-chain">VEA Tech → VEA Tech → VEA Retail</div></div>
+        <div class="syn-card"><div class="syn-line"></div><div class="syn-ico">📋→⚖️</div><div class="syn-from">NoThue × VEA Law</div><div class="syn-title">DN nợ thuế cần luật sư xử lý</div><div class="syn-desc">Doanh nghiệp tra ra mình đang nợ thuế → CTA kết nối ngay với VEA Law để được tư vấn xử lý.</div><div class="syn-chain">VEA Tech → VEA Law</div></div>
+        <div class="syn-card"><div class="syn-line"></div><div class="syn-ico">🌃→🎭→📡</div><div class="syn-from">Nightlife × BookingModel × VEA Media</div><div class="syn-title">Venue cần DJ, dancer và media</div><div class="syn-desc">Bar đặt table → book DJ/dancer từ BookingModel → VEA Media làm PR + KOL seeding → triple revenue.</div><div class="syn-chain">VEA Tech → VEA Media → VEA Retail</div></div>
+        <div class="syn-card"><div class="syn-line"></div><div class="syn-ico">📡→⚙️→🛍️</div><div class="syn-from">VEA Media × VEA Tech × VEA Retail</div><div class="syn-title">Full-stack campaign cho khách hàng</div><div class="syn-desc">VEA Media run campaign → VEA Tech build landing page → VEA Retail fulfillment → toàn bộ value chain trong VEA.</div><div class="syn-chain">Media + Tech + Retail = Full stack</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- ROADMAP in ecosystem subpage -->
+  <section style="padding:64px 80px;background:var(--bg2);border-top:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-tag">Lộ trình phát triển</div>
+      <h2 class="sec-h" style="font-size:32px">Từ foundation đến <em>kỷ nguyên ĐNA</em></h2>
+      <div class="rm-items" style="margin-top:32px">
+        <div class="rm-item act"><div class="rm-phase">T1–2 · 2026</div><div class="rm-title">Foundation</div><div class="rm-li">Deploy 4 site civic tech</div><div class="rm-li">Monorepo + CI/CD</div><div class="rm-li">VEA Law chuẩn bị</div></div>
+        <div class="rm-item"><div class="rm-phase">T3–4</div><div class="rm-title">Scale</div><div class="rm-li">Deploy 4 site tiếp</div><div class="rm-li">VEA Media campaigns</div><div class="rm-li">VEA Retail pilot</div></div>
+        <div class="rm-item"><div class="rm-phase">T5–9</div><div class="rm-title">Ecosystem</div><div class="rm-li">14 sites đều live</div><div class="rm-li">Cross-sell engine on</div><div class="rm-li">VEA Academy beta</div></div>
+        <div class="rm-item"><div class="rm-phase">2027+</div><div class="rm-title">SEA Era</div><div class="rm-li">Scale sang ĐNA</div><div class="rm-li">Academy offline campus</div><div class="rm-li">Series A raise</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div id="page-hop-tac" class="page">
+  <div class="sub-hero">
+    <button class="back-btn" onclick="showPage('home')">← Quay về trang chủ</button>
+    <div class="sub-hero-tag">Hợp tác & Đối tác</div>
+    <h1>Cùng xây dựng <em>kỷ nguyên Việt Nam</em></h1>
+    <p class="sub-hero-sub">Từ đối tác chiến lược, nhà đầu tư đến các nhãn hàng đã tin tưởng VEA — chúng tôi tìm kiếm những người cùng chung tầm nhìn.</p>
+  </div>
+  <!-- STRATEGIC PARTNERS -->
+  <section style="padding:64px 80px;background:var(--bg2);border-bottom:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-tag">Đối tác chiến lược</div>
+      <h2 class="sec-h" style="font-size:32px">Đối tác & Khách hàng <em>tin tưởng VEA</em></h2>
+      <div class="partner-grid-full" style="margin-top:32px">
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">🏦</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">VPBank</div><div style="font-size:11px;color:var(--muted)">Ngân hàng đối tác</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">✈️</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Vietnam Airlines</div><div style="font-size:11px;color:var(--muted)">Du lịch & tour</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">🏨</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Agoda</div><div style="font-size:11px;color:var(--muted)">Khách sạn</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">🛒</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Shopee</div><div style="font-size:11px;color:var(--muted)">E-commerce</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">🚗</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Be · Grab</div><div style="font-size:11px;color:var(--muted)">Di chuyển</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">💊</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Long Châu</div><div style="font-size:11px;color:var(--muted)">Nhà thuốc</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">🎯</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">TikTok Shop</div><div style="font-size:11px;color:var(--muted)">E-commerce · Livestream</div></div>
+        <div class="partner-card-full"><div style="font-size:32px;margin-bottom:10px">💳</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">VNPay · MoMo</div><div style="font-size:11px;color:var(--muted)">Thanh toán</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- BRAND PARTNERS -->
+  <section style="padding:64px 80px;background:var(--bg)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-tag">Nhãn hàng đã hợp tác</div>
+      <h2 class="sec-h" style="font-size:32px">Những thương hiệu đã <em>tin tưởng VEA Media</em></h2>
+      <div class="partner-grid-full" style="margin-top:32px">
+        <div class="partner-card-full" onclick="openBrandDetail('b1')"><div style="font-size:32px;margin-bottom:10px">💄</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">L'Oréal Paris</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">Beauty · 3 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" onclick="openBrandDetail('b2')"><div style="font-size:32px;margin-bottom:10px">🚗</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">VinFast</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">Automotive · 2 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" onclick="openBrandDetail('b3')"><div style="font-size:32px;margin-bottom:10px">☕</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Highlands Coffee</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">F&B · 2 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" onclick="openBrandDetail('b4')"><div style="font-size:32px;margin-bottom:10px">🍼</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Vinamilk</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">FMCG · 1 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" onclick="openBrandDetail('b5')"><div style="font-size:32px;margin-bottom:10px">🌿</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Cocoon Vietnam</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">Beauty · 1 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" onclick="openBrandDetail('b6')"><div style="font-size:32px;margin-bottom:10px">🛍️</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Nestlé Vietnam</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">FMCG · 1 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" onclick="openBrandDetail('b7')"><div style="font-size:32px;margin-bottom:10px">👗</div><div style="font-weight:700;font-size:14px;color:var(--dark);margin-bottom:4px">Canifa</div><div style="font-size:11px;color:var(--muted);margin-bottom:12px">Fashion · 1 chiến dịch</div><div style="font-size:11px;font-weight:600;color:var(--org)">Xem chi tiết →</div></div>
+        <div class="partner-card-full" style="border-style:dashed;background:var(--orgl2);border-color:var(--orgb)" onclick="goTo('contact');showPage('home')"><div style="font-size:28px;margin-bottom:10px;color:var(--org)">🤝</div><div style="font-weight:700;font-size:14px;color:var(--org);margin-bottom:4px">Trở thành đối tác</div><div style="font-size:11px;color:var(--muted)">Liên hệ hợp tác ngay</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- COOPERATION TYPES -->
+  <section style="padding:64px 80px;background:var(--bg2);border-top:1px solid var(--border)">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="sec-tag">Hình thức hợp tác</div>
+      <h2 class="sec-h" style="font-size:32px">Chúng tôi tìm kiếm <em>đối tác ở mọi cấp độ</em></h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(15,15,15,.05);transition:all .2s" onmouseenter="this.style.borderColor='var(--orgb)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="font-size:28px;margin-bottom:14px">💼</div><h3 style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:8px">Nhà đầu tư</h3><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Cơ hội đầu tư vào hệ sinh thái 14 nền tảng số tại thị trường Việt Nam và ĐNA đang tăng trưởng nhanh.</p><button onclick="goTo('contact');showPage('home')" style="background:var(--orgl);color:var(--org);border:1px solid var(--orgb);padding:8px 16px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif">Xem Investment Deck →</button></div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(15,15,15,.05);transition:all .2s" onmouseenter="this.style.borderColor='var(--orgb)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="font-size:28px;margin-bottom:14px">🤝</div><h3 style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:8px">Đối tác chiến lược</h3><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Brand, agency, nền tảng muốn tích hợp vào hệ sinh thái VEA hoặc co-develop sản phẩm phục vụ người Việt.</p><button onclick="goTo('contact');showPage('home')" style="background:var(--orgl);color:var(--org);border:1px solid var(--orgb);padding:8px 16px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif">Đề xuất hợp tác →</button></div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:0 2px 12px rgba(15,15,15,.05);transition:all .2s" onmouseenter="this.style.borderColor='var(--orgb)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="font-size:28px;margin-bottom:14px">📡</div><h3 style="font-size:16px;font-weight:700;color:var(--dark);margin-bottom:8px">Brand Advertising</h3><p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px">Chạy chiến dịch influencer marketing qua BookingKOLs — từ Nano KOC đến Mega KOL, đa nền tảng.</p><button onclick="goTo('contact');showPage('home')" style="background:var(--orgl);color:var(--org);border:1px solid var(--orgb);padding:8px 16px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif">Liên hệ ngay →</button></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div id="page-tin-tuc" class="page">
+  <div class="sub-hero">
+    <button class="back-btn" onclick="showPage('home')">← Quay về trang chủ</button>
+    <div class="sub-hero-tag">Tin tức & Cập nhật</div>
+    <h1>Mới nhất từ <em>VEA Group</em></h1>
+    <p class="sub-hero-sub">Theo dõi hành trình xây dựng hệ sinh thái — ra mắt nền tảng, cột mốc quan trọng và góc nhìn từ đội ngũ VEA.</p>
+  </div>
+  <section style="padding:64px 80px">
+    <div style="max-width:1200px;margin:0 auto">
+      <div style="display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap">
+        <button class="chip on" onclick="filterNews('all',this)">Tất cả</button>
+        <button class="chip" onclick="filterNews('media',this)">VEA Media</button>
+        <button class="chip" onclick="filterNews('tech',this)">VEA Tech</button>
+        <button class="chip" onclick="filterNews('law',this)">VEA Law</button>
+        <button class="chip" onclick="filterNews('group',this)">VEA Group</button>
+      </div>
+      <div class="news-grid-full" id="newsListFull">
+        <div class="news-card-item" data-cat="media" onclick="openNewsDetail('n1')"><div style="height:200px;background:linear-gradient(135deg,#1a0035,#5B21B6,#C026D3);position:relative"><span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;color:#5B21B6">BookingKOLs</span></div><div style="padding:20px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">06/06/2026</div><h3 style="font-size:17px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3">BookingKOLs vượt mốc 2,800 KOL/KOC trong hệ thống</h3><p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px">Nền tảng booking influencer của VEA Media chính thức đạt 2,800+ KOL/KOC đã verify, khẳng định vị trí top 3 platform influencer tại Việt Nam.</p><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div></div>
+        <div class="news-card-item" data-cat="tech" onclick="openNewsDetail('n2')"><div style="height:200px;background:linear-gradient(135deg,#064e3b,#059669,#34D399);position:relative"><span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;color:#059669">VEA Tech</span></div><div style="padding:20px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">01/06/2026</div><h3 style="font-size:17px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3">VEA Tech deploy thành công 4 nền tảng Civic Tech đầu tiên</h3><p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px">NợThuế.com.vn, TraCuuQuyHoach.com.vn và 2 nền tảng tra cứu dữ liệu công đã chính thức live, phục vụ hàng trăm nghìn lượt tra cứu mỗi tháng.</p><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div></div>
+        <div class="news-card-item" data-cat="law" onclick="openNewsDetail('n3')"><div style="height:200px;background:linear-gradient(135deg,#1e1b4b,#312E81,#4F46E5);position:relative"><span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;color:#4F46E5">VEA Law</span></div><div style="padding:20px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">20/05/2026</div><h3 style="font-size:17px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3">VEA Law chính thức chuẩn bị ra mắt Q3/2026</h3><p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px">Công ty luật thành viên của VEA Group sắp đi vào hoạt động chính thức, cung cấp dịch vụ tranh tụng và tư vấn pháp lý.</p><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div></div>
+        <div class="news-card-item" data-cat="group" onclick="openNewsDetail('n4')"><div style="height:200px;background:linear-gradient(135deg,#7c2d12,#C2410C,#FB923C);position:relative"><span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;color:#C2410C">VEA Group</span></div><div style="padding:20px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">10/05/2026</div><h3 style="font-size:17px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3">VEA Group ra mắt website tổng hợp veagroup.global</h3><p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px">veagroup.global chính thức ra mắt — cổng thông tin tổng hợp về hệ sinh thái 5 công ty và 14 nền tảng số của VEA Group.</p><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div></div>
+        <div class="news-card-item" data-cat="tech" onclick="openNewsDetail('n5')"><div style="height:200px;background:linear-gradient(135deg,#0c4a6e,#0284C7,#38BDF8);position:relative"><span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;color:#0284C7">VEA Tech</span></div><div style="padding:20px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">01/05/2026</div><h3 style="font-size:17px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3">DanhBaBacSi.com.vn đạt 10,000 lượt tra cứu trong tháng đầu</h3><p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px">Nền tảng tìm kiếm bác sĩ đầu tiên đạt cột mốc 10K lượt tra cứu trong tháng đầu ra mắt — vượt kỳ vọng 3 lần.</p><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div></div>
+        <div class="news-card-item" data-cat="media" onclick="openNewsDetail('n6')"><div style="height:200px;background:linear-gradient(135deg,#831843,#DB2777,#F472B6);position:relative"><span style="position:absolute;top:14px;left:14px;background:rgba(255,255,255,.9);padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;color:#DB2777">VEA Media</span></div><div style="padding:20px"><div style="font-size:11px;color:var(--muted);margin-bottom:6px">15/04/2026</div><h3 style="font-size:17px;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3">VEA Media hoàn thành chiến dịch L’Oréal Summer Glow</h3><p style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px">Chiến dịch đạt 18.4M reach, engagement rate 4.2% — top benchmark ngành beauty. Son Kem L’Oréal trending FYP 14 ngày liên tiếp.</p><div style="font-size:12px;font-weight:600;color:var(--org)">Đọc thêm →</div></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script>
+/* == CAROUSEL == */
+var cur=0;
+function goSlide(i){
+  cur=i;
+  var hs=document.getElementById("heroSlides");
+  if(hs) hs.style.transform="translateX(-"+i+"00%)";
+  document.querySelectorAll(".c-dot").forEach(function(d,x){d.classList.toggle("on",x===i);});
+}
+function nextSlide(){goSlide((cur+1)%2);}
+function prevSlide(){goSlide((cur-1+2)%2);}
+setInterval(nextSlide,9000);
+window.addEventListener("scroll",function(){
+  var n=document.getElementById("nav");
+  if(n) n.classList.toggle("scrolled",window.scrollY>40);
+});
+function goTo(id){
+  var el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function scrollC(i){
+  var sc=document.getElementById("compScroll");
+  if(!sc) return;
+  document.querySelectorAll(".s-dot").forEach(function(d,x){d.classList.toggle("on",x===i);});
+  var cards=sc.querySelectorAll(".comp-card");
+  if(cards[i]) cards[i].scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});
+}
+var _cs=document.getElementById("compScroll");
+if(_cs) _cs.addEventListener("scroll",function(){
+  var cards=this.querySelectorAll(".comp-card"),best=0,minD=Infinity;
+  cards.forEach(function(card,i){
+    var d=Math.abs(card.getBoundingClientRect().left-_cs.getBoundingClientRect().left);
+    if(d<minD){minD=d;best=i;}
+  });
+  document.querySelectorAll(".s-dot").forEach(function(d,i){d.classList.toggle("on",i===best);});
+});
+
+/* == VIDEO == */
+function triggerVideoUpload(){
+  var inp=document.getElementById("videoUploadInput");
+  if(inp) inp.click();
+}
+function handleVideoUpload(event){
+  var file=event.target.files[0]; if(!file) return;
+  var url=URL.createObjectURL(file);
+  var frame=document.getElementById("videoFrame"); if(!frame) return;
+  var vid=document.createElement("video");
+  vid.style.cssText="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:14px";
+  vid.controls=true; vid.autoplay=true;
+  var src=document.createElement("source"); src.src=url; src.type=file.type;
+  vid.appendChild(src);
+  frame.innerHTML=""; frame.appendChild(vid);
+  frame.style.cursor="default"; frame.onclick=null;
+}
+
+/* == SPA == */
+function showPage(id){
+  document.querySelectorAll(".page").forEach(function(p){p.classList.remove("active");});
+  var pg=document.getElementById("page-"+id);
+  if(pg){pg.classList.add("active"); window.scrollTo({top:0,behavior:"smooth"});}
+}
+
+/* == EDIT MODE == */
+var editOn=false;
+var EDITABLE=[".hero-h .l1",".hero-h .l2",".hero-h .l3",".hero-p",".s2-h",".s2-p",".sec-h",".sec-p",".p-title",".p-desc",".comp-tagline",".comp-name-big"];
+function toggleEditMode(){
+  editOn=!editOn;
+  document.body.classList.toggle("edit-mode",editOn);
+  var btn=document.getElementById("editModeBtn");
+  var toast=document.getElementById("editToast");
+  if(btn){btn.classList.toggle("on",editOn); btn.textContent=editOn?"Dang Edit":"Edit";}
+  if(toast) toast.style.display=editOn?"flex":"none";
+  EDITABLE.forEach(function(sel){
+    try{document.querySelectorAll(sel).forEach(function(el){
+      el.classList.toggle("vea-editable",editOn);
+      el.contentEditable=editOn?"true":"false";
+    });}catch(e){}
+  });
+}
+
+/* == FILTERS == */
+function filterJobs(f,btn){
+  if(btn){
+    btn.closest("div").querySelectorAll(".chip").forEach(function(c){c.classList.remove("on");});
+    btn.classList.add("on");
+  }
+  document.querySelectorAll("#jobListFull .job-card").forEach(function(card){
+    card.style.display=(f==="all"||card.dataset.dept===f)?"":"none";
+  });
+}
+function filterNews(f,btn){
+  if(btn){
+    btn.closest("div").querySelectorAll(".chip").forEach(function(c){c.classList.remove("on");});
+    btn.classList.add("on");
+  }
+  document.querySelectorAll("#newsListFull .news-card-item").forEach(function(card){
+    card.style.display=(f==="all"||card.dataset.cat===f)?"":"none";
+  });
+}
+document.querySelectorAll(".chip").forEach(function(c){
+  c.addEventListener("click",function(){
+    this.closest("div").querySelectorAll(".chip").forEach(function(s){s.classList.remove("on");});
+    this.classList.add("on");
+  });
+});
+
+/* == MODAL == */
+function openModal(){
+  var ov=document.getElementById("detailOverlay");
+  if(ov){ov.classList.add("open"); document.body.style.overflow="hidden";}
+}
+function closeDetailModal(){
+  var ov=document.getElementById("detailOverlay");
+  if(ov){ov.classList.remove("open"); document.body.style.overflow="";}
+}
+var _ov=document.getElementById("detailOverlay");
+if(_ov) _ov.addEventListener("click",function(e){if(e.target===this)closeDetailModal();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeDetailModal();});
+
+/* == BUILD MODAL HTML using DOM (NO string concatenation) == */
+function buildModalHTML(title, gradient, dateStr, tagStr, statsArr, bodyHTML, ctaLabel, ctaAction){
+  var ct=document.getElementById("detailContent");
+  var bc=document.getElementById("detailBreadcrumb");
+  if(!ct||!bc) return;
+  bc.innerHTML="";
+  if(tagStr){
+    var sp=document.createElement("span");
+    sp.style.color="var(--org)"; sp.textContent=tagStr;
+    bc.appendChild(sp);
+  }
+  ct.innerHTML="";
+
+  // Hero gradient bar
+  if(gradient){
+    var hero=document.createElement("div");
+    hero.style.cssText="height:200px;background:"+gradient+";margin:0 -32px 24px;position:relative;border-radius:0";
+    if(dateStr){
+      var dv=document.createElement("div");
+      dv.style.cssText="position:absolute;bottom:14px;left:32px;font-size:11px;font-weight:600;color:rgba(255,255,255,.7)";
+      dv.textContent=dateStr; hero.appendChild(dv);
+    }
+    if(tagStr){
+      var tv=document.createElement("div");
+      tv.style.cssText="position:absolute;bottom:14px;right:32px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;color:#fff";
+      tv.textContent=tagStr; hero.appendChild(tv);
+    }
+    ct.appendChild(hero);
+  }
+
+  // Title
+  var h2=document.createElement("h2");
+  h2.style.cssText="font-size:24px;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:18px";
+  h2.textContent=title; ct.appendChild(h2);
+
+  // Stats grid
+  if(statsArr&&statsArr.length){
+    var grid=document.createElement("div");
+    grid.style.cssText="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px";
+    statsArr.forEach(function(s){
+      var card=document.createElement("div");
+      card.style.cssText="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center";
+      var num=document.createElement("div");
+      num.style.cssText="font-size:22px;font-weight:800;background:linear-gradient(135deg,var(--org),var(--org2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px";
+      num.textContent=s[0];
+      var lbl=document.createElement("div");
+      lbl.style.cssText="font-size:10px;color:var(--muted)";
+      lbl.textContent=s[1];
+      card.appendChild(num); card.appendChild(lbl); grid.appendChild(card);
+    });
+    ct.appendChild(grid);
+  }
+
+  // Body HTML
+  var body=document.createElement("div");
+  body.innerHTML=bodyHTML; ct.appendChild(body);
+
+  // CTA button
+  var btn=document.createElement("button");
+  btn.style.cssText="display:block;width:100%;text-align:center;background:linear-gradient(135deg,var(--org),var(--org2));color:#fff;padding:12px;border-radius:10px;font-size:14px;font-weight:700;margin-top:24px;border:none;cursor:pointer;font-family:inherit";
+  btn.textContent=ctaLabel;
+  btn.onclick=ctaAction;
+  ct.appendChild(btn);
+
+  openModal();
+}
+
+/* == DATA == */
+var NEWS_DATA={
+  n1:{title:"BookingKOLs vuot moc 2.800 KOL/KOC",g:"linear-gradient(135deg,#1a0035,#5B21B6,#C026D3)",d:"06/06/2026",tag:"BookingKOLs",
+    s:[["2.800+","KOL verified"],["500+","Chien dich"],["180M+","Reach"],["96%","Hai long"]],
+    body:"<p style='margin-bottom:14px'>Nen tang BookingKOLs.com.vn cua VEA Media dat 2.800+ KOL/KOC da verify thuc te. Khong dung tool tu dong — moi KOL qua kiem tra tay, audience that, engagement that.</p>"},
+  n2:{title:"VEA Tech deploy 4 nen tang Civic Tech",g:"linear-gradient(135deg,#064e3b,#059669,#34D399)",d:"01/06/2026",tag:"VEA Tech",
+    s:[["4","Platforms live"],["50K+","Luot tra cuu"],["14","Tong target"],["2026","Hoan thanh"]],
+    body:"<p>VEA Tech hoan thanh deploy NoThue, TracuuQuyHoach, DanhBaBacSi. Thang dau dat 50.000 luot tra cuu — vuot xa ky vong ban dau.</p>"},
+  n3:{title:"VEA Law chuan bi ra mat Q3/2026",g:"linear-gradient(135deg,#1e1b4b,#312E81,#4F46E5)",d:"20/05/2026",tag:"VEA Law",
+    s:[["Q3","Ra mat"],["4","Nhom dv"],["VN+SEA","Thi truong"],["Soon","Booking"]],
+    body:"<p>VEA Law se cung cap dich vu tranh tung, tu van doanh nghiep va soan thao hop dong. Khach hang BookingKOLs duoc uu tien tiep can tu van hop dong KOL.</p>"},
+  n4:{title:"VEA Group ra mat veagroup.global",g:"linear-gradient(135deg,#7c2d12,#C2410C,#FB923C)",d:"10/05/2026",tag:"VEA Group",
+    s:[["5","Cong ty"],["14","Nen tang"],["2026","Nam"],["VN","Tru so"]],
+    body:"<p>veagroup.global chinh thuc ra mat — cong thong tin tong hop ve he sinh thai 5 cong ty va 14 nen tang so cua VEA Group.</p>"},
+  n5:{title:"DanhBaBacSi dat 10.000 luot tra cuu",g:"linear-gradient(135deg,#0c4a6e,#0284C7,#38BDF8)",d:"01/05/2026",tag:"VEA Tech",
+    s:[["10K+","Luot T1"],["500+","Bac si"],["#1","Search rank"],["3x","Vuot target"]],
+    body:"<p>DanhBaBacSi.com.vn dat 10K luot tra cuu trong thang dau — vuot 3 lan ky vong. Top keyword: bac si nhi HCM, bac si da lieu Ha Noi.</p>"},
+  n6:{title:"VEA Media hoan thanh chien dich LOreal Summer Glow",g:"linear-gradient(135deg,#831843,#DB2777,#F472B6)",d:"15/04/2026",tag:"VEA Media",
+    s:[["18.4M","Reach"],["4.2%","Engagement"],["+340%","Sales lift"],["14 ngay","FYP"]],
+    body:"<p>Chien dich Summer Glow voi 12 KOC Beauty Tier 1. Son Kem trending FYP 14 ngay. Sales lift +340% so voi baseline.</p>"}
+};
+
+var BRAND_DATA={
+  b1:{title:"LOreal Paris x VEA Media",g:"linear-gradient(135deg,#1a0035,#7B2D8B,#C026D3)",tag:"Beauty 3 campaigns",
+    s:[["3","Chien dich"],["50M+","Reach"],["4.2%","Engagement"],["+340%","Sales"]],
+    body:"<p style='margin-bottom:14px'>LOreal Paris la doi tac brand lon nhat cua VEA Media. 3 chien dich voi 30+ KOC Beauty Tier 1, tong reach hon 50M.</p><p>Chien dich Summer Glow Q2/2026: engagement 4.2%, gap 3 lan benchmark nganh.</p>"},
+  b2:{title:"VinFast x VEA Media",g:"linear-gradient(135deg,#001830,#0052D4,#4FC3F7)",tag:"Automotive 2 campaigns",
+    s:[["2","Chien dich"],["32.1M","Reach"],["+454%","Web traffic"],["10K","Dat coc"]],
+    body:"<p>Hai chien dich VinFast bao gom launch VF3. 10 KOL Tech review dong loat trong 24h. Website VinFast qua tai 2h dau, VF3 trending YouTube 3 ngay.</p>"},
+  b3:{title:"Highlands Coffee x VEA Media",g:"linear-gradient(135deg,#0d2013,#1B5E20,#43A047)",tag:"FB 2 campaigns",
+    s:[["2","Chien dich"],["24.7M","Reach"],["8.1%","Engagement"],["12K+","UGC"]],
+    body:"<p>Chien dich Tet 2026 voi hashtag LyCaPheDeNhat dat 12K+ UGC posts trong 3 tuan. Engagement 8.1% — top benchmark nganh FnB.</p>"},
+  b4:{title:"Vinamilk x VEA Media",g:"linear-gradient(135deg,#7c2d12,#EA580C,#FFA500)",tag:"FMCG 1 campaign",
+    s:[["1","Chien dich"],["15.2M","Reach"],["+280%","Sales"],["16","KOC"]],
+    body:"<p>Chien dich Mom and Baby voi 16 KOC parenting. Dang chay tuan 3/6. Reach 15.2M, sales lift +280%.</p>"},
+  b5:{title:"Cocoon Vietnam x VEA Media",g:"linear-gradient(135deg,#831843,#DB2777,#F472B6)",tag:"Beauty 1 campaign",
+    s:[["1","Chien dich"],["11.4M","Reach"],["6.7%","Engagement"],["30","KOC"]],
+    body:"<p>30 KOC beauty review tu nhien. Tuan 2/4. Engagement 6.7% — top 10% benchmark nganh beauty.</p>"},
+  b6:{title:"Nestle Vietnam x VEA Media",g:"linear-gradient(135deg,#064e3b,#059669,#34D399)",tag:"FMCG 1 campaign",
+    s:[["1","Chien dich"],["13.6M","Reach"],["7.2%","Engagement"],["+190%","Sales"]],
+    body:"<p>12 KOC fitness va lifestyle. Tuan 3/3. Reach 13.6M, engagement vuot target 40%.</p>"},
+  b7:{title:"Canifa x VEA Media",g:"linear-gradient(135deg,#1e1b4b,#4338CA,#818CF8)",tag:"Fashion 1 campaign",
+    s:[["1","Chien dich"],["9.8M","Reach"],["5.3%","Engagement"],["2 tuan","Het hang"]],
+    body:"<p>10 KOL fashion lookbook doc quyen, tung dong loat. 9.8M reach, BST he ban het size trong 2 tuan.</p>"}
+};
+
+var JOB_DATA={
+  j1:{title:"Full-stack Developer Next.js",dept:"VEA Tech",type:"Remote HCM Senior",
+    desc:"Xay dung va phat trien 14 nen tang so. Stack: Next.js 15, Supabase, TypeScript.",
+    req:["3+ nam Next.js/React","TypeScript Node.js thanh thao","PostgreSQL Supabase","SEO technical la loi the"],
+    ben:"Luong canh tranh - Remote - Equity option"},
+  j2:{title:"UI/UX Designer",dept:"VEA Tech",type:"HCM Remote Mid-Senior",
+    desc:"Thiet ke UI/UX cho 14 nen tang so va san pham VEA Group.",
+    req:["3+ nam UI/UX","Thanh thao Figma","Portfolio thuc te","Hieu design system"],
+    ben:"Luong canh tranh - Moi truong creative"},
+  j3:{title:"SEO and Content Strategist",dept:"VEA Tech Media",type:"HCM Mid-level",
+    desc:"Xay dung chien luoc SEO va content cho 14 nen tang.",
+    req:["2+ nam SEO thuc chien","GSC Ahrefs","Content SEO","Technical SEO la loi the"],
+    ben:"Build SEO tu dau cho 14 domains"},
+  j4:{title:"Influencer Marketing Manager",dept:"VEA Media",type:"HCM Mid-Senior",
+    desc:"Quan ly chien dich influencer marketing cho brand lon qua BookingKOLs.",
+    req:["3+ nam influencer marketing","Da manage brand lon","Mang luoi KOL","Ky nang PM"],
+    ben:"Lam viec voi brand lon - Commission theo performance"},
+  j5:{title:"Luat su Tranh tung",dept:"VEA Law",type:"HCM 2+ nam",
+    desc:"Dai dien to tung, tu van doanh nghiep va soan thao hop dong.",
+    req:["Bang Luat Chung chi hanh nghe","2+ nam tranh tung","Tu van doanh nghiep","Tieng Anh phap ly"],
+    ben:"Vi tri sap mo - Dang ky som"},
+  j6:{title:"Giang vien Tieng Anh Phap Ly",dept:"VEA Academy",type:"Online HCM Part-time Full-time",
+    desc:"Giang day khoa hoc Tieng Anh chuyen nganh Phap ly tren VEA Academy.",
+    req:["Bang Luat hoac Ngu van Anh","IELTS 7.0+","Kinh nghiem giang day","Ky nang trinh bay"],
+    ben:"Linh hoat thoi gian - Thu nhap theo gio day"}
+};
+
+function openNewsDetail(id){
+  var d=NEWS_DATA[id]; if(!d) return;
+  buildModalHTML(d.title,d.g,d.d,d.tag,d.s,d.body,"Xem them chien dich",function(){
+    closeDetailModal(); showPage("home"); setTimeout(function(){goTo("contact");},100);
+  });
+}
+function openBrandDetail(id){
+  var d=BRAND_DATA[id]; if(!d) return;
+  buildModalHTML(d.title,d.g,null,d.tag,d.s,d.body,"Booking chien dich tuong tu",function(){
+    closeDetailModal(); showPage("home"); setTimeout(function(){goTo("contact");},100);
+  });
+}
+function openJobDetail(id){
+  var d=JOB_DATA[id]; if(!d) return;
+  // Build job body with DOM - no quote conflicts
+  var wrap=document.createElement("div");
+  var deptDiv=document.createElement("div");
+  deptDiv.className="job-modal-dept";
+  deptDiv.innerHTML="<strong>"+d.dept+"</strong> &middot; "+d.type;
+  var descP=document.createElement("p"); descP.className="job-modal-desc"; descP.textContent=d.desc;
+  var reqWrap=document.createElement("div"); reqWrap.className="job-modal-reqs";
+  var reqTitle=document.createElement("div"); reqTitle.className="job-modal-req-title"; reqTitle.textContent="Yeu cau";
+  reqWrap.appendChild(reqTitle);
+  d.req.forEach(function(r){
+    var row=document.createElement("div"); row.className="job-modal-req-row";
+    var icon=document.createElement("span"); icon.className="job-modal-req-icon"; icon.textContent="+";
+    var txt=document.createTextNode(r);
+    row.appendChild(icon); row.appendChild(txt); reqWrap.appendChild(row);
+  });
+  var benDiv=document.createElement("div"); benDiv.className="job-modal-ben";
+  benDiv.innerHTML="<strong>Quyen loi:</strong> "+d.ben;
+  wrap.appendChild(deptDiv); wrap.appendChild(descP); wrap.appendChild(reqWrap); wrap.appendChild(benDiv);
+  var body=wrap.outerHTML;
+  buildModalHTML(d.title,null,null,"Tuyen dung / "+d.dept,null,body,"Ung tuyen ngay",function(){
+    closeDetailModal(); showPage("home"); setTimeout(function(){goTo("contact");},100);
+  });
+}
+</script>
+
+
+
+
+<input type="file" id="videoUploadInput" accept="video/*" style="display:none" onchange="handleVideoUpload(event)">
+</body>
+</html>

@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --font-sans / --font-mono được inject bởi next/font trong layout.tsx */
+
+    /* Mirror token cho runtime theming (backend có thể override qua <html style>) */
+    --brand: #c8541a;
+    --brand-500: #e8612a;
+    --brand-400: #f07848;
+    --ring: 200 84 26;
+  }
+
+  * {
+    min-width: 0; /* chặn flex/grid item tràn ngang */
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-ink antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(200, 84, 26, 0.16);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand/45 ring-offset-2 ring-offset-white;
+    border-radius: 4px;
+  }
+
+  /* Scrollbar mảnh, tông sand */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d8d0c4 transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d8d0c4;
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Text tô gradient thương hiệu (thay cho -webkit-background-clip lặp lại trong demo) */
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  /* Padding ngang thống nhất cho mọi section full-bleed */
+  .container-px {
+    @apply px-5 sm:px-8 lg:px-10;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  /* Eyebrow: nhãn nhỏ + gạch ngang, dùng khắp các section */
+  .eyebrow {
+    @apply flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-brand;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-[18px] bg-brand;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
