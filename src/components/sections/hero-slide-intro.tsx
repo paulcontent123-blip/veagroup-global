@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { useLocale } from "@/components/i18n/locale-provider";
 import { tx } from "@/lib/i18n/tx";
-
+//them
 /** Slide 1 của hero carousel — giới thiệu hệ sinh thái (bám demo `.hero-slide` #1). */
 export function HeroSlideIntro() {
   const { locale } = useLocale();
