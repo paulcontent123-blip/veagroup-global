@@ -35,7 +35,8 @@ export function SiteHeader() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/92 backdrop-blur-xl">
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/92 backdrop-blur-xl">
       <div className="header-container-px flex h-[62px] w-full items-center justify-between">
         <SiteLogo />
         <nav className="hidden items-center gap-1 lg:flex" aria-label={messages.nav.mainNavigation}>
@@ -204,11 +205,12 @@ export function SiteHeader() {
           </Container>
         </div>
       ) : null}
+      </header>
       {toast ? (
         <div className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-lg bg-ink px-5 py-2.5 text-[13px] font-medium text-white shadow-lift">
           🌐 {messages.nav.languageChanged}
         </div>
       ) : null}
-    </header>
+    </>
   );
 }
