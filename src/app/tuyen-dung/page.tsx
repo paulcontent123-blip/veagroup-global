@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { SubHero } from "@/components/layout/sub-hero";
 import { CareersDirectory } from "@/components/pages/careers-directory";
+import { getLocale } from "@/lib/i18n/locale";
 
 export const metadata = createPageMetadata(
   "/tuyen-dung",
@@ -12,20 +13,26 @@ export const metadata = createPageMetadata(
 );
 
 const stats = [
-  { value: String(jobs.length), label: "Vị trí đang mở" },
-  { value: "5", label: "Công ty thành viên" },
-  { value: "Remote", label: "Chính sách làm việc linh hoạt" },
+  { value: String(jobs.length), label: { vi: "Vị trí đang mở", en: "Open roles" } },
+  { value: "5", label: { vi: "Công ty thành viên", en: "Member companies" } },
+  { value: "Remote", label: { vi: "Chính sách làm việc linh hoạt", en: "Flexible work policy" } },
 ];
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const locale = await getLocale();
+
   return (
     <main>
       <SubHero
-        eyebrow="Tuyển dụng"
-        title="Gia nhập"
+        eyebrow={locale === "en" ? "Careers" : "Tuyển dụng"}
+        title={locale === "en" ? "Join" : "Gia nhập"}
         highlight="VEA Group"
-        description="Bạn muốn build từ đầu, tạo impact thực sự và góp phần xây dựng kỷ nguyên số Việt Nam? Đây là nơi dành cho bạn."
-        backLabel="Quay về trang chủ"
+        description={
+          locale === "en"
+            ? "Want to build from scratch, create real impact and help shape Vietnam's digital era? This is the place for you."
+            : "Bạn muốn build từ đầu, tạo impact thực sự và góp phần xây dựng kỷ nguyên số Việt Nam? Đây là nơi dành cho bạn."
+        }
+        backLabel={locale === "en" ? "Back to home" : "Quay về trang chủ"}
       />
 
       {/* Số liệu */}
@@ -33,11 +40,11 @@ export default function CareersPage() {
         <div className="flex flex-wrap gap-6 sm:gap-8">
           {stats.map((stat) => (
             <div
-              key={stat.label}
+              key={stat.value}
               className="min-w-[200px] flex-1 rounded-xl border border-line bg-white p-5 shadow-soft"
             >
               <div className="text-gradient text-[28px] font-black leading-none">{stat.value}</div>
-              <div className="mt-1 text-xs text-muted">{stat.label}</div>
+              <div className="mt-1 text-xs text-muted">{stat.label[locale]}</div>
             </div>
           ))}
         </div>
@@ -48,12 +55,16 @@ export default function CareersPage() {
         <CareersDirectory />
 
         <div className="mt-8 rounded-xl border border-dashed border-line-strong bg-sand-100 p-6 text-center">
-          <p className="text-sm font-bold text-ink">Không tìm thấy vị trí phù hợp?</p>
+          <p className="text-sm font-bold text-ink">
+            {locale === "en" ? "Can't find the right role?" : "Không tìm thấy vị trí phù hợp?"}
+          </p>
           <p className="mt-1.5 text-[13px] text-muted">
-            Gửi CV của bạn — chúng tôi sẽ liên hệ khi có vị trí phù hợp.
+            {locale === "en"
+              ? "Send us your CV and we will contact you when a suitable role opens."
+              : "Gửi CV của bạn — chúng tôi sẽ liên hệ khi có vị trí phù hợp."}
           </p>
           <Button href="/#contact" size="sm" className="mt-3.5">
-            Gửi CV ngay →
+            {locale === "en" ? "Send CV now →" : "Gửi CV ngay →"}
           </Button>
         </div>
       </Section>

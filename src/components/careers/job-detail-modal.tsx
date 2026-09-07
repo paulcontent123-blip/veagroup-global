@@ -13,6 +13,7 @@ import { getJob } from "@/content/jobs";
 import { tx } from "@/lib/i18n/tx";
 import { cn } from "@/lib/utils";
 import type { Localized } from "@/lib/types";
+import { useLocale } from "@/components/i18n/locale-provider";
 
 /* ── Context ─────────────────────────────────────────────── */
 // Khớp `.detail-overlay` / `openJobDetail()` của demo: click 1 job-card mở
@@ -46,6 +47,7 @@ export function JobDetailProvider({ children }: { children: ReactNode }) {
 
 function JobDetailModal({ slug, close }: { slug: string | null; close: () => void }) {
   const router = useRouter();
+  const { locale } = useLocale();
   const job = slug ? getJob(slug) : undefined;
   const isOpen = Boolean(job);
   const [shown, setShown] = useState(false);
@@ -97,12 +99,12 @@ function JobDetailModal({ slug, close }: { slug: string | null; close: () => voi
       >
         <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-line bg-white px-6 py-4 sm:px-8">
           <div className="text-xs text-muted">
-            Tuyển dụng <span className="text-brand">/ {job.company}</span>
+            {locale === "en" ? "Careers" : "Tuyển dụng"} <span className="text-brand">/ {job.company}</span>
           </div>
           <button
             type="button"
             onClick={close}
-            aria-label="Đóng"
+            aria-label={locale === "en" ? "Close" : "Đóng"}
             className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-sand-200 text-sm text-muted transition-colors hover:bg-sand-300 hover:text-ink"
           >
             ✕
@@ -111,20 +113,21 @@ function JobDetailModal({ slug, close }: { slug: string | null; close: () => voi
 
         <div className="px-6 pb-10 pt-6 sm:px-8">
           <h2 id="job-detail-title" className="text-[22px] font-black leading-tight text-ink sm:text-2xl">
-            {tx(job.title, "vi")}
+            {tx(job.title, locale)}
           </h2>
 
           <div className="mt-4 rounded-lg border border-brand/25 bg-brand/[0.06] px-3.5 py-2.5 text-[13px] text-ink">
-            <strong className="font-bold">{job.company}</strong> · {tx(job.location, "vi")} · {tx(job.level, "vi")}
+            <strong className="font-bold">{job.company}</strong> · {tx(job.location, locale)} · {tx(job.level, locale)}
           </div>
 
-          <p className="mt-4 text-sm leading-relaxed text-muted">{tx(job.summary, "vi")}</p>
+          <p className="mt-4 text-sm leading-relaxed text-muted">{tx(job.summary, locale)}</p>
 
-          <JobReqList title="Mô tả công việc" items={job.responsibilities} />
-          <JobReqList title="Yêu cầu" items={job.requirements} />
+          <JobReqList title={locale === "en" ? "Responsibilities" : "Mô tả công việc"} items={job.responsibilities} locale={locale} />
+          <JobReqList title={locale === "en" ? "Requirements" : "Yêu cầu"} items={job.requirements} locale={locale} />
 
           <div className="mt-4 rounded-lg border border-brand/20 bg-brand/[0.06] px-3.5 py-2.5 text-[13px] text-brand">
-            <strong className="font-bold text-ink">Quyền lợi:</strong> {job.benefits.map((b) => tx(b, "vi")).join(" · ")}
+            <strong className="font-bold text-ink">{locale === "en" ? "Benefits:" : "Quyền lợi:"}</strong>{" "}
+            {job.benefits.map((b) => tx(b, locale)).join(" · ")}
           </div>
 
           <button
@@ -132,7 +135,7 @@ function JobDetailModal({ slug, close }: { slug: string | null; close: () => voi
             onClick={applyNow}
             className="mt-6 block w-full rounded-[10px] bg-brand-gradient px-4 py-3 text-center text-sm font-bold text-white shadow-brand transition-[filter,transform] hover:-translate-y-0.5 hover:brightness-[1.05]"
           >
-            Ứng tuyển ngay →
+            {locale === "en" ? "Apply now →" : "Ứng tuyển ngay →"}
           </button>
         </div>
       </div>
@@ -140,14 +143,14 @@ function JobDetailModal({ slug, close }: { slug: string | null; close: () => voi
   );
 }
 
-function JobReqList({ title, items }: { title: string; items: Localized[] }) {
+function JobReqList({ title, items, locale }: { title: string; items: Localized[]; locale: "vi" | "en" }) {
   if (!items.length) return null;
   return (
     <div className="mt-5">
       <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.5px] text-ink">{title}</div>
       <div>
         {items.map((item) => {
-          const label = tx(item, "vi");
+          const label = tx(item, locale);
           return (
             <div key={label} className="flex gap-2 border-b border-line py-1.5 text-[13px] text-muted last:border-b-0">
               <span className="shrink-0 font-bold text-brand">+</span>

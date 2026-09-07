@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, BriefcaseBusiness, CalendarDays } from "lucide-react";
 import { jobs, news } from "@/content/vea-demo";
 import { Badge } from "@/components/ui/badge";
@@ -6,8 +8,12 @@ import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { useLocale } from "@/components/i18n/locale-provider";
+import { tx } from "@/lib/i18n/tx";
 
 export function NewsCareersSection() {
+  const { locale } = useLocale();
+
   return (
     <>
       {/* ═══ NEWS PREVIEW ═══ */}
@@ -15,18 +21,18 @@ export function NewsCareersSection() {
         <Container>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <span className="eyebrow">Tin tức &amp; Cập nhật</span>
-              <h2 className="mt-3 font-black leading-[1.15] tracking-tight text-ink text-[clamp(1.5rem,1.1rem+1.6vw,2rem)]">
-                Mới nhất từ <span className="text-gradient italic">VEA Group</span>
+              <span className="eyebrow">{locale === "en" ? "News & Updates" : "Tin tức & Cập nhật"}</span>
+              <h2 className="mt-3 font-black leading-[1.15] tracking-[-0.3px] text-ink text-[24px] sm:text-[28px] lg:text-[32px]">
+                {locale === "en" ? "Latest from " : "Mới nhất từ "} <span className="text-gradient italic">VEA Group</span>
               </h2>
             </div>
             <Button href="/tin-tuc" variant="outline" size="sm">
-              Xem tất cả tin tức <ArrowRight className="h-4 w-4" />
+              {locale === "en" ? "View all news" : "Xem tất cả tin tức"} <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {news.map((item) => (
-              <Card key={item.title} as="article" interactive className="overflow-hidden">
+              <Card key={tx(item.title, locale)} as="article" interactive className="overflow-hidden">
                 <div className={`h-40 bg-gradient-to-br ${item.gradient}`} />
                 <div className="p-[18px]">
                   <div className="flex items-center justify-between gap-3">
@@ -36,10 +42,10 @@ export function NewsCareersSection() {
                       {item.date}
                     </span>
                   </div>
-                  <h3 className="mt-3 text-[15px] font-bold leading-[1.3] text-ink">{item.title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-muted">{item.excerpt}</p>
+                  <h3 className="mt-3 text-[15px] font-bold leading-[1.3] text-ink">{tx(item.title, locale)}</h3>
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted">{tx(item.excerpt, locale)}</p>
                   <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand">
-                    Đọc thêm <ArrowRight className="h-3.5 w-3.5" />
+                    {locale === "en" ? "Read more" : "Đọc thêm"} <ArrowRight className="h-3.5 w-3.5" />
                   </span>
                 </div>
               </Card>
@@ -51,13 +57,13 @@ export function NewsCareersSection() {
       <Section id="careers" tone="subtle" bordered>
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeading
-            eyebrow="Tuyển dụng"
-            title="VEA Group tìm kiếm"
-            highlight="nhân tài đồng hành"
+            eyebrow={locale === "en" ? "Careers" : "Tuyển dụng"}
+            title={locale === "en" ? "VEA Group is looking for" : "VEA Group tìm kiếm"}
+            highlight={locale === "en" ? "talent to join us" : "nhân tài đồng hành"}
           >
             <div className="mt-4">
               <Button href="/tuyen-dung">
-                Xem tất cả vị trí <ArrowRight className="h-4 w-4" />
+                {locale === "en" ? "View all roles" : "Xem tất cả vị trí"} <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
           </SectionHeading>
@@ -72,12 +78,12 @@ export function NewsCareersSection() {
                     <div>
                       <h3 className="font-black text-ink">{job.title}</h3>
                       <p className="mt-1 text-sm text-muted">
-                        {job.team} · {job.location} · {job.level}
+                        {job.team} · {tx(job.location, locale)} · {tx(job.level, locale)}
                       </p>
                     </div>
                   </div>
                   <Badge tone={job.status === "open" ? "success" : "warning"}>
-                    {job.status === "open" ? "Đang tuyển" : "Sắp mở"}
+                    {job.status === "open" ? (locale === "en" ? "Open" : "Đang tuyển") : locale === "en" ? "Opening soon" : "Sắp mở"}
                   </Badge>
                 </div>
               </Card>

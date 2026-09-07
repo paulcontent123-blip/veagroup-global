@@ -1,31 +1,40 @@
+"use client";
+
 import Link from "next/link";
 import { featuredPlatforms } from "@/content/vea-demo";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
+import { useLocale } from "@/components/i18n/locale-provider";
+import { tx } from "@/lib/i18n/tx";
 
 const CARD =
   "rounded-[10px] border border-line bg-white p-4 text-left shadow-soft transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:shadow-lift";
 
 export function EcosystemSection() {
+  const { locale } = useLocale();
+
   return (
-    <section id="ecosystem" className="border-y border-line bg-sand-100 py-16">
+    <section id="ecosystem" className="border-y border-line bg-sand-100 py-16 lg:py-24">
       <Container>
         {/* Header: tiêu đề + nút "Xem tất cả" */}
         <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="eyebrow">Hệ sinh thái số</span>
-            <h2 className="mt-3 text-balance font-black leading-[1.15] tracking-tight text-ink text-[clamp(1.75rem,1.1rem+2.4vw,2.5rem)]">
-              25 nền tảng — <span className="text-gradient italic">mỗi nhu cầu một giải pháp</span>
+            <span className="eyebrow">{locale === "en" ? "Digital ecosystem" : "Hệ sinh thái số"}</span>
+            <h2 className="mt-3 text-balance font-black leading-[1.1] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+              {locale === "en" ? "25 platforms — " : "25 nền tảng — "}
+              <span className="text-gradient italic">{locale === "en" ? "one solution for every need" : "mỗi nhu cầu một giải pháp"}</span>
             </h2>
             <p className="mt-2 max-w-[540px] text-sm leading-relaxed text-muted">
-              Từ tuyển dụng, pháp lý, thiện nguyện đến giải trí đêm và chăm sóc mẹ bé — 5 công ty thành viên vận hành 25 nền tảng.
+              {locale === "en"
+                ? "From recruitment, legal and charity services to nightlife and mother-and-baby care — five member companies operate 25 platforms."
+                : "Từ tuyển dụng, pháp lý, thiện nguyện đến giải trí đêm và chăm sóc mẹ bé — 5 công ty thành viên vận hành 25 nền tảng."}
             </p>
           </div>
           <Link
             href="/he-sinh-thai"
             className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-line-strong bg-white px-5 py-2.5 text-[13px] font-semibold text-ink shadow-soft transition-[color,border-color,box-shadow] hover:border-brand hover:text-brand hover:shadow-lift md:self-auto"
           >
-            Xem tất cả 25 nền tảng <span aria-hidden>→</span>
+            {locale === "en" ? "View all 25 platforms" : "Xem tất cả 25 nền tảng"} <span aria-hidden>→</span>
           </Link>
         </div>
 
@@ -48,10 +57,10 @@ export function EcosystemSection() {
                       platform.status === "Live ✓" ? "bg-emerald-100 text-emerald-700" : "bg-brand/10 text-brand",
                     )}
                   >
-                    {platform.status}
+                    {locale === "en" ? platform.status : platform.status === "Live ✓" ? "Đang hoạt động ✓" : "Bản demo ✦"}
                   </span>
                 </div>
-                <p className="mt-2 text-xs leading-relaxed text-muted">{platform.description}</p>
+                <p className="mt-2 text-xs leading-relaxed text-muted">{tx(platform.description, locale)}</p>
               </>
             );
 
@@ -79,7 +88,9 @@ export function EcosystemSection() {
           href="/he-sinh-thai"
           className="mt-3.5 block rounded-[10px] border border-dashed border-brand/30 bg-brand/[0.04] p-4 text-center text-[13.5px] font-semibold text-brand transition-colors hover:bg-brand/[0.08]"
         >
-          +19 nền tảng khác — DanhBaBacSi, NợThuế, DanhBaLuatSu.asia, BookingModel, TruyenMa, SanCrypto... → Xem toàn bộ hệ sinh thái
+          {locale === "en"
+            ? "+19 more platforms — DanhBaBacSi, NoThue, DanhBaLuatSu.asia, BookingModel, TruyenMa, SanCrypto... → View the full ecosystem"
+            : "+19 nền tảng khác — DanhBaBacSi, NợThuế, DanhBaLuatSu.asia, BookingModel, TruyenMa, SanCrypto... → Xem toàn bộ hệ sinh thái"}
         </Link>
       </Container>
     </section>

@@ -1,5 +1,6 @@
 import { achievements, milestones } from "@/content/milestones";
 import { tx } from "@/lib/i18n/tx";
+import { getLocale } from "@/lib/i18n/locale";
 import { cn } from "@/lib/utils";
 import { createPageMetadata } from "@/lib/seo";
 import { Card } from "@/components/ui/card";
@@ -12,32 +13,46 @@ export const metadata = createPageMetadata(
   "Các thành tựu, cột mốc sản phẩm và bước phát triển đáng chú ý của VEA Group.",
 );
 
-export default function MilestonesPage() {
+function periodLabel(period: string, locale: "vi" | "en") {
+  if (locale === "vi") return period;
+  return period
+    .replace("Khởi đầu", "Beginning")
+    .replace("Năm bứt phá", "Breakout year")
+    .replace("Đang triển khai", "In progress");
+}
+
+export default async function MilestonesPage() {
+  const locale = await getLocale();
+
   return (
     <main>
       <SubHero
-        eyebrow="Cột mốc & Thành tựu"
-        title="Hành trình xây dựng"
+        eyebrow={locale === "en" ? "Milestones & Achievements" : "Cột mốc & Thành tựu"}
+        title={locale === "en" ? "The building journey" : "Hành trình xây dựng"}
         highlight="VEA Group"
-        description="Những con số, cột mốc và thành tựu trên hành trình kiến tạo kỷ nguyên Việt Nam."
-        backLabel="Quay về trang chủ"
+        description={
+          locale === "en"
+            ? "Numbers, milestones and achievements from the journey to build the Vietnam Era."
+            : "Những con số, cột mốc và thành tựu trên hành trình kiến tạo kỷ nguyên Việt Nam."
+        }
+        backLabel={locale === "en" ? "Back to home" : "Quay về trang chủ"}
       />
 
       <Section tone="subtle">
         {/* Số liệu — .tt-grid */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {achievements.map((item) => (
-            <Card key={tx(item.label, "vi")} interactive className="rounded-[14px] p-[26px]">
+            <Card key={tx(item.label, locale)} interactive className="rounded-[14px] p-[26px]">
               <div className="text-gradient text-[36px] font-black leading-none">{item.value}</div>
-              <h2 className="mt-1.5 text-[15px] font-bold text-ink">{tx(item.label, "vi")}</h2>
-              <p className="mt-1.5 text-[13px] leading-[1.65] text-muted">{tx(item.description, "vi")}</p>
+              <h2 className="mt-1.5 text-[15px] font-bold text-ink">{tx(item.label, locale)}</h2>
+              <p className="mt-1.5 text-[13px] leading-[1.65] text-muted">{tx(item.description, locale)}</p>
             </Card>
           ))}
         </div>
 
         {/* Timeline */}
-        <h2 className="mb-8 mt-16 text-balance font-black tracking-tight text-ink text-[clamp(1.9rem,1.2rem+2.6vw,2.6rem)]">
-          Timeline <span className="text-gradient italic">hành trình VEA</span>
+        <h2 className="mb-8 mt-16 text-balance font-black tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+          {locale === "en" ? "Timeline " : "Timeline "} <span className="text-gradient italic">{locale === "en" ? "VEA journey" : "hành trình VEA"}</span>
         </h2>
 
         <div className="relative pl-8">
@@ -63,10 +78,10 @@ export default function MilestonesPage() {
                     milestone.highlight ? "text-brand" : "text-muted",
                   )}
                 >
-                  {milestone.period}
+                  {periodLabel(milestone.period, locale)}
                 </div>
-                <h3 className="mt-1.5 text-[15px] font-bold text-ink">{tx(milestone.title, "vi")}</h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{tx(milestone.description, "vi")}</p>
+                <h3 className="mt-1.5 text-[15px] font-bold text-ink">{tx(milestone.title, locale)}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{tx(milestone.description, locale)}</p>
               </div>
             </div>
           ))}

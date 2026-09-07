@@ -23,6 +23,10 @@ const dictionaries = {
       openMenu: "Mở menu",
       closeMenu: "Đóng menu",
       cta: "Hợp tác",
+      admin: "Quản trị nội bộ",
+      mainNavigation: "Điều hướng chính",
+      mobileNavigation: "Điều hướng trên thiết bị di động",
+      languageChanged: "Đã chuyển sang Tiếng Việt",
     },
     carousel: {
       label: "Trình chiếu giới thiệu",
@@ -81,6 +85,10 @@ const dictionaries = {
       openMenu: "Open menu",
       closeMenu: "Close menu",
       cta: "Partner",
+      admin: "Internal admin",
+      mainNavigation: "Main navigation",
+      mobileNavigation: "Mobile navigation",
+      languageChanged: "Switched to English",
     },
     carousel: {
       label: "Intro carousel",

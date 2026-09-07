@@ -1,7 +1,8 @@
 import { companies } from "@/content/companies";
 import { companyAccent } from "@/lib/company-accent";
-import type { CompanyAccent } from "@/lib/types";
+import type { CompanyAccent, Localized } from "@/lib/types";
 import { tx } from "@/lib/i18n/tx";
+import { getLocale } from "@/lib/i18n/locale";
 import { cn } from "@/lib/utils";
 import { createPageMetadata } from "@/lib/seo";
 import { Card } from "@/components/ui/card";
@@ -15,28 +16,34 @@ export const metadata = createPageMetadata(
 );
 
 /** Trạng thái hiển thị đúng theo từng công ty trong demo (page-cong-ty). */
-const STATUS: Record<CompanyAccent, { text: string; tone: "green" | "amber" }> = {
-  media: { text: "Đang hoạt động", tone: "green" },
-  tech: { text: "Phát triển tích cực", tone: "green" },
-  law: { text: "Sắp ra mắt Q3/2026", tone: "amber" },
-  retail: { text: "Đang phát triển", tone: "green" },
-  academy: { text: "Đang xây dựng", tone: "amber" },
+const STATUS: Record<CompanyAccent, { text: Localized; tone: "green" | "amber" }> = {
+  media: { text: { vi: "Đang hoạt động", en: "Active" }, tone: "green" },
+  tech: { text: { vi: "Phát triển tích cực", en: "Active development" }, tone: "green" },
+  law: { text: { vi: "Sắp ra mắt Q3/2026", en: "Coming Q3/2026" }, tone: "amber" },
+  retail: { text: { vi: "Đang phát triển", en: "In development" }, tone: "green" },
+  academy: { text: { vi: "Đang xây dựng", en: "Building" }, tone: "amber" },
 };
 
-export default function CompaniesPage() {
+export default async function CompaniesPage() {
+  const locale = await getLocale();
+
   return (
     <main>
       <SubHero
-        eyebrow="Cấu trúc tổ chức"
+        eyebrow={locale === "en" ? "Organization structure" : "Cấu trúc tổ chức"}
         title={
           <>
             5 Công ty thành viên —<br />
           </>
         }
-        highlight="mỗi thế mạnh riêng biệt"
-        description="5 mảng kinh doanh được thiết kế để bổ trợ lẫn nhau. Doanh thu của công ty này là pipeline của công ty khác — đó là engine tổng hợp VEA Group."
+        highlight={locale === "en" ? "one strength each" : "mỗi thế mạnh riêng biệt"}
+        description={
+          locale === "en"
+            ? "Five business lines are designed to support one another. One company's revenue is another's pipeline — the integrated VEA Group engine."
+            : "5 mảng kinh doanh được thiết kế để bổ trợ lẫn nhau. Doanh thu của công ty này là pipeline của công ty khác — đó là engine tổng hợp VEA Group."
+        }
         backHref="/ve-vea"
-        backLabel="Về VEA Group"
+        backLabel={locale === "en" ? "About VEA Group" : "Về VEA Group"}
       />
 
       <Section>
@@ -71,20 +78,20 @@ export default function CompaniesPage() {
                   {/* Nội dung chính */}
                   <div className="min-w-0">
                     <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted-light">
-                      Thành viên 0{company.index}
+                      {locale === "en" ? "Member" : "Thành viên"} 0{company.index}
                     </div>
                     <h2 className="mt-1.5 text-[22px] font-black leading-tight text-ink">{company.name}</h2>
-                    <p className="mt-1 text-[13px] text-muted">{tx(company.kicker, "vi")}</p>
+                    <p className="mt-1 text-[13px] text-muted">{tx(company.kicker, locale)}</p>
                     <p className="mt-2.5 max-w-[680px] text-sm leading-[1.75] text-muted">
-                      {tx(company.description, "vi")}
+                      {tx(company.description, locale)}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-1.5">
                       {company.services.map((service) => (
                         <span
-                          key={tx(service, "vi")}
+                          key={tx(service, locale)}
                           className={cn("rounded border px-2.5 py-0.5 text-[10px] font-semibold", accent.chip)}
                         >
-                          {tx(service, "vi")}
+                          {tx(service, locale)}
                         </span>
                       ))}
                     </div>
@@ -99,10 +106,10 @@ export default function CompaniesPage() {
                           status.tone === "green" ? "bg-emerald-500" : "bg-amber-500",
                         )}
                       />
-                      {status.text}
+                      {tx(status.text, locale)}
                     </div>
                     <p className="mt-1.5">
-                      {company.platformNote ? tx(company.platformNote, "vi") : company.platforms.join(" · ")}
+                      {company.platformNote ? tx(company.platformNote, locale) : company.platforms.join(" · ")}
                     </p>
                   </div>
                 </div>

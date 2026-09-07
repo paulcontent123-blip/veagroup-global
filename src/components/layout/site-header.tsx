@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { mainNav } from "@/content/navigation";
 import { Container } from "@/components/ui/container";
 import { usePartnership } from "@/components/partnership/partnership-modal";
 import { tx } from "@/lib/i18n/tx";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/lib/types";
+import { getMessages } from "@/lib/i18n/messages";
+import { useLocale } from "@/components/i18n/locale-provider";
 import { SiteLogo } from "./site-logo";
 
 // Khớp `.ndm-item` của demo: 1 dòng phẳng, không icon riêng cột, hover đẩy chữ
@@ -16,16 +18,13 @@ import { SiteLogo } from "./site-logo";
 const CHILD_ITEM =
   "flex items-center gap-2.5 rounded-md px-4 py-2.5 text-[13px] font-medium text-muted transition-[background,color,padding] duration-150 hover:bg-sand-100 hover:pl-5 hover:text-brand";
 
-// Bản dịch đầy đủ toàn site (như `swapAllText` của demo) chưa được triển khai —
-// nút EN ở đây chỉ đổi placeholder + hiện toast, giữ đúng UI/UX của demo mà
-// không âm thầm giả vờ đã có i18n. Khi nối i18n thật, thay state này bằng
-// `LocaleProvider` dùng chung `tx()` đã có sẵn trong `@/lib/i18n`.
-const locale: Locale = "vi";
-
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const { open: openPartnership } = usePartnership();
   const [toast, setToast] = useState(false);
+  const { locale, toggleLocale } = useLocale();
+  const messages = getMessages(locale);
 
   useEffect(() => {
     if (!toast) return;
@@ -33,11 +32,13 @@ export function SiteHeader() {
     return () => window.clearTimeout(timer);
   }, [toast]);
 
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/92 backdrop-blur-xl">
-      <div className="container-px flex h-16 w-full items-center justify-between">
+      <div className="header-container-px flex h-[62px] w-full items-center justify-between">
         <SiteLogo />
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-1 lg:flex" aria-label={messages.nav.mainNavigation}>
           {mainNav.map((item) =>
             item.children ? (
               <div key={tx(item.label, locale)} className="group relative">
@@ -92,31 +93,34 @@ export function SiteHeader() {
         <div className="hidden items-center gap-2 lg:flex">
           <button
             type="button"
-            onClick={() => setToast(true)}
-            aria-label="Switch language"
+            onClick={() => {
+              toggleLocale();
+              setToast(true);
+            }}
+            aria-label={messages.nav.toggleLangTo}
             className="rounded-[5px] border border-line px-[11px] py-[5px] text-[11px] font-semibold text-muted transition hover:border-brand hover:text-brand"
           >
-            EN
+            {locale === "vi" ? "EN" : "VI"}
           </button>
           <Link
             href="/admin"
-            title="Quản trị nội bộ"
+            title={messages.nav.admin}
             className="rounded-[5px] px-[10px] py-[5px] text-[11px] text-muted opacity-50 transition hover:bg-sand-200 hover:text-ink hover:opacity-100"
           >
-            ⚙ Quản trị
+            ⚙ {messages.nav.admin}
           </Link>
           <button
             type="button"
             onClick={openPartnership}
             className="rounded-md bg-brand-gradient px-5 py-[9px] text-[13px] font-bold text-white shadow-brand transition-[filter,transform] hover:-translate-y-px hover:brightness-[1.05]"
           >
-            Hợp tác →
+            {messages.nav.cta} →
           </button>
         </div>
         <button
           type="button"
           className="grid h-10 w-10 place-items-center rounded-lg border border-line bg-white text-ink lg:hidden"
-          aria-label={open ? "Đóng menu" : "Mở menu"}
+          aria-label={open ? messages.nav.closeMenu : messages.nav.openMenu}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
@@ -126,7 +130,7 @@ export function SiteHeader() {
       {open ? (
         <div className="border-t border-line bg-white shadow-lift lg:hidden">
           <Container className="py-3">
-            <nav className="grid gap-1" aria-label="Mobile navigation">
+            <nav className="grid gap-1" aria-label={messages.nav.mobileNavigation}>
               {mainNav.map((item) => (
                 <div key={tx(item.label, locale)} className="border-b border-line last:border-b-0">
                   {item.href ? (
@@ -173,14 +177,17 @@ export function SiteHeader() {
                   className="rounded-md px-1 py-2 text-xs font-semibold text-muted-light opacity-70 hover:text-ink"
                   onClick={() => setOpen(false)}
                 >
-                  ⚙ Quản trị
+                  ⚙ {messages.nav.admin}
                 </Link>
                 <button
                   type="button"
-                  onClick={() => setToast(true)}
+                  onClick={() => {
+                    toggleLocale();
+                    setToast(true);
+                  }}
                   className="ml-auto rounded-[5px] border border-line px-[11px] py-[5px] text-[11px] font-semibold text-muted"
                 >
-                  EN
+                  {locale === "vi" ? "EN" : "VI"}
                 </button>
               </div>
               <button
@@ -191,7 +198,7 @@ export function SiteHeader() {
                 }}
                 className="rounded-md px-3 py-3 text-left text-sm font-bold text-brand hover:bg-brand/5"
               >
-                Hợp tác →
+                {messages.nav.cta} →
               </button>
             </nav>
           </Container>
@@ -199,7 +206,7 @@ export function SiteHeader() {
       ) : null}
       {toast ? (
         <div className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-lg bg-ink px-5 py-2.5 text-[13px] font-medium text-white shadow-lift">
-          🌐 Đa ngôn ngữ đang được phát triển
+          🌐 {messages.nav.languageChanged}
         </div>
       ) : null}
     </header>

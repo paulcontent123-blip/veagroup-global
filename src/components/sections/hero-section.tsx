@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getMessages } from "@/lib/i18n/messages";
+import { useLocale } from "@/components/i18n/locale-provider";
 import { HeroSlideIntro } from "./hero-slide-intro";
 import { HeroSlideStory } from "./hero-slide-story";
 
@@ -20,6 +22,8 @@ const AUTOPLAY_MS = 9000;
 export function HeroSection() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const { locale } = useLocale();
+  const messages = getMessages(locale);
 
   const go = useCallback((next: number) => {
     setIndex((next + SLIDES.length) % SLIDES.length);
@@ -37,7 +41,7 @@ export function HeroSection() {
     <section
       id="top"
       aria-roledescription="carousel"
-      aria-label="Giới thiệu VEA Group"
+      aria-label={messages.carousel.label}
       className="relative isolate overflow-hidden border-b border-line bg-sand-100"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -55,7 +59,7 @@ export function HeroSection() {
               key={key}
               role="group"
               aria-roledescription="slide"
-              aria-label={`${i + 1} / ${SLIDES.length} — ${label}`}
+              aria-label={`${i + 1} / ${SLIDES.length} — ${locale === "en" ? (key === "intro" ? "Ecosystem introduction" : "VEA Group journey") : label}`}
               aria-hidden={i !== index}
               inert={i !== index}
               className="h-full w-full shrink-0"
@@ -70,7 +74,7 @@ export function HeroSection() {
         <button
           type="button"
           onClick={() => go(index - 1)}
-          aria-label="Slide trước"
+          aria-label={messages.carousel.prev}
           className="grid h-9 w-9 place-items-center rounded-full border border-line-strong bg-white/80 text-muted shadow-soft backdrop-blur transition hover:border-brand hover:text-brand"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -81,7 +85,7 @@ export function HeroSection() {
               key={key}
               type="button"
               onClick={() => go(i)}
-              aria-label={`Tới slide ${i + 1}`}
+              aria-label={`${messages.carousel.goTo} ${i + 1}`}
               aria-current={i === index}
               className={cn(
                 "h-[3px] rounded-full transition-all",
@@ -93,7 +97,7 @@ export function HeroSection() {
         <button
           type="button"
           onClick={() => go(index + 1)}
-          aria-label="Slide sau"
+          aria-label={messages.carousel.next}
           className="grid h-9 w-9 place-items-center rounded-full border border-line-strong bg-white/80 text-muted shadow-soft backdrop-blur transition hover:border-brand hover:text-brand"
         >
           <ChevronRight className="h-4 w-4" />

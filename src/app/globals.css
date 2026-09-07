@@ -4,12 +4,29 @@
 
 @layer base {
   :root {
-    /* --font-sans / --font-mono được inject bởi next/font trong layout.tsx */
-
     /* Mirror token cho runtime theming (backend có thể override qua <html style>) */
+    --bg: #ffffff;
+    --bg-2: #faf8f5;
+    --bg-3: #f5f1eb;
+    --bg-4: #eee8de;
+    --dark: #0f0f0f;
+    --dark-2: #1a1a1a;
+    --dark-3: #2a2a2a;
+    --muted: #6b6b6b;
+    --muted-2: #999999;
+    --muted-3: #bbbbbb;
     --brand: #c8541a;
     --brand-500: #e8612a;
     --brand-400: #f07848;
+    --brand-light: rgba(200, 84, 26, 0.1);
+    --brand-light-2: rgba(200, 84, 26, 0.06);
+    --brand-light-3: rgba(200, 84, 26, 0.04);
+    --brand-border: rgba(200, 84, 26, 0.22);
+    --line: #e8e2da;
+    --line-strong: #d8d0c4;
+    --radius-card: 10px;
+    --shadow-soft: 0 2px 20px rgba(15, 15, 15, 0.06);
+    --shadow-lift: 0 8px 40px rgba(15, 15, 15, 0.1);
     --ring: 200 84 26;
   }
 
@@ -24,6 +41,11 @@
 
   body {
     @apply bg-white text-ink antialiased;
+    background: var(--bg);
+    color: var(--dark);
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
@@ -43,12 +65,12 @@
     scrollbar-color: #d8d0c4 transparent;
   }
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 3px;
+    height: 3px;
   }
   ::-webkit-scrollbar-thumb {
     background: #d8d0c4;
-    border-radius: 999px;
+    border-radius: 2px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
@@ -72,8 +94,13 @@
     @apply bg-brand-gradient bg-clip-text text-transparent;
   }
 
-  /* Padding ngang thống nhất cho mọi section full-bleed */
+  /* Container content: 20px mobile, 32px tablet, 80px desktop như demo. */
   .container-px {
+    @apply px-5 sm:px-8 lg:px-20;
+  }
+
+  /* Header của demo có padding desktop 40px, khác container nội dung. */
+  .header-container-px {
     @apply px-5 sm:px-8 lg:px-10;
   }
 
@@ -83,7 +110,7 @@
 
   /* Eyebrow: nhãn nhỏ + gạch ngang, dùng khắp các section */
   .eyebrow {
-    @apply flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-brand;
+    @apply flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-[2.5px] text-brand;
   }
   .eyebrow::before {
     content: "";

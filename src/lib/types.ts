@@ -105,7 +105,7 @@ export interface NewsArticle {
   categoryLabel: string;
   date: string; // ISO yyyy-mm-dd
   gradient: string;
-  body: string[];
+  body: Localized[];
 }
 
 /* ---------- Tuyển dụng ---------- */

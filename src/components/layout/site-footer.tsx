@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { footerNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { tx } from "@/lib/i18n/tx";
-import type { Locale } from "@/lib/types";
+import { useLocale } from "@/components/i18n/locale-provider";
 import { Container } from "@/components/ui/container";
 import { SiteLogo } from "./site-logo";
 
@@ -17,7 +20,12 @@ const SOCIAL_GLYPH: Record<string, string> = {
 const SOCIAL_CLS =
   "grid h-8 w-8 place-items-center rounded-[7px] border border-white/10 text-[13px] text-white/40 transition-colors hover:border-brand/25 hover:bg-brand/10 hover:text-brand-400";
 
-export function SiteFooter({ locale = "vi" }: { locale?: Locale }) {
+export function SiteFooter() {
+  const pathname = usePathname();
+  const { locale } = useLocale();
+
+  if (pathname?.startsWith("/admin")) return null;
+
   return (
     <footer className="bg-ink-800 text-white">
       {/* .ft-vn-bar — sọc cờ 2px */}
@@ -29,8 +37,7 @@ export function SiteFooter({ locale = "vi" }: { locale?: Locale }) {
           <div>
             <SiteLogo inverted />
             <p className="mt-4 text-[12.5px] leading-[1.75] text-white/45">
-              Vietnam Era Group — Kỷ nguyên Việt Nam. Tập đoàn xây dựng hệ sinh thái kinh doanh đa ngành, kết nối 5 công ty
-              thành viên và 14 nền tảng số tại Việt Nam và Đông Nam Á.
+              {tx(site.description, locale)}
             </p>
             <div className="mt-4 flex gap-1.5">
               {site.socials.map((social) => (
@@ -68,7 +75,9 @@ export function SiteFooter({ locale = "vi" }: { locale?: Locale }) {
 
         {/* .ft-bot */}
         <div className="flex flex-wrap items-center justify-between gap-2 text-[11.5px] text-white/30">
-          <span>© 2026 VEA Group · veagroup.global · Vietnam Era Group · Đăng ký kinh doanh tại Việt Nam 🇻🇳</span>
+          <span>
+            © 2026 VEA Group · veagroup.global · Vietnam Era Group · {locale === "en" ? "Registered in Vietnam" : "Đăng ký kinh doanh tại Việt Nam"} 🇻🇳
+          </span>
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             {site.legal.map((item) => (
               <Link key={item.href} href={item.href} className="transition-colors hover:text-white/70">

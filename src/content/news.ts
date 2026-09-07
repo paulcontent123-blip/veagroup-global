@@ -31,7 +31,10 @@ export const news: NewsArticle[] = [
     date: "2026-06-06",
     gradient: gradients.media,
     body: [
-      "Nền tảng BookingKOLs.com.vn của VEA Media đạt 2,800+ KOL/KOC đã verify thực tế. Không dùng tool tự động — mỗi KOL qua kiểm tra tay, audience thật, engagement thật.",
+      {
+        vi: "Nền tảng BookingKOLs.com.vn của VEA Media đạt 2,800+ KOL/KOC đã verify thực tế. Không dùng tool tự động — mỗi KOL qua kiểm tra tay, audience thật, engagement thật.",
+        en: "VEA Media's BookingKOLs.com.vn platform has reached 2,800+ verified KOL/KOC. No automated shortcuts — every creator is checked for real audiences and engagement.",
+      },
     ],
   },
   {
@@ -46,7 +49,10 @@ export const news: NewsArticle[] = [
     date: "2026-06-01",
     gradient: gradients.tech,
     body: [
-      "NợThuế.com.vn, TraCuuQuyHoach.com.vn và 2 nền tảng tra cứu dữ liệu công đã chính thức live, phục vụ hàng trăm nghìn lượt tra cứu mỗi tháng.",
+      {
+        vi: "NợThuế.com.vn, TraCuuQuyHoach.com.vn và 2 nền tảng tra cứu dữ liệu công đã chính thức live, phục vụ hàng trăm nghìn lượt tra cứu mỗi tháng.",
+        en: "NoThue.com.vn, TraCuuQuyHoach.com.vn and two public-data lookup platforms are now live, serving hundreds of thousands of monthly searches.",
+      },
     ],
   },
   {
@@ -61,7 +67,10 @@ export const news: NewsArticle[] = [
     date: "2026-05-20",
     gradient: gradients.law,
     body: [
-      "VEA Law sẽ cung cấp dịch vụ tranh tụng, tư vấn doanh nghiệp và soạn thảo hợp đồng. Khách hàng BookingKOLs được ưu tiên tiếp cận tư vấn hợp đồng KOL.",
+      {
+        vi: "VEA Law sẽ cung cấp dịch vụ tranh tụng, tư vấn doanh nghiệp và soạn thảo hợp đồng. Khách hàng BookingKOLs được ưu tiên tiếp cận tư vấn hợp đồng KOL.",
+        en: "VEA Law will provide litigation, corporate advisory and contract drafting. BookingKOLs customers will receive priority access to KOL-contract advice.",
+      },
     ],
   },
   {
@@ -76,7 +85,10 @@ export const news: NewsArticle[] = [
     date: "2026-05-10",
     gradient: gradients.group,
     body: [
-      "veagroup.global chính thức ra mắt — cổng thông tin tổng hợp về hệ sinh thái 5 công ty và 14 nền tảng số của VEA Group.",
+      {
+        vi: "veagroup.global chính thức ra mắt — cổng thông tin tổng hợp về hệ sinh thái 5 công ty và 14 nền tảng số của VEA Group.",
+        en: "veagroup.global has launched as the information hub for VEA Group's five-company, 14-platform ecosystem.",
+      },
     ],
   },
   {
@@ -91,7 +103,10 @@ export const news: NewsArticle[] = [
     date: "2026-05-01",
     gradient: gradients.data,
     body: [
-      "DanhBaBacSi.com.vn đạt 10K lượt tra cứu trong tháng đầu — vượt 3 lần kỳ vọng. Top keyword: bác sĩ nhi HCM, bác sĩ da liễu Hà Nội.",
+      {
+        vi: "DanhBaBacSi.com.vn đạt 10K lượt tra cứu trong tháng đầu — vượt 3 lần kỳ vọng. Top keyword: bác sĩ nhi HCM, bác sĩ da liễu Hà Nội.",
+        en: "DanhBaBacSi.com.vn reached 10K searches in its first month — three times above expectations. Top keywords include pediatricians in HCMC and dermatologists in Hanoi.",
+      },
     ],
   },
   {
@@ -106,7 +121,10 @@ export const news: NewsArticle[] = [
     date: "2026-04-15",
     gradient: gradients.beauty,
     body: [
-      "Chiến dịch Summer Glow với 12 KOC Beauty Tier 1. Son Kem trending FYP 14 ngày. Sales lift +340% so với baseline.",
+      {
+        vi: "Chiến dịch Summer Glow với 12 KOC Beauty Tier 1. Son Kem trending FYP 14 ngày. Sales lift +340% so với baseline.",
+        en: "The Summer Glow campaign featured 12 Tier-1 beauty KOCs. Son Kem trended on FYP for 14 days, with sales up 340% from baseline.",
+      },
     ],
   },
   {
@@ -121,7 +139,10 @@ export const news: NewsArticle[] = [
     date: "2026-08-08",
     gradient: gradients.legal,
     body: [
-      "TranhChap.com.vn phân tích bản án, vụ việc tranh chấp và hỏi đáp luật sư — công cụ SEO pháp lý phục vụ VEA Law và thu hút người dùng tìm kiếm dịch vụ pháp lý.",
+      {
+        vi: "TranhChap.com.vn phân tích bản án, vụ việc tranh chấp và hỏi đáp luật sư — công cụ SEO pháp lý phục vụ VEA Law và thu hút người dùng tìm kiếm dịch vụ pháp lý.",
+        en: "TranhChap.com.vn analyzes court rulings, disputes and lawyer Q&A — a legal SEO funnel for VEA Law and users searching for legal services.",
+      },
     ],
   },
   {
@@ -136,7 +157,10 @@ export const news: NewsArticle[] = [
     date: "2026-08-27",
     gradient: gradients.charity,
     body: [
-      "ThienNguyen.com.vn kết nối nhà hảo tâm với 128+ tổ chức xác thực — tiền quyên góp đi thẳng đến tổ chức, VEA không giữ, không thu phí.",
+      {
+        vi: "ThienNguyen.com.vn kết nối nhà hảo tâm với 128+ tổ chức xác thực — tiền quyên góp đi thẳng đến tổ chức, VEA không giữ, không thu phí.",
+        en: "ThienNguyen.com.vn connects donors with 128+ verified organizations. Donations go directly to organizations; VEA holds no funds and charges no fee.",
+      },
     ],
   },
 ];

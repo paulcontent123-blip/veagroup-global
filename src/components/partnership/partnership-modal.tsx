@@ -11,6 +11,9 @@ import {
 } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { partnershipTopics } from "@/content/partners";
+import { useLocale } from "@/components/i18n/locale-provider";
+import { tx } from "@/lib/i18n/tx";
 
 /* ── Context ─────────────────────────────────────────────── */
 
@@ -39,15 +42,6 @@ export function PartnershipProvider({ children }: { children: ReactNode }) {
 
 /* ── Modal (coop form) ───────────────────────────────────── */
 
-const TOPICS = [
-  "🏢 VEA Group (Tập đoàn — hợp tác chiến lược)",
-  "📡 VEA Media (Influencer, KOL, Digital Marketing)",
-  "⚙️ VEA Tech (Nền tảng, phần mềm, công nghệ)",
-  "⚖️ VEA Law (Pháp lý, tranh tụng, tư vấn)",
-  "🛍️ VEA Retail (Bán lẻ, phân phối, OEM)",
-  "🎓 VEA Academy (Đào tạo, giáo dục)",
-];
-
 const LABEL = "text-[10.5px] font-bold uppercase tracking-[0.5px] text-muted-light";
 const INPUT =
   "w-full rounded-[7px] border-[1.5px] border-line bg-sand-100 px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-muted-lighter focus:border-brand focus:bg-white";
@@ -55,6 +49,7 @@ const INPUT =
 function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => void }) {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+  const { locale } = useLocale();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -106,12 +101,12 @@ function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => voi
       >
         <div className="flex items-center justify-between gap-3 bg-brand-gradient px-6 py-5 sm:px-7">
           <h2 id="coop-title" className="text-base font-bold text-white sm:text-lg">
-            🤝 Đăng ký hợp tác với VEA Group
+            🤝 {locale === "en" ? "Partner with VEA Group" : "Đăng ký hợp tác với VEA Group"}
           </h2>
           <button
             type="button"
             onClick={close}
-            aria-label="Đóng"
+            aria-label={locale === "en" ? "Close" : "Đóng"}
             className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-white/20 text-sm text-white transition-colors hover:bg-white/30"
           >
             ✕
@@ -123,70 +118,76 @@ function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => voi
             <div className="text-3xl" aria-hidden>
               ✅
             </div>
-            <p className="mt-3 text-sm font-bold text-ink">Đã ghi nhận (bản demo)</p>
+            <p className="mt-3 text-sm font-bold text-ink">{locale === "en" ? "Received (demo)" : "Đã ghi nhận (bản demo)"}</p>
             <p className="mx-auto mt-1.5 max-w-sm text-[13px] leading-relaxed text-muted">
-              Backend chưa được kết nối nên yêu cầu chưa gửi đi. Đội ngũ VEA sẽ phản hồi trong 1–2 ngày làm việc.
+              {locale === "en"
+                ? "The backend is not connected yet, so nothing was sent. The VEA team will reply within 1–2 business days."
+                : "Backend chưa được kết nối nên yêu cầu chưa gửi đi. Đội ngũ VEA sẽ phản hồi trong 1–2 ngày làm việc."}
             </p>
             <button type="button" onClick={close} className="mt-5 text-[13px] font-semibold text-brand">
-              Đóng
+              {locale === "en" ? "Close" : "Đóng"}
             </button>
           </div>
         ) : (
           <form onSubmit={onSubmit}>
             <div className="px-6 py-6 sm:px-7">
               <p className="mb-4 text-sm leading-relaxed text-muted">
-                Cho chúng tôi biết về bạn và nhu cầu hợp tác — đội ngũ VEA sẽ phản hồi trong vòng 1–2 ngày làm việc.
+                {locale === "en"
+                  ? "Tell us about yourself and your partnership needs — the VEA team will reply within 1–2 business days."
+                  : "Cho chúng tôi biết về bạn và nhu cầu hợp tác — đội ngũ VEA sẽ phản hồi trong vòng 1–2 ngày làm việc."}
               </p>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <Field label="Tên / Công ty *" name="name" placeholder="Công ty ABC" autoFocus />
+                <Field label={locale === "en" ? "Name / Company *" : "Tên / Công ty *"} name="name" placeholder={locale === "en" ? "ABC Company" : "Công ty ABC"} autoFocus />
                 <Field label="Email *" name="email" type="email" placeholder="hello@company.com" />
               </div>
               <Field
-                label="Số điện thoại / Zalo *"
+                label={locale === "en" ? "Phone / Zalo *" : "Số điện thoại / Zalo *"}
                 name="phone"
                 type="tel"
-                placeholder="0901 xxx xxx"
+                placeholder={locale === "en" ? "+84 xxx xxx xxx" : "0901 xxx xxx"}
                 className="mt-3"
               />
 
               <label className="mt-3 flex flex-col gap-1.5">
-                <span className={LABEL}>Công ty hợp tác *</span>
+                <span className={LABEL}>{locale === "en" ? "Partner with *" : "Công ty hợp tác *"}</span>
                 <select name="type" defaultValue="" className={INPUT}>
-                  <option value="">-- Chọn đơn vị VEA muốn hợp tác --</option>
-                  {TOPICS.map((topic) => (
-                    <option key={topic} value={topic}>
-                      {topic}
+                  <option value="">-- {locale === "en" ? "Select a VEA unit" : "Chọn đơn vị VEA muốn hợp tác"} --</option>
+                  {partnershipTopics.slice(0, 6).map((topic) => (
+                    <option key={tx(topic, locale)} value={tx(topic, locale)}>
+                      {tx(topic, locale)}
                     </option>
                   ))}
                 </select>
               </label>
 
               <label className="mt-3 flex flex-col gap-1.5">
-                <span className={LABEL}>Mô tả nhu cầu hợp tác</span>
+                <span className={LABEL}>{locale === "en" ? "Describe your needs" : "Mô tả nhu cầu hợp tác"}</span>
                 <textarea
                   name="desc"
                   rows={3}
-                  placeholder="Mô tả ngắn về dự án hoặc nhu cầu hợp tác của bạn..."
+                  placeholder={locale === "en" ? "Briefly describe your project or partnership needs..." : "Mô tả ngắn về dự án hoặc nhu cầu hợp tác của bạn..."}
                   className={cn(INPUT, "resize-none")}
                 />
               </label>
 
               {error ? (
-                <p className="mt-3 text-[13px] font-medium text-red-600">Vui lòng điền các trường có dấu *.</p>
+                <p className="mt-3 text-[13px] font-medium text-red-600">
+                  {locale === "en" ? "Please complete the fields marked *." : "Vui lòng điền các trường có dấu *."}
+                </p>
               ) : null}
             </div>
 
             <div className="flex gap-2.5 px-6 pb-6 pt-1 sm:px-7">
               <Button type="submit" className="flex-1">
-                Gửi yêu cầu hợp tác →
+                {locale === "en" ? "Send partnership request →" : "Gửi yêu cầu hợp tác →"}
               </Button>
               <button
                 type="button"
                 onClick={close}
                 className="rounded-lg border-[1.5px] border-line px-4 text-sm font-semibold text-muted transition-colors hover:border-ink hover:text-ink"
               >
-                Hủy
+                {locale === "en" ? "Cancel" : "Hủy"}
               </button>
             </div>
           </form>

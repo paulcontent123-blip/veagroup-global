@@ -33,7 +33,7 @@ export function SubHero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden border-b pt-28 pb-14 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24",
+        "relative overflow-hidden border-b pt-20 pb-10 sm:pt-24 sm:pb-14 lg:pt-[100px] lg:pb-16",
         isDark ? "border-white/10 bg-ink text-white" : "border-line bg-sand-100 text-ink",
         className,
       )}
@@ -56,7 +56,7 @@ export function SubHero({
         </Link>
         <div className="mt-6 max-w-4xl">
           <span className={cn("eyebrow", isDark && "text-brand-400 before:bg-brand-400")}>{eyebrow}</span>
-          <h1 className="mt-3.5 text-balance font-black leading-[1.05] tracking-[-0.015em] text-[clamp(2.25rem,5vw,4rem)]">
+          <h1 className="mt-3.5 text-balance font-black leading-[0.95] tracking-[-1.5px] text-[36px] sm:text-[48px] lg:text-[64px]">
             {title}
             {highlight ? (
               <>
