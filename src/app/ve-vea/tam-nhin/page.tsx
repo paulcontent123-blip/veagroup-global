@@ -17,19 +17,30 @@ export default function VisionPage() {
       <SubHero
         tone="dark"
         eyebrow="Tầm nhìn & Sứ mệnh"
-        title="Kiến tạo"
-        highlight={<><em>kỷ nguyên mới</em> cho Việt Nam</>}
+        title={
+          <>
+            Kiến tạo <span className="italic text-brand-400">kỷ nguyên mới</span>
+            <br />
+            cho Việt Nam
+          </>
+        }
         description="VEA Group không chỉ xây dựng công ty — mà đang xây dựng hạ tầng số cho một Việt Nam thông minh hơn, công bằng hơn và kết nối hơn."
         backHref="/ve-vea"
         backLabel="Về VEA Group"
       />
-      <Section>
-        <div className="grid gap-4 md:grid-cols-2">
+
+      <Section tone="subtle">
+        <div className="mx-auto grid max-w-[1060px] gap-6 md:grid-cols-2">
           {visionBlocks.map((item) => (
-            <Card key={tx(item.title, "vi")} className="p-6 sm:p-7">
-              <span className="text-3xl" aria-hidden="true">{item.emoji}</span>
-              <h2 className="mt-5 text-xl font-black text-ink">{tx(item.title, "vi")}</h2>
-              <p className="mt-3 text-sm leading-7 text-muted">{tx(item.description, "vi")}</p>
+            <Card key={tx(item.title, "vi")} className="overflow-hidden rounded-[14px]">
+              {/* border-top:3px solid var(--org) */}
+              <div className="h-[3px] bg-brand" aria-hidden />
+              <div className="p-8">
+                <h3 className="text-lg font-bold text-ink">
+                  <span aria-hidden>{item.emoji}</span> {tx(item.title, "vi")}
+                </h3>
+                <p className="mt-3 text-sm leading-[1.8] text-muted">{tx(item.description, "vi")}</p>
+              </div>
             </Card>
           ))}
         </div>

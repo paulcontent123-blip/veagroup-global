@@ -76,7 +76,7 @@ export function ContactSection() {
               <p className="mt-1 flex-1 text-xs leading-[1.55] text-muted">{option.description}</p>
               <Link
                 href={option.href}
-                className="mt-4 inline-flex w-full items-center justify-center rounded-md border-[1.5px] border-line-strong px-3.5 py-2 text-xs font-semibold text-ink transition-colors group-hover:border-brand group-hover:text-brand"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-md border-[1.5px] border-line-strong bg-white px-3.5 py-2 text-xs font-semibold text-ink shadow-soft transition-[color,border-color,box-shadow] group-hover:border-brand group-hover:text-brand group-hover:shadow-lift"
               >
                 {option.cta} →
               </Link>

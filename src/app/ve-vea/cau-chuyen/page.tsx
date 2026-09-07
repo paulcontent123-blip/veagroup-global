@@ -1,8 +1,6 @@
-import { Quote } from "lucide-react";
 import { storyBlocks } from "@/content/about";
 import { tx } from "@/lib/i18n/tx";
 import { createPageMetadata } from "@/lib/seo";
-import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { SubHero } from "@/components/layout/sub-hero";
 
@@ -18,28 +16,42 @@ export default function StoryPage() {
       <SubHero
         tone="dark"
         eyebrow="Câu chuyện khởi đầu"
-        title="Vietnam Era Group —"
+        title={
+          <>
+            Vietnam Era Group —<br />
+          </>
+        }
         highlight="Kỷ nguyên Việt Nam"
         description={'"Chúng tôi bắt đầu hành trình này không chỉ vì kinh doanh — mà vì muốn góp một phần gì đó cho đất nước."'}
         backHref="/ve-vea"
         backLabel="Về VEA Group"
       />
-      <Section tone="subtle">
-        <Card className="mx-auto max-w-4xl border-brand/20 bg-brand-50 p-7 sm:p-10">
-          <Quote className="h-8 w-8 text-brand" />
-          <blockquote className="mt-5 text-xl font-black leading-tight text-ink sm:text-2xl">&quot;VEA là viết tắt của <em>Vietnam Era</em> — Kỷ nguyên Việt Nam. Cái tên này không phải ngẫu nhiên. Chúng tôi tin rằng Việt Nam đang đứng trước một kỷ nguyên bứt phá trong lịch sử phát triển kinh tế số.&quot;</blockquote>
-        </Card>
-      </Section>
+
       <Section>
-        <div className="grid gap-x-8 gap-y-10 md:grid-cols-2">
-          {storyBlocks.map((block, index) => (
-            <article key={tx(block.title, "vi")} className="relative border-t border-line pt-6">
-              <span className="text-3xl" aria-hidden="true">{block.emoji}</span>
-              <span className="ml-3 text-xs font-black uppercase tracking-[0.16em] text-brand">0{index + 1}</span>
-              <h2 className="mt-4 text-xl font-black text-ink">{tx(block.title, "vi")}</h2>
-              <p className="mt-3 max-w-xl text-sm leading-7 text-muted">{tx(block.body, "vi")}</p>
-            </article>
-          ))}
+        <div className="mx-auto max-w-[960px]">
+          {/* Callout mở đầu — viền trái cam (demo: border-left 4px, orgl3, radius 0 12 12 0) */}
+          <blockquote className="mb-10 rounded-r-xl border-l-4 border-brand bg-brand/[0.04] px-7 py-6">
+            <p className="text-lg italic leading-[1.8] text-ink">
+              &quot;VEA là viết tắt của <strong className="font-bold">Vietnam Era</strong> — Kỷ nguyên Việt Nam. Cái tên
+              này không phải ngẫu nhiên. Chúng tôi tin rằng Việt Nam đang đứng trước một kỷ nguyên bứt phá trong lịch sử
+              phát triển kinh tế số.&quot;
+            </p>
+          </blockquote>
+
+          {/* 4 khối câu chuyện — hàng emoji + nội dung */}
+          <div className="flex flex-col gap-7">
+            {storyBlocks.map((block) => (
+              <article key={tx(block.title, "vi")} className="flex gap-5">
+                <span className="mt-1 shrink-0 text-[28px] leading-none" aria-hidden>
+                  {block.emoji}
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-ink">{tx(block.title, "vi")}</h3>
+                  <p className="mt-2 text-[15px] leading-[1.8] text-muted">{tx(block.body, "vi")}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </Section>
     </main>

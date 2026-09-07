@@ -4,19 +4,9 @@ import { useCallback, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { companies } from "@/content/vea-demo";
+import { companyAccent } from "@/lib/company-accent";
 import { Container } from "@/components/ui/container";
 import { cn } from "@/lib/utils";
-
-type Accent = (typeof companies)[number]["accent"];
-
-/** Màu tint theo từng công ty (bám các rgba trong demo). */
-const ACCENT: Record<Accent, { wash: string; ico: string; chip: string }> = {
-  media: { wash: "from-[#E8612A]/[0.06]", ico: "border-[#E8612A]/25 bg-[#E8612A]/10 text-[#E8612A]", chip: "border-[#E8612A]/20 bg-[#E8612A]/10 text-[#E8612A]" },
-  tech: { wash: "from-[#C8541A]/[0.06]", ico: "border-[#C8541A]/25 bg-[#C8541A]/10 text-[#C8541A]", chip: "border-[#C8541A]/20 bg-[#C8541A]/10 text-[#C8541A]" },
-  law: { wash: "from-[#B84010]/[0.06]", ico: "border-[#B84010]/25 bg-[#B84010]/10 text-[#B84010]", chip: "border-[#B84010]/20 bg-[#B84010]/10 text-[#B84010]" },
-  retail: { wash: "from-[#A03010]/[0.06]", ico: "border-[#A03010]/25 bg-[#A03010]/10 text-[#A03010]", chip: "border-[#A03010]/20 bg-[#A03010]/10 text-[#A03010]" },
-  academy: { wash: "from-[#C8541A]/[0.04]", ico: "border-[#C8541A]/15 bg-[#C8541A]/[0.08] text-[#C8541A]", chip: "border-[#C8541A]/15 bg-[#C8541A]/[0.08] text-[#C8541A]" },
-};
 
 export function CompanySection() {
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +62,7 @@ export function CompanySection() {
         className="hide-scrollbar relative z-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 scroll-px-5 sm:px-8 sm:scroll-px-8 lg:px-10 lg:scroll-px-10"
       >
         {companies.map((c) => {
-          const a = ACCENT[c.accent];
+          const a = companyAccent[c.accent];
           return (
             <article
               key={c.key}
@@ -81,7 +71,7 @@ export function CompanySection() {
               <div className={cn("bg-gradient-to-br to-transparent p-6 pb-[18px]", a.wash)}>
                 <div className="text-[9px] font-bold uppercase tracking-[0.14em] text-ink/50">{c.member}</div>
                 <div className="mt-3 flex items-center gap-2.5">
-                  <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl border text-xl", a.ico)} aria-hidden>
+                  <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl border text-xl", a.icon)} aria-hidden>
                     {c.emoji}
                   </span>
                   <div>
@@ -131,7 +121,7 @@ export function CompanySection() {
                 </span>
                 <Link
                   href={`/ve-vea/cong-ty#${c.key}`}
-                  className="inline-flex items-center gap-1 rounded border border-line-strong px-3 py-1.5 text-[11px] font-semibold text-ink transition-colors group-hover:border-brand group-hover:text-brand"
+                  className="inline-flex items-center gap-1 rounded border border-line-strong px-3 py-1.5 text-[11px] font-semibold text-ink shadow-soft transition-[color,border-color,box-shadow] group-hover:border-brand group-hover:text-brand group-hover:shadow-lift"
                 >
                   {c.cta} <ArrowRight className="h-3 w-3" />
                 </Link>

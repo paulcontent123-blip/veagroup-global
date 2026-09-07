@@ -11,16 +11,26 @@ export const mainNav: NavItem[] = [
       { label: { vi: "Câu chuyện VEA", en: "The VEA Story" }, href: "/ve-vea/cau-chuyen", emoji: "🇻🇳" },
       { label: { vi: "5 Công ty thành viên", en: "5 Member Companies" }, href: "/ve-vea/cong-ty", emoji: "🏢" },
       { label: { vi: "Mô hình vận hành", en: "Operating Model" }, href: "/ve-vea/mo-hinh", emoji: "📐" },
-      { label: { vi: "Tầm nhìn & Sứ mệnh", en: "Vision & Mission" }, href: "/ve-vea/tam-nhin", emoji: "🔭" },
+      { label: { vi: "Tầm nhìn & Sứ mệnh", en: "Vision & Mission" }, href: "/ve-vea/tam-nhin", emoji: "🔭", divider: true },
     ],
   },
   {
     label: { vi: "Hệ sinh thái", en: "Ecosystem" },
     href: "/he-sinh-thai",
     children: [
-      { label: { vi: "Toàn bộ nền tảng", en: "All platforms" }, href: "/he-sinh-thai", emoji: "🌐" },
-      { label: { vi: "Sức mạnh cộng hưởng", en: "Cross-company synergy" }, href: "/he-sinh-thai#synergy", emoji: "🔗" },
-      { label: { vi: "Lộ trình phát triển", en: "Roadmap" }, href: "/he-sinh-thai#roadmap", emoji: "🗺️" },
+      { label: { vi: "Hệ sinh thái (Tổng quan)", en: "Ecosystem (Overview)" }, href: "/he-sinh-thai", emoji: "🌐" },
+      { label: { vi: "VEA Media", en: "VEA Media" }, href: "/he-sinh-thai", emoji: "📡", divider: true },
+      { label: { vi: "VEA Tech", en: "VEA Tech" }, href: "/he-sinh-thai", emoji: "⚙️" },
+      { label: { vi: "VEA Law", en: "VEA Law" }, href: "/he-sinh-thai", emoji: "⚖️" },
+      { label: { vi: "VEA Retail", en: "VEA Retail" }, href: "/he-sinh-thai", emoji: "🛍️" },
+      { label: { vi: "VEA Academy", en: "VEA Academy" }, href: "/he-sinh-thai", emoji: "🎓" },
+      {
+        label: { vi: "Xem toàn bộ 25 nền tảng →", en: "See all 25 platforms →" },
+        href: "/he-sinh-thai",
+        emoji: "🔗",
+        emphasis: true,
+        divider: true,
+      },
     ],
   },
   {
@@ -28,6 +38,7 @@ export const mainNav: NavItem[] = [
     children: [
       { label: { vi: "Bài viết & Cập nhật", en: "Articles & Updates" }, href: "/tin-tuc", emoji: "📰" },
       { label: { vi: "Cột mốc & Thành tựu", en: "Milestones & Achievements" }, href: "/thanh-tuu", emoji: "🏆" },
+      { label: { vi: "Tin mới nhất", en: "Latest news" }, href: "/tin-tuc", muted: true },
     ],
   },
   {
@@ -38,7 +49,9 @@ export const mainNav: NavItem[] = [
       { label: { vi: "Đối tác của VEA", en: "Our Partners" }, href: "/doi-tac", emoji: "🌐" },
     ],
   },
-  { label: { vi: "Liên hệ", en: "Contact" }, href: "/lien-he" },
+  // Trỏ thẳng vào section #contact ở trang chủ (giống `navGoContact()` của demo)
+  // thay vì trang /lien-he riêng — trang đó vẫn còn, chỉ không nằm trên menu chính nữa.
+  { label: { vi: "Liên hệ", en: "Contact" }, href: "/#contact" },
 ];
 
 /** Nhóm link footer theo đúng cấu trúc trong bản HTML gốc. */

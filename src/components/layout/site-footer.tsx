@@ -2,6 +2,7 @@ import Link from "next/link";
 import { footerNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { tx } from "@/lib/i18n/tx";
+import type { Locale } from "@/lib/types";
 import { Container } from "@/components/ui/container";
 import { SiteLogo } from "./site-logo";
 
@@ -16,7 +17,7 @@ const SOCIAL_GLYPH: Record<string, string> = {
 const SOCIAL_CLS =
   "grid h-8 w-8 place-items-center rounded-[7px] border border-white/10 text-[13px] text-white/40 transition-colors hover:border-brand/25 hover:bg-brand/10 hover:text-brand-400";
 
-export function SiteFooter() {
+export function SiteFooter({ locale = "vi" }: { locale?: Locale }) {
   return (
     <footer className="bg-ink-800 text-white">
       {/* .ft-vn-bar — sọc cờ 2px */}
@@ -46,13 +47,13 @@ export function SiteFooter() {
           {/* .ft-links — 5 cột */}
           <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:gap-[22px]">
             {footerNav.map((group) => (
-              <div key={tx(group.title, "vi")}>
-                <h3 className="text-[10.5px] font-bold uppercase tracking-[1px] text-white/35">{tx(group.title, "vi")}</h3>
+              <div key={tx(group.title, locale)}>
+                <h3 className="text-[10.5px] font-bold uppercase tracking-[1px] text-white/35">{tx(group.title, locale)}</h3>
                 <ul className="mt-3.5 flex flex-col gap-[7px]">
                   {group.links.map((link) => (
-                    <li key={link.href + tx(link.label, "vi")}>
+                    <li key={link.href + tx(link.label, locale)}>
                       <Link href={link.href} className="text-xs text-white/35 transition-colors hover:text-white/80">
-                        {tx(link.label, "vi")}
+                        {tx(link.label, locale)}
                       </Link>
                     </li>
                   ))}
@@ -71,7 +72,7 @@ export function SiteFooter() {
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             {site.legal.map((item) => (
               <Link key={item.href} href={item.href} className="transition-colors hover:text-white/70">
-                {tx(item.label, "vi")}
+                {tx(item.label, locale)}
               </Link>
             ))}
             <Link href="/sitemap.xml" className="transition-colors hover:text-white/70">

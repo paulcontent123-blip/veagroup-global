@@ -12,9 +12,10 @@ const variantClass: Record<Variant, string> = {
   primary:
     "bg-brand-gradient text-white shadow-brand hover:-translate-y-0.5 hover:brightness-[1.06]",
   secondary:
-    "border border-line-strong bg-white text-ink hover:border-brand hover:text-brand",
+    "border border-line-strong bg-white text-ink shadow-soft hover:border-brand hover:text-brand hover:shadow-lift",
   outline:
-    "border border-brand/30 bg-brand/5 text-brand hover:bg-brand hover:text-white",
+    "border border-brand/30 bg-brand/5 text-brand shadow-soft hover:bg-brand hover:text-white hover:shadow-brand",
+  // Ghost cố tình phẳng — dùng cho link phụ trong nav/toolbar, có bóng sẽ lệch với chữ xung quanh.
   ghost: "text-muted hover:bg-sand-200 hover:text-ink",
 };
 
@@ -70,9 +71,14 @@ export function Button(props: ButtonAsButton | ButtonAsLink) {
     );
   }
 
-  const { type = "button", ...rest } = props as ButtonAsButton;
+  // Only forward genuine passthrough HTML attributes (onClick, disabled, name…).
+  // `variant`/`size`/`className`/`children` are already handled above — leaving
+  // them in `rest` would spread the raw `className` back onto the element and
+  // silently wipe out the computed `classes` (incl. the color/variant styles).
+  const { type = "button", variant: _variant, size: _size, className: _className, children: _children, ...rest } =
+    props as ButtonAsButton;
   return (
-    <button type={type} className={classes} {...rest}>
+    <button type={type} {...rest} className={classes}>
       {children}
     </button>
   );

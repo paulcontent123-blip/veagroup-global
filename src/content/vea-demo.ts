@@ -1,14 +1,3 @@
-import {
-  BadgeCheck,
-  Banknote,
-  BriefcaseBusiness,
-  Building2,
-  Megaphone,
-  ShieldCheck,
-  ShoppingBag,
-  Stethoscope,
-} from "lucide-react";
-
 export const navItems = [
   { label: "Trang chủ", href: "/" },
   { label: "Về VEA", href: "/ve-vea" },
@@ -226,15 +215,16 @@ export const featuredPlatforms: {
   },
 ];
 
+/** Đối tác chiến lược / khách hàng (trang /hop-tac). */
 export const partners = [
-  ["VPBank", "Ngân hàng đối tác", Banknote],
-  ["Vietnam Airlines", "Du lịch & tour", BriefcaseBusiness],
-  ["Agoda", "Khách sạn", Building2],
-  ["Shopee", "E-commerce", ShoppingBag],
-  ["Be · Grab", "Di chuyển", BadgeCheck],
-  ["Long Châu", "Nhà thuốc", Stethoscope],
-  ["TikTok Shop", "E-commerce · Livestream", Megaphone],
-  ["VNPay · MoMo", "Thanh toán", ShieldCheck],
+  { name: "VPBank", type: "Ngân hàng đối tác", emoji: "🏦" },
+  { name: "Vietnam Airlines", type: "Du lịch & tour", emoji: "✈️" },
+  { name: "Agoda", type: "Khách sạn", emoji: "🏨" },
+  { name: "Shopee", type: "E-commerce", emoji: "🛒" },
+  { name: "Be · Grab", type: "Di chuyển", emoji: "🚗" },
+  { name: "Long Châu", type: "Nhà thuốc", emoji: "💊" },
+  { name: "TikTok Shop", type: "E-commerce · Livestream", emoji: "🎯" },
+  { name: "VNPay · MoMo", type: "Thanh toán", emoji: "💳" },
 ] as const;
 
 export const news = [

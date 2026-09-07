@@ -2,51 +2,79 @@
 
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { mainNav } from "@/content/navigation";
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { usePartnership } from "@/components/partnership/partnership-modal";
 import { tx } from "@/lib/i18n/tx";
+import { cn } from "@/lib/utils";
+import type { Locale } from "@/lib/types";
 import { SiteLogo } from "./site-logo";
+
+// Khớp `.ndm-item` của demo: 1 dòng phẳng, không icon riêng cột, hover đẩy chữ
+// sang phải (padding-left) thay vì đổi nền thẻ như card.
+const CHILD_ITEM =
+  "flex items-center gap-2.5 rounded-md px-4 py-2.5 text-[13px] font-medium text-muted transition-[background,color,padding] duration-150 hover:bg-sand-100 hover:pl-5 hover:text-brand";
+
+// Bản dịch đầy đủ toàn site (như `swapAllText` của demo) chưa được triển khai —
+// nút EN ở đây chỉ đổi placeholder + hiện toast, giữ đúng UI/UX của demo mà
+// không âm thầm giả vờ đã có i18n. Khi nối i18n thật, thay state này bằng
+// `LocaleProvider` dùng chung `tx()` đã có sẵn trong `@/lib/i18n`.
+const locale: Locale = "vi";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { open: openPartnership } = usePartnership();
+  const [toast, setToast] = useState(false);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = window.setTimeout(() => setToast(false), 2200);
+    return () => window.clearTimeout(timer);
+  }, [toast]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/92 backdrop-blur-xl">
-      <Container className="flex h-16 items-center justify-between">
+      <div className="container-px flex h-16 w-full items-center justify-between">
         <SiteLogo />
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
           {mainNav.map((item) =>
             item.children ? (
-              <div key={tx(item.label, "vi")} className="group relative">
+              <div key={tx(item.label, locale)} className="group relative">
                 {item.href ? (
                   <Link
                     href={item.href}
-                    className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-[13px] font-semibold text-muted transition hover:bg-sand-200 hover:text-ink"
+                    className="inline-flex items-center gap-1 rounded-md px-3.5 py-1.5 text-[13px] font-medium text-muted transition hover:bg-sand-200 hover:text-ink"
                   >
-                    {tx(item.label, "vi")}
+                    {tx(item.label, locale)}
                     <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                   </Link>
                 ) : (
-                  <span className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-[13px] font-semibold text-muted">
-                    {tx(item.label, "vi")}
+                  <span className="inline-flex cursor-default items-center gap-1 rounded-md px-3.5 py-1.5 text-[13px] font-medium text-muted transition group-hover:bg-sand-200 group-hover:text-ink">
+                    {tx(item.label, locale)}
                     <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
                   </span>
                 )}
-                <div className="invisible absolute left-0 top-full z-50 w-72 translate-y-1 rounded-lg border border-line bg-white p-2 opacity-0 shadow-lift transition-[opacity,visibility,transform] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                <div className="invisible absolute left-0 top-full z-50 w-[230px] translate-y-1 rounded-b-[10px] border border-line border-t-2 border-t-brand bg-white py-1.5 opacity-0 shadow-lift transition-[opacity,visibility,transform] group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                   {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="flex items-start gap-3 rounded-md px-3 py-3 transition hover:bg-sand-100"
-                    >
-                      {child.emoji ? <span className="mt-0.5 text-base" aria-hidden="true">{child.emoji}</span> : null}
-                      <span>
-                        <span className="block text-sm font-bold text-ink">{tx(child.label, "vi")}</span>
-                        {child.description ? <span className="mt-1 block text-xs leading-5 text-muted">{tx(child.description, "vi")}</span> : null}
-                      </span>
-                    </Link>
+                    <div key={child.href + tx(child.label, locale)}>
+                      {child.divider ? <div className="my-1 h-px bg-line" aria-hidden /> : null}
+                      <Link
+                        href={child.href}
+                        className={cn(
+                          CHILD_ITEM,
+                          child.emphasis && "font-bold text-brand hover:text-brand",
+                          child.muted && "py-2 text-xs text-muted-light",
+                        )}
+                      >
+                        {child.emoji ? (
+                          <span className="text-[15px] leading-none" aria-hidden="true">
+                            {child.emoji}
+                          </span>
+                        ) : null}
+                        {tx(child.label, locale)}
+                      </Link>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -54,20 +82,36 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href ?? "/"}
-                className="rounded-md px-3 py-2 text-[13px] font-semibold text-muted transition hover:bg-sand-200 hover:text-ink"
+                className="rounded-md px-3.5 py-1.5 text-[13px] font-medium text-muted transition hover:bg-sand-200 hover:text-ink"
               >
-                {tx(item.label, "vi")}
+                {tx(item.label, locale)}
               </Link>
             ),
           )}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
-          <Button href="/admin" variant="ghost" size="sm">
-            Admin demo
-          </Button>
-          <Button href="/#contact" size="sm">
-            Hợp tác
-          </Button>
+          <button
+            type="button"
+            onClick={() => setToast(true)}
+            aria-label="Switch language"
+            className="rounded-[5px] border border-line px-[11px] py-[5px] text-[11px] font-semibold text-muted transition hover:border-brand hover:text-brand"
+          >
+            EN
+          </button>
+          <Link
+            href="/admin"
+            title="Quản trị nội bộ"
+            className="rounded-[5px] px-[10px] py-[5px] text-[11px] text-muted opacity-50 transition hover:bg-sand-200 hover:text-ink hover:opacity-100"
+          >
+            ⚙ Quản trị
+          </Link>
+          <button
+            type="button"
+            onClick={openPartnership}
+            className="rounded-md bg-brand-gradient px-5 py-[9px] text-[13px] font-bold text-white shadow-brand transition-[filter,transform] hover:-translate-y-px hover:brightness-[1.05]"
+          >
+            Hợp tác →
+          </button>
         </div>
         <button
           type="button"
@@ -78,52 +122,84 @@ export function SiteHeader() {
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
-      </Container>
+      </div>
       {open ? (
         <div className="border-t border-line bg-white shadow-lift lg:hidden">
           <Container className="py-3">
             <nav className="grid gap-1" aria-label="Mobile navigation">
               {mainNav.map((item) => (
-                <div key={tx(item.label, "vi")} className="border-b border-line last:border-b-0">
+                <div key={tx(item.label, locale)} className="border-b border-line last:border-b-0">
                   {item.href ? (
                     <Link
                       href={item.href}
                       className="block rounded-md px-3 py-3 text-sm font-bold text-ink hover:bg-sand-100"
                       onClick={() => setOpen(false)}
                     >
-                      {tx(item.label, "vi")}
+                      {tx(item.label, locale)}
                     </Link>
                   ) : (
                     <span className="block px-3 pt-3 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-light">
-                      {tx(item.label, "vi")}
+                      {tx(item.label, locale)}
                     </span>
                   )}
                   {item.children ? (
-                    <div className="grid gap-1 pb-2 pl-3">
+                    <div className="grid gap-0.5 pb-2 pl-3">
                       {item.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          className="rounded-md px-3 py-2.5 text-sm font-semibold text-muted hover:bg-sand-100 hover:text-ink"
-                          onClick={() => setOpen(false)}
-                        >
-                          {child.emoji ? <span className="mr-2" aria-hidden="true">{child.emoji}</span> : null}
-                          {tx(child.label, "vi")}
-                        </Link>
+                        <div key={child.href + tx(child.label, locale)}>
+                          {child.divider ? <div className="my-1 h-px bg-line" aria-hidden /> : null}
+                          <Link
+                            href={child.href}
+                            className={cn(
+                              "flex items-center gap-2 rounded-md px-3 py-2 text-[13px] font-medium text-muted hover:bg-sand-100 hover:text-ink",
+                              child.emphasis && "font-bold text-brand hover:text-brand",
+                              child.muted && "py-1.5 text-xs text-muted-light",
+                            )}
+                            onClick={() => setOpen(false)}
+                          >
+                            {child.emoji ? (
+                              <span aria-hidden="true">{child.emoji}</span>
+                            ) : null}
+                            {tx(child.label, locale)}
+                          </Link>
+                        </div>
                       ))}
                     </div>
                   ) : null}
                 </div>
               ))}
-              <Link
-                href="/admin"
-                className="rounded-md px-3 py-3 text-sm font-semibold text-muted hover:bg-sand-200 hover:text-ink"
-                onClick={() => setOpen(false)}
+              <div className="flex items-center gap-2 px-3 pt-2">
+                <Link
+                  href="/admin"
+                  className="rounded-md px-1 py-2 text-xs font-semibold text-muted-light opacity-70 hover:text-ink"
+                  onClick={() => setOpen(false)}
+                >
+                  ⚙ Quản trị
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setToast(true)}
+                  className="ml-auto rounded-[5px] border border-line px-[11px] py-[5px] text-[11px] font-semibold text-muted"
+                >
+                  EN
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openPartnership();
+                }}
+                className="rounded-md px-3 py-3 text-left text-sm font-bold text-brand hover:bg-brand/5"
               >
-                Admin demo
-              </Link>
+                Hợp tác →
+              </button>
             </nav>
           </Container>
+        </div>
+      ) : null}
+      {toast ? (
+        <div className="fixed bottom-6 left-1/2 z-[60] -translate-x-1/2 rounded-lg bg-ink px-5 py-2.5 text-[13px] font-medium text-white shadow-lift">
+          🌐 Đa ngôn ngữ đang được phát triển
         </div>
       ) : null}
     </header>

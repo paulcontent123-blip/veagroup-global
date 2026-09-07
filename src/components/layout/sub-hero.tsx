@@ -38,7 +38,10 @@ export function SubHero({
         className,
       )}
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[28%] border-l border-brand/10 lg:block" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[500px] max-w-[45%] bg-[radial-gradient(ellipse_80%_100%_at_100%_50%,rgba(200,84,26,0.08),transparent_65%)] lg:block"
+      />
       <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-0 h-1 w-40 bg-flag-strip" />
       <Container className="relative">
         <Link
@@ -51,19 +54,19 @@ export function SubHero({
           <ArrowLeft className="h-4 w-4" />
           {backLabel}
         </Link>
-        <div className="mt-10 max-w-4xl">
+        <div className="mt-6 max-w-4xl">
           <span className={cn("eyebrow", isDark && "text-brand-400 before:bg-brand-400")}>{eyebrow}</span>
-          <h1 className="mt-4 text-balance text-4xl font-black leading-[1.06] tracking-normal sm:text-5xl lg:text-6xl">
+          <h1 className="mt-3.5 text-balance font-black leading-[1.05] tracking-[-0.015em] text-[clamp(2.25rem,5vw,4rem)]">
             {title}
             {highlight ? (
               <>
                 {" "}
-                <span className={isDark ? "text-brand-400" : "text-gradient"}>{highlight}</span>
+                <span className={cn("italic", isDark ? "text-brand-400" : "text-gradient")}>{highlight}</span>
               </>
             ) : null}
           </h1>
           {description ? (
-            <p className={cn("mt-6 max-w-2xl text-base leading-8 sm:text-lg", isDark ? "text-white/62" : "text-muted")}>
+            <p className={cn("mt-5 max-w-[560px] text-[15px] leading-[1.75]", isDark ? "text-white/62" : "text-muted")}>
               {description}
             </p>
           ) : null}

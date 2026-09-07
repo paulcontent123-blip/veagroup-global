@@ -16,7 +16,12 @@ export interface NavChild {
   href: string;
   emoji?: string;
   description?: Localized;
+  /** Tô đậm + màu brand — dùng cho item nổi bật kiểu "Xem toàn bộ 25 nền tảng →". */
   emphasis?: boolean;
+  /** Chữ nhỏ, mờ — dùng cho item phụ kiểu "Tin mới nhất". */
+  muted?: boolean;
+  /** Vẽ đường phân cách phía trên item này (khớp `.ndm-sep` trong demo). */
+  divider?: boolean;
 }
 
 export interface NavItem {

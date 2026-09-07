@@ -23,7 +23,7 @@ export function EcosystemSection() {
           </div>
           <Link
             href="/he-sinh-thai"
-            className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-line-strong px-5 py-2.5 text-[13px] font-semibold text-ink transition-colors hover:border-brand hover:text-brand md:self-auto"
+            className="inline-flex shrink-0 items-center gap-2 self-start rounded-lg border border-line-strong bg-white px-5 py-2.5 text-[13px] font-semibold text-ink shadow-soft transition-[color,border-color,box-shadow] hover:border-brand hover:text-brand hover:shadow-lift md:self-auto"
           >
             Xem tất cả 25 nền tảng <span aria-hidden>→</span>
           </Link>

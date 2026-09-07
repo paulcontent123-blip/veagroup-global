@@ -1,23 +1,40 @@
-import Link from "next/link";
+"use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+
+// Ảnh gốc từ demo: wordmark "VEA GROUP", tỉ lệ ~8.5:1. Nếu ảnh lỗi (404, mạng chậm khi
+// self-host…), rơi về fallback chữ y hệt demo (`.nav-logo-fallback`: "VEA <em>GROUP</em>").
 export function SiteLogo({ inverted = false }: { inverted?: boolean }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
-    <Link href="/#top" className="group inline-flex items-center gap-3" aria-label="VEA Group home">
-      <span
-        className={`grid h-10 w-10 place-items-center rounded-lg text-sm font-black shadow-soft ${
-          inverted ? "bg-white text-ink" : "bg-ink text-white"
-        }`}
-      >
-        V
-      </span>
-      <span className="leading-none">
-        <span className={`block text-[15px] font-black tracking-normal ${inverted ? "text-white" : "text-ink"}`}>
-          VEA Group
+    <Link href="/#top" className="group inline-flex items-center" aria-label="VEA Group — Trang chủ">
+      {!imgError ? (
+        <Image
+          src="/brand/vea-logo.png"
+          alt="VEA Group"
+          width={224}
+          height={26}
+          priority
+          className={cn("h-[26px] w-auto object-contain", inverted && "brightness-0 invert")}
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        <span className={cn("text-[17px] font-black leading-none", inverted ? "text-white" : "text-ink")}>
+          VEA{" "}
+          <em
+            className={cn(
+              "not-italic bg-clip-text text-transparent",
+              inverted ? "bg-white" : "bg-brand-gradient",
+            )}
+          >
+            GROUP
+          </em>
         </span>
-        <span className={`mt-1 block text-[11px] font-semibold uppercase tracking-[0.16em] ${inverted ? "text-brand-400" : "text-brand"}`}>
-          Vietnam Era
-        </span>
-      </span>
+      )}
     </Link>
   );
 }

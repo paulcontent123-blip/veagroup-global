@@ -71,7 +71,7 @@ export function HeroSection() {
           type="button"
           onClick={() => go(index - 1)}
           aria-label="Slide trước"
-          className="grid h-9 w-9 place-items-center rounded-full border border-line-strong bg-white/80 text-muted backdrop-blur transition hover:border-brand hover:text-brand"
+          className="grid h-9 w-9 place-items-center rounded-full border border-line-strong bg-white/80 text-muted shadow-soft backdrop-blur transition hover:border-brand hover:text-brand"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -94,7 +94,7 @@ export function HeroSection() {
           type="button"
           onClick={() => go(index + 1)}
           aria-label="Slide sau"
-          className="grid h-9 w-9 place-items-center rounded-full border border-line-strong bg-white/80 text-muted backdrop-blur transition hover:border-brand hover:text-brand"
+          className="grid h-9 w-9 place-items-center rounded-full border border-line-strong bg-white/80 text-muted shadow-soft backdrop-blur transition hover:border-brand hover:text-brand"
         >
           <ChevronRight className="h-4 w-4" />
         </button>
