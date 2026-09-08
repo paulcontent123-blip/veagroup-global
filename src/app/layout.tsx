@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { IntroPreloader } from "@/components/layout/intro-preloader";
 import { getLocale } from "@/lib/i18n/locale";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -53,6 +54,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         />
       </head>
       <body className="font-sans">
+        <IntroPreloader />
         <Providers initialLocale={locale}>
           <SiteHeader />
           {children}

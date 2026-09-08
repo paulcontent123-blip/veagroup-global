@@ -88,10 +88,74 @@
   }
 }
 
+/* ── Intro preloader — hiệu ứng chào lần đầu vào trang (bám veagroup.global) ── */
+@keyframes intro-letter-move {
+  0% {
+    opacity: 0;
+    transform: translateX(-15vw);
+  }
+  33.3%,
+  66% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(15vw);
+  }
+}
+@keyframes intro-line-move {
+  0% {
+    opacity: 0;
+    width: 0%;
+    left: 0;
+    right: auto;
+  }
+  33.3%,
+  66% {
+    opacity: 0.8;
+    width: 100%;
+  }
+  85% {
+    opacity: 1;
+    width: 0%;
+    left: auto;
+    right: 0;
+  }
+  100% {
+    opacity: 0;
+    width: 0%;
+  }
+}
+
 @layer components {
   /* Text tô gradient thương hiệu (thay cho -webkit-background-clip lặp lại trong demo) */
   .text-gradient {
     @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  /* Từng chữ cái trong preloader: trượt vào giữa rồi trượt ra, tô gradient cam→trắng. */
+  .intro-letter {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--brand) 0%, #ffffff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: intro-letter-move 1.8s ease-in-out infinite;
+  }
+
+  /* Gạch ngang gradient quét bên dưới chữ, đồng bộ nhịp với .intro-letter. */
+  .intro-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--brand) 0%, #ffffff 100%);
+    animation: intro-line-move 1.8s ease-in-out infinite;
   }
 
   /* Container content: 20px mobile, 32px tablet, 80px desktop như demo. */
