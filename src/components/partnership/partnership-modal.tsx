@@ -49,6 +49,8 @@ const INPUT =
 function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => void }) {
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { locale } = useLocale();
 
   useEffect(() => {
@@ -69,12 +71,14 @@ function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => voi
     if (!isOpen) {
       setSent(false);
       setError(false);
+      setSubmitError(false);
+      setSubmitting(false);
     }
   }, [isOpen]);
 
   if (!isOpen) return null;
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const filled = ["name", "email", "phone", "type"].every((key) => String(data.get(key) ?? "").trim());
@@ -83,7 +87,28 @@ function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => voi
       return;
     }
     setError(false);
-    setSent(true);
+    setSubmitError(false);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "partnership-modal",
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          type: data.get("type"),
+          message: data.get("desc"),
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSent(true);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -176,11 +201,24 @@ function PartnershipModal({ isOpen, close }: { isOpen: boolean; close: () => voi
                   {locale === "en" ? "Please complete the fields marked *." : "Vui lòng điền các trường có dấu *."}
                 </p>
               ) : null}
+              {submitError ? (
+                <p className="mt-3 text-[13px] font-medium text-red-600">
+                  {locale === "en"
+                    ? "Couldn't send right now — please try again in a moment."
+                    : "Gửi không thành công — vui lòng thử lại sau ít phút."}
+                </p>
+              ) : null}
             </div>
 
             <div className="flex gap-2.5 px-6 pb-6 pt-1 sm:px-7">
-              <Button type="submit" className="flex-1">
-                {locale === "en" ? "Send partnership request →" : "Gửi yêu cầu hợp tác →"}
+              <Button type="submit" disabled={submitting} className="flex-1">
+                {submitting
+                  ? locale === "en"
+                    ? "Sending…"
+                    : "Đang gửi…"
+                  : locale === "en"
+                    ? "Send partnership request →"
+                    : "Gửi yêu cầu hợp tác →"}
               </Button>
               <button
                 type="button"

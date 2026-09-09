@@ -47,11 +47,35 @@ const LABEL = "text-[10px] font-semibold uppercase tracking-[0.3px] text-muted";
 
 export function ContactSection() {
   const [sent, setSent] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const { locale } = useLocale();
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    const data = new FormData(event.currentTarget);
+    setSubmitError(false);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source: "contact-section",
+          name: data.get("name"),
+          email: data.get("email"),
+          company: data.get("company"),
+          type: data.get("type"),
+          message: data.get("message"),
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSent(true);
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -154,9 +178,22 @@ export function ContactSection() {
                   className={cn(FIELD, "min-h-[76px] resize-none")}
                 />
               </label>
+              {submitError ? (
+                <p className="text-[13px] font-medium text-red-600 sm:col-span-2">
+                  {locale === "en"
+                    ? "Couldn't send right now — please try again in a moment."
+                    : "Gửi không thành công — vui lòng thử lại sau ít phút."}
+                </p>
+              ) : null}
               <div className="sm:col-span-2">
-                <Button type="submit" className="w-full">
-                  {locale === "en" ? "Send message → Reply within 24h" : "Gửi thông tin → Phản hồi trong 24h"}
+                <Button type="submit" disabled={submitting} className="w-full">
+                  {submitting
+                    ? locale === "en"
+                      ? "Sending…"
+                      : "Đang gửi…"
+                    : locale === "en"
+                      ? "Send message → Reply within 24h"
+                      : "Gửi thông tin → Phản hồi trong 24h"}
                 </Button>
               </div>
             </form>

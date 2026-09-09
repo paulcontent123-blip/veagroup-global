@@ -1,11 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { IntroPreloader } from "@/components/layout/intro-preloader";
 import { getLocale } from "@/lib/i18n/locale";
+
+// Điền 2 biến này vào .env.local là tự bật, không cần sửa code (xem .env.example).
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GOOGLE_SITE_VERIFICATION = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -22,6 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description,
     alternates: { canonical: "/" },
+    verification: GOOGLE_SITE_VERIFICATION ? { google: GOOGLE_SITE_VERIFICATION } : undefined,
     openGraph: {
       title: "VEA Group | Vietnam Era Group",
       description,
@@ -53,13 +59,20 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans">
+      {/*
+        suppressHydrationWarning: script đồng bộ của <IntroPreloader /> khoá scroll bằng
+        cách set `body.style.overflow = "hidden"` TRƯỚC khi React hydrate (xem comment
+        trong intro-preloader.tsx) — cùng lý do phải thêm suppressHydrationWarning ở đây,
+        chỉ khác node bị mutate lần này là <body> thay vì #vea-intro.
+      */}
+      <body className="font-sans" suppressHydrationWarning>
         <IntroPreloader />
         <Providers initialLocale={locale}>
           <SiteHeader />
           {children}
           <SiteFooter />
         </Providers>
+        {GA_MEASUREMENT_ID ? <GoogleAnalytics gaId={GA_MEASUREMENT_ID} /> : null}
       </body>
     </html>
   );
