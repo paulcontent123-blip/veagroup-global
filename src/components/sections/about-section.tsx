@@ -91,7 +91,7 @@ export function AboutSection() {
           {/* Cột trái: about-text + pillars */}
           <div>
             <span className="eyebrow">{locale === "en" ? "Operating model" : "Mô hình vận hành"}</span>
-            <h2 className="mt-3 text-balance font-black leading-[1.1] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+            <h2 className="mt-3 text-balance font-black leading-[1.25] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
               {locale === "en" ? "Optimize cost." : "Tối ưu chi phí."}
               <br />
               <span className="text-gradient">{locale === "en" ? "Maximize value." : "Tối đa giá trị."}</span>

@@ -38,10 +38,10 @@ export function HeroSlideIntro() {
               <span className="h-1.5 w-1.5 animate-blink rounded-full bg-brand" />
               {locale === "en" ? "Vietnam Era Group · Vietnam Era" : "Vietnam Era Group · Kỷ nguyên Việt Nam"}
             </span>
-            <h1 className="mt-6 text-balance font-black leading-[1] tracking-[-2px] text-[40px] sm:text-[52px] lg:text-[68px]">
+            <h1 className="mt-6 text-balance font-black leading-[1.05] tracking-[-2px] text-[40px] sm:text-[52px] lg:text-[68px]">
               <span className="block text-ink">{locale === "en" ? "One ecosystem." : "Một hệ sinh thái."}</span>
               <span className="block text-gradient">{locale === "en" ? "Five companies." : "Năm công ty."}</span>
-              <span className="mt-1 block font-normal italic text-muted text-[32px] sm:text-[40px] lg:text-[48px]">
+              <span className="mt-0.5 block font-normal italic text-muted text-[32px] sm:text-[40px] lg:text-[48px]">
                 {locale === "en" ? "Endless opportunities." : "Vô số cơ hội."}
               </span>
             </h1>

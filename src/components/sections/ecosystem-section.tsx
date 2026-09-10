@@ -20,7 +20,7 @@ export function EcosystemSection() {
         <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="eyebrow">{locale === "en" ? "Digital ecosystem" : "Hệ sinh thái số"}</span>
-            <h2 className="mt-3 text-balance font-black leading-[1.1] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+            <h2 className="mt-3 text-balance font-black leading-[1.25] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
               {locale === "en" ? "25 platforms — " : "25 nền tảng — "}
               <span className="text-gradient italic">{locale === "en" ? "one solution for every need" : "mỗi nhu cầu một giải pháp"}</span>
             </h2>

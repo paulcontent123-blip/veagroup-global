@@ -132,6 +132,18 @@
   /* Text tô gradient thương hiệu (thay cho -webkit-background-clip lặp lại trong demo) */
   .text-gradient {
     @apply bg-brand-gradient bg-clip-text text-transparent;
+    /* background-clip:text tô glyph bằng cách "xén" NỀN vào hình chữ → phần nền chỉ phủ
+       đúng line-box mỗi dòng, nên chân dấu tiếng Việt sâu (g, ị, ự, ỵ) và đỉnh dấu chồng
+       (ố, ỗ, ệ) nằm ngoài line-box thì không được tô → trông như bị cắt. Cùng lúc glyph
+       nghiêng (italic) tràn cạnh phải cũng bị xén.
+       Fix: box-decoration-break: clone để MỖI dòng của cụm gradient (kể cả khi wrap) tự
+       có hộp padding riêng, rồi padding nới hộp nền ra ~1/4 em mỗi phía; margin ngang âm
+       bù lại để không lệch layout (margin dọc của inline bị bỏ qua nên không cần bù). */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-inline: 0.1em;
+    margin-inline: -0.1em;
+    padding-block: 0.28em;
   }
 
   /* Từng chữ cái trong preloader: trượt vào giữa rồi trượt ra, tô gradient cam→trắng. */

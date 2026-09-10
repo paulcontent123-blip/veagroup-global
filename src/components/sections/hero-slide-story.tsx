@@ -25,7 +25,7 @@ export function HeroSlideStory() {
               <span aria-hidden className="h-px w-[18px] bg-brand" />
               Vietnam Era Group
             </span>
-            <h2 className="mt-3.5 text-balance font-black leading-[1.1] tracking-[-0.8px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+            <h2 className="mt-3.5 text-balance font-black leading-[1.25] tracking-[-0.8px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
               {locale === "en" ? "Building the" : "Hành trình xây dựng"}
               <br />
               <span className="text-gradient italic">{locale === "en" ? "Vietnam Era" : "Kỷ nguyên Việt Nam"}</span>

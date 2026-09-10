@@ -84,7 +84,7 @@ export function ContactSection() {
         {/* Tiêu đề — canh giữa */}
         <div className="flex flex-col items-center text-center">
           <span className="eyebrow">{locale === "en" ? "Partner with VEA Group" : "Hợp tác với VEA Group"}</span>
-          <h2 className="mt-3 text-balance font-black leading-[1.1] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+          <h2 className="mt-3 text-balance font-black leading-[1.25] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
             {locale === "en" ? "Build the" : "Cùng xây dựng"}
             <br />
             <span className="text-gradient italic">{locale === "en" ? "Vietnam Era" : "kỷ nguyên Việt Nam"}</span>

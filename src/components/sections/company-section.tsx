@@ -48,7 +48,7 @@ export function CompanySection() {
 
       <Container className="relative z-10 pb-12">
         <span className="eyebrow">{locale === "en" ? "5 member companies" : "5 Công ty thành viên"}</span>
-        <h2 className="mt-3 text-balance font-black leading-[1.1] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
+        <h2 className="mt-3 text-balance font-black leading-[1.25] tracking-[-0.5px] text-ink text-[32px] sm:text-[36px] lg:text-[40px]">
           {locale === "en" ? "One strength for" : "Mỗi công ty một"}
           <br />
           <span className="text-gradient italic">{locale === "en" ? "every company" : "thế mạnh riêng biệt"}</span>

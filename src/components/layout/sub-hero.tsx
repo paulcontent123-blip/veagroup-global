@@ -56,7 +56,7 @@ export function SubHero({
         </Link>
         <div className="mt-6 max-w-4xl">
           <span className={cn("eyebrow", isDark && "text-brand-400 before:bg-brand-400")}>{eyebrow}</span>
-          <h1 className="mt-3.5 text-balance font-black leading-[0.95] tracking-[-1.5px] text-[36px] sm:text-[48px] lg:text-[64px]">
+          <h1 className="mt-3.5 text-balance font-black leading-[1.15] tracking-[-1.5px] text-[36px] sm:text-[48px] lg:text-[64px]">
             {title}
             {highlight ? (
               <>

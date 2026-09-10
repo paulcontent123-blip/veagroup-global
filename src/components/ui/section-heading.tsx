@@ -41,7 +41,7 @@ export function SectionHeading({
       ) : null}
       <Heading
         className={cn(
-          "text-balance font-black leading-[1.1] tracking-tight",
+          "text-balance font-black leading-[1.25] tracking-tight",
           "text-[32px] sm:text-[36px] lg:text-[40px]",
           tone === "dark" ? "text-white" : "text-ink",
         )}
