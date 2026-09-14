@@ -32,6 +32,15 @@ export function SiteHeader() {
     return () => window.clearTimeout(timer);
   }, [toast]);
 
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
   if (pathname?.startsWith("/admin")) return null;
 
   return (
@@ -129,7 +138,7 @@ export function SiteHeader() {
         </button>
       </div>
       {open ? (
-        <div className="border-t border-line bg-white shadow-lift lg:hidden">
+        <div className="hide-scrollbar max-h-[calc(100svh-62px)] overflow-y-auto overscroll-contain border-t border-line bg-white shadow-lift lg:hidden">
           <Container className="py-3">
             <nav className="grid gap-1" aria-label={messages.nav.mobileNavigation}>
               {mainNav.map((item) => (
