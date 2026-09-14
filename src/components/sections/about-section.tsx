@@ -70,12 +70,20 @@ export function AboutSection() {
                 </div>
               </div>
             </div>
-            <div className="mt-6 grid gap-4">
+            <div className="mt-6">
               {homeStoryBlocks.map((block) => (
-                <article key={tx(block.title, locale)} className="flex gap-4 border-t border-white/10 pt-4">
-                  <span className="text-2xl" aria-hidden="true">{block.emoji}</span>
-                  <div>
-                    <h3 className="font-bold text-white">{tx(block.title, locale)}</h3>
+                <article
+                  key={tx(block.title, locale)}
+                  className="grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-3 border-t border-white/10 py-4"
+                >
+                  <span
+                    className="grid h-8 w-8 shrink-0 place-items-center text-2xl leading-none"
+                    aria-hidden="true"
+                  >
+                    {block.emoji}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-bold leading-6 text-white">{tx(block.title, locale)}</h3>
                     <p className="mt-1 text-sm leading-6 text-white/58">{tx(block.description, locale)}</p>
                   </div>
                 </article>
