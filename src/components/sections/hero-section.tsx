@@ -48,7 +48,7 @@ export function HeroSection() {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="relative h-[calc(100svh-4rem)] max-h-[900px] min-h-[600px] w-full overflow-hidden">
+      <div className="relative h-[calc(100svh-4rem)] max-h-[900px] min-h-[780px] w-full overflow-hidden lg:min-h-[600px]">
         <div
           aria-live="off"
           className="flex h-full transition-transform duration-700 [transition-timing-function:cubic-bezier(0.77,0,0.175,1)] motion-reduce:transition-none"
