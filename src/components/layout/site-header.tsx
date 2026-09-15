@@ -45,7 +45,15 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-white/92 backdrop-blur-xl">
+      {/*
+        transform-gpu + will-change-transform: ép trình duyệt giữ ổn định 1 compositing
+        layer riêng cho header. Đây là fix phòng ngừa cho 1 lỗi khá biết đến của
+        Chrome/Edge: phần tử position:fixed + backdrop-filter (bg-white/92 + blur-xl ở
+        đây) đôi khi render sai/biến mất ở vài mức zoom lẻ (90%, 110%, 125%…), nhất là
+        kèm display-scaling của Windows. Không đổi giao diện, chỉ đổi cách trình duyệt
+        rasterize layer này.
+      */}
+      <header className="fixed inset-x-0 top-0 z-50 transform-gpu border-b border-line bg-white/92 backdrop-blur-xl will-change-transform">
       <div className="header-container-px flex h-[62px] w-full items-center justify-between">
         <SiteLogo />
         <nav className="hidden items-center gap-1 lg:flex" aria-label={messages.nav.mainNavigation}>
